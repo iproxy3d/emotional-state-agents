@@ -22,4 +22,4 @@ E_t = F(X_t, Personality, E_{t-1}, ε_t)
 
 Открыть версию статьи из ветки:
 
-`https://htmlpreview.github.io/?https://github.com/iproxy3d/communication-styles-llm/blob/emotional-state-agents/index.html`
+`https://htmlpreview.github.io/?https://github.com/iproxy3d/emotional-state-agents/blob/main/index.html`
