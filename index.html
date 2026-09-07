@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Эмоциональное состояние агента</title>
+<meta name="description" content="Как превратить распознавание эмоций в рекуррентное внутреннее состояние AI-агента: понятная концепция, бизнес-сценарии и инженерная реализация.">
+<meta property="og:title" content="Эмоциональное состояние агента">
+<meta property="og:description" content="Характер, восприимчивость, память и мультимодальные сигналы в динамической модели состояния агента.">
+<meta property="og:type" content="article">
+<style>
+:root{--ink:#172033;--muted:#606b7c;--line:#dce3ed;--paper:#fff;--general:#7357c8;--general-soft:#f3efff;--business:#087b79;--business-soft:#eaf8f6;--tech:#315e9d;--tech-soft:#edf4ff;--warm:#d97a3a;--warm-soft:#fff5ec;--shadow:0 18px 55px rgba(29,42,65,.11)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#edf0f5;color:var(--ink);font:17px/1.64 Inter,"Segoe UI",Arial,sans-serif}.document{max-width:1240px;margin:auto;background:#fff;box-shadow:var(--shadow)}.wrap{max-width:1080px;margin:auto;padding:0 42px}h1,h2,h3,h4{line-height:1.18;letter-spacing:-.025em}h1{font-size:54px;margin:0 0 20px}h2{font-size:39px;margin:0 0 20px}h3{font-size:29px;margin:58px 0 16px}h4{font-size:20px;margin:28px 0 8px}p{margin:0 0 17px}a{color:inherit}.hero{padding:76px 0 62px;background:radial-gradient(circle at 88% 4%,#dcd4ff 0,transparent 32%),radial-gradient(circle at 63% 88%,#d7f4ef 0,transparent 28%),linear-gradient(145deg,#fafaff,#f4f6fa)}.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:42px;align-items:center}.hero p{font-size:21px;color:#465167}.eyebrow{font-size:13px;text-transform:uppercase;letter-spacing:.13em;font-weight:800;color:var(--general);margin-bottom:14px}.chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:25px}.chip{font-size:13px;padding:7px 12px;background:#fff;border:1px solid #d9dfea;border-radius:99px;color:#465167}.state-orbit{min-height:390px;position:relative;display:grid;place-items:center}.state-core{width:190px;height:190px;border-radius:50%;display:grid;place-items:center;text-align:center;color:#fff;font-size:30px;font-weight:850;background:linear-gradient(145deg,#7357c8,#315e9d);box-shadow:0 22px 55px rgba(63,67,151,.32)}.state-core small{display:block;font-size:13px;font-weight:500;opacity:.86;margin-top:4px}.bubble{position:absolute;padding:12px 15px;border-radius:14px;background:#fff;border:1px solid var(--line);box-shadow:0 10px 28px rgba(35,46,70,.10);font-size:14px;font-weight:750}.b1{top:15px;left:6px}.b2{top:36px;right:0}.b3{bottom:36px;left:0}.b4{bottom:10px;right:13px}.nav{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.nav .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-top:13px;padding-bottom:13px}.nav a{text-decoration:none;border-radius:10px;padding:9px 13px;font-weight:750;font-size:14px}.nav a span{display:block;color:var(--muted);font-size:12px;font-weight:450}.nav .g{background:var(--general-soft)}.nav .b{background:var(--business-soft)}.nav .t{background:var(--tech-soft)}.reader-map{padding:42px 0}.map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.map{padding:23px;border-radius:16px;border:1px solid var(--line)}.map b{display:block;font-size:19px;margin-bottom:6px}.section{padding:78px 0 88px;border-top:1px solid var(--line)}.section-head{display:grid;grid-template-columns:130px 1fr;gap:25px;align-items:start;margin-bottom:40px}.part{font-size:13px;font-weight:850;text-transform:uppercase;letter-spacing:.11em;border-radius:12px;padding:14px;text-align:center}.lead{font-size:21px;color:#465167}.general .part{background:var(--general-soft);color:var(--general)}.business .part{background:var(--business-soft);color:var(--business)}.technical .part{background:var(--tech-soft);color:var(--tech)}.principle{display:grid;grid-template-columns:160px 1fr;gap:18px;margin:24px 0;padding:21px;border-radius:15px;background:var(--general-soft)}.principle b{color:var(--general)}.cards2,.cards3,.cards4{display:grid;gap:17px;margin:25px 0}.cards2{grid-template-columns:repeat(2,1fr)}.cards3{grid-template-columns:repeat(3,1fr)}.cards4{grid-template-columns:repeat(4,1fr)}.card{padding:21px;border:1px solid var(--line);border-radius:15px;background:#fff}.card p:last-child{margin-bottom:0}.tag{display:inline-block;border-radius:99px;padding:4px 9px;font-size:12px;font-weight:800;margin-bottom:10px}.general .tag{background:var(--general-soft);color:var(--general)}.business .tag{background:var(--business-soft);color:var(--business)}.technical .tag{background:var(--tech-soft);color:var(--tech)}.callout{margin:30px 0;padding:22px 25px;border-left:5px solid var(--general);background:#f7f4ff;border-radius:0 14px 14px 0}.business .callout{border-color:var(--business);background:#effaf8}.technical .callout{border-color:var(--tech);background:#f1f6ff}.warning{border-color:var(--warm)!important;background:var(--warm-soft)!important}.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:stretch;margin:30px 0}.flowbox{position:relative;padding:17px 13px;border:1px solid var(--line);border-radius:13px;background:#fff;text-align:center;font-weight:780}.flowbox:not(:last-child):after{content:'→';position:absolute;right:-17px;top:50%;transform:translateY(-50%);z-index:2;color:#8b96a8;font-size:21px}.flowbox small{display:block;color:var(--muted);font-weight:450;margin-top:5px}.trajectory{display:flex;gap:8px;align-items:flex-end;margin:28px 0;padding:24px;border:1px solid var(--line);border-radius:16px;background:#fafbfc}.bar{flex:1;min-width:0;text-align:center;color:#fff;border-radius:10px 10px 4px 4px;padding:10px 4px;font-size:13px;font-weight:800;background:linear-gradient(#917adc,#6548b6)}.bar small{display:block;font-weight:500}.benefit-table,.params{width:100%;border-collapse:collapse;margin:28px 0;font-size:15px}.benefit-table th,.benefit-table td,.params th,.params td{padding:14px 15px;text-align:left;vertical-align:top;border:1px solid var(--line)}.benefit-table th{background:#eef8f7;color:#075f5e}.params th{background:#edf4ff;color:#294f83}.params td:first-child{font:19px "Cambria Math",Cambria,serif;color:var(--tech);font-weight:700}.formula{font:27px/1.4 "Cambria Math",Cambria,Georgia,serif;text-align:center;padding:19px;margin:22px 0;background:#f2f6fd;border:1px solid #d8e3f3;border-radius:13px;overflow:auto}.formula.small{font-size:21px}.code{margin:22px 0;padding:20px 22px;border-radius:14px;background:#172238;color:#e8eef8;font:14px/1.55 Consolas,"Courier New",monospace;white-space:pre-wrap;overflow:auto}.steps{counter-reset:step;display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:25px 0}.step{counter-increment:step;padding:19px;border:1px solid var(--line);border-radius:14px}.step:before{content:counter(step);display:grid;place-items:center;width:31px;height:31px;border-radius:50%;background:var(--tech);color:#fff;font-weight:800;margin-bottom:11px}.decision{padding:18px 20px;margin:13px 0;border:1px solid var(--line);border-radius:13px;display:grid;grid-template-columns:210px 1fr;gap:16px}.decision b{color:var(--tech)}.source-note{font-size:13px;color:var(--muted);padding:14px 18px;background:#f6f7f9;border-radius:10px;margin-top:25px}.footer{padding:33px 0;background:#182238;color:#cdd5e2;font-size:14px}.muted{color:var(--muted)}
+@media(max-width:850px){body{font-size:16px}.wrap{padding:0 20px}.hero{padding-top:42px}.hero-grid,.section-head,.map-grid,.cards2,.cards3,.cards4,.steps{grid-template-columns:1fr}h1{font-size:39px}h2{font-size:32px}.nav{position:static}.nav .wrap{grid-template-columns:1fr}.principle,.decision{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.flowbox:not(:last-child):after{content:'↓';right:auto;top:auto;left:50%;bottom:-22px;transform:translateX(-50%)}.state-orbit{min-height:340px}.state-core{width:160px;height:160px;font-size:25px}.bubble{font-size:12px}.trajectory{align-items:stretch;flex-direction:column}.bar{height:auto!important}.benefit-table,.params{display:block;overflow-x:auto}}
+@media print{body{background:#fff}.document{box-shadow:none}.nav{position:static}.card,.callout,.formula{break-inside:avoid}}
+</style>
+</head>
+<body><main class="document">
+<header class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Рекуррентная модель внутреннего состояния</div><h1>Эмоциональное состояние агента</h1><p>Как дать AI-персонажу характер, восприимчивость и эмоциональную память — вместо реакции только на последнюю реплику.</p><div class="chips"><span class="chip">понятная концепция</span><span class="chip">бизнес-сценарии</span><span class="chip">двухступенчатая модель</span><span class="chip">формулы и алгоритм</span></div></div><div class="state-orbit" aria-label="Источники эмоционального состояния"><div class="bubble b1">Смысл слов</div><div class="bubble b2">Звучание речи</div><div class="bubble b3">Характер</div><div class="bubble b4">Предыдущее состояние</div><div class="state-core">E<sub>t</sub><small>состояние сейчас</small></div></div></div></header>
+<nav class="nav"><div class="wrap"><a class="g" href="#general">I. Для понимания<span>что это и зачем</span></a><a class="b" href="#business">II. Для бизнеса<span>что можно получить</span></a><a class="t" href="#technical">III. Для инженера<span>как реализовать</span></a></div></nav>
+
+<section class="reader-map"><div class="wrap"><div class="map-grid"><div class="map"><b>Обычному читателю</b>Первая часть объясняет разницу между распознанной эмоцией и состоянием, которое живёт во времени.</div><div class="map"><b>Менеджеру продукта</b>Вторая часть показывает, какие новые свойства получает продукт и где они полезны.</div><div class="map"><b>Инженеру</b>Третья часть содержит переменные, формулы, порядок вычислений, устойчивость и проверки.</div></div></div></section>
+
+<section id="general" class="section general"><div class="wrap">
+<div class="section-head"><div class="part">Часть I<br>Понимание</div><div><h2>Эмоция — не ярлык на сообщении, а состояние во времени</h2><p class="lead">Агент не обязан мгновенно становиться таким же, как собеседник. Его реакция зависит от характера, прошлого состояния и того, насколько сильно он воспринимает внешний сигнал.</p></div></div>
+
+<h3>1. Чего не хватает обычному распознаванию эмоций</h3>
+<p>Классификатор может определить, что пользователь злится, радуется или тревожится. Но он не отвечает на более важный для персонажа вопрос: <strong>что этот сигнал делает с самим агентом?</strong></p>
+<div class="cards2"><div class="card"><span class="tag">Классификация</span><h4>Что чувствует собеседник?</h4><p>Каждое сообщение анализируется отдельно: «в этой реплике anger = 0,87».</p></div><div class="card"><span class="tag">Динамическое состояние</span><h4>Как меняется агент?</h4><p>Новая реплика воздействует на уже существующее состояние, которое может сопротивляться, усиливаться или постепенно затухать.</p></div></div>
+<div class="principle"><b>Главный переход</b><span>Вместо <strong>emotion<sub>t</sub> = f(input<sub>t</sub>)</strong> используется <strong>E<sub>t</sub> = F(input<sub>t</sub>, personality, E<sub>t−1</sub>)</strong>.</span></div>
+
+<h3>2. Почему одинаковая реплика вызывает разные реакции</h3>
+<p>Пользователь говорит двум агентам: «Ты опять всё испортил!» Спокойный профессионал воспринимает раздражение, но почти не меняет своё состояние. Импульсивный персонаж реагирует заметно сильнее. Вход один и тот же, однако внутренние параметры и история различаются.</p>
+<div class="cards3"><div class="card"><span class="tag">Спокойный</span><p>Низкая восприимчивость, высокая инерция, небольшая случайная вариативность.</p></div><div class="card"><span class="tag">Эмпатичный</span><p>Сильнее чувствует эмоциональный сигнал другого, но не обязательно зеркалирует его буквально.</p></div><div class="card"><span class="tag">Импульсивный</span><p>Быстро меняется под воздействием текущей ситуации и слабее удерживает прошлое состояние.</p></div></div>
+
+<h3>3. Состояние — это смесь, а не одна категория</h3>
+<p>Внутри системы хранится вектор из множества координат. Агент может одновременно испытывать раздражение, тревогу и грусть с разной интенсивностью. Название доминирующей эмоции удобно для отображения, но оно не заменяет полного состояния.</p>
+<div class="formula">E<sub>t</sub> = [joy: 0,12; anger: 0,67; sadness: 0,24; fear: 0,18; …]</div>
+<p>Такое представление сохраняет слабые компоненты. Они могут стать важными позже, если новое событие усилит одну из них.</p>
+
+<h3>4. Четыре силы, формирующие состояние</h3>
+<div class="flow"><div class="flowbox">Собеседник<small>слова и голос</small></div><div class="flowbox">Собственный ответ<small>эмоциональный смысл</small></div><div class="flowbox">Характер<small>базовые склонности</small></div><div class="flowbox">Память<small>состояние E<sub>t−1</sub></small></div><div class="flowbox">Новое E<sub>t</sub><small>с вариативностью</small></div></div>
+<p><strong>Собеседник</strong> даёт внешний эмоциональный сигнал. <strong>Собственный ответ</strong> показывает эмоциональный смысл того, что агент собирается сказать. <strong>Характер</strong> задаёт естественные для персонажа области эмоционального пространства. <strong>Память</strong> не позволяет начинать каждый шаг с нуля. Небольшая стохастичность делает повторные реакции не механически одинаковыми.</p>
+
+<h3>5. Слова и звучание могут противоречить друг другу</h3>
+<p>Фраза «Всё нормально» может быть нейтральной по тексту, но произнесённой напряжённо и резко. Поэтому модель разделяет семантический и акустический каналы. Первый отвечает за эмоциональный смысл слов, второй — за признаки, обнаруженные в речи.</p>
+<div class="cards2"><div class="card"><span class="tag">Семантика</span><p>Что именно было сказано? Какой эмоциональный смысл несёт содержание?</p></div><div class="card"><span class="tag">Акустика</span><p>Как это было сказано? Есть ли напряжение, возбуждение, страх или агрессия в звучании?</p></div></div>
+<div class="callout"><b>Это не голосовая статья.</b> Акустика здесь рассматривается только как один из входных сигналов для формирования состояния. Способы озвучивания ответа находятся за границами материала.</div>
+
+<h3>6. Эмоциональная инерция создаёт непрерывность</h3>
+<p>После неприятного события раздражение не исчезает от одной спокойной реплики. При устойчивой динамике оно постепенно ослабевает. Поэтому персонаж воспринимается как одна продолжающаяся система, а не как набор независимых ответов.</p>
+<div class="trajectory"><div class="bar" style="height:150px">0,62<small>конфликт</small></div><div class="bar" style="height:132px">0,51<small>шаг 2</small></div><div class="bar" style="height:112px">0,39<small>шаг 3</small></div><div class="bar" style="height:91px">0,26<small>спокойный вход</small></div><div class="bar" style="height:72px">0,15<small>затухание</small></div></div>
+<p>Слишком слабая память делает персонажа эмоционально рваным. Слишком сильная — не даёт ему восстановиться. Поэтому инерция является настраиваемым свойством характера.</p>
+
+<h3>7. Характер задаёт не сценарий, а область возврата</h3>
+<p>Характер удобнее описывать распределением склонностей, а не набором жёстких правил. Вес радости, тревоги или раздражения задаёт базовое эмоциональное направление. После прекращения внешнего воздействия устойчивая система возвращается не обязательно в ноль, а к собственной стационарной области.</p>
+<div class="callout"><b>Эмоциональный аттрактор.</b> Оптимистичный персонаж после конфликта постепенно возвращается к положительному фону; тревожный может долго сохранять страх; стоик слабо отклоняется от исходного состояния.</div>
+</div></section>
+
+<section id="business" class="section business"><div class="wrap">
+<div class="section-head"><div class="part">Часть II<br>Бизнес</div><div><h2>Что получает продукт</h2><p class="lead">Не декоративную метку «агент грустит», а управляемую траекторию поведения: устойчивую личность, накопление последствий и разные реакции персонажей на одну ситуацию.</p></div></div>
+
+<h3>1. Персонаж становится последовательным</h3>
+<p>Пользователь замечает не формулу, а причинность. Если конфликт накапливался несколько шагов, его последствия сохраняются. Если общение постепенно улучшалось, состояние также меняется постепенно.</p>
+<table class="benefit-table"><thead><tr><th>Без внутреннего состояния</th><th>С рекуррентным состоянием</th><th>Продуктовый эффект</th></tr></thead><tbody><tr><td>Каждая реплика начинает эмоциональную оценку заново.</td><td>Новая реакция продолжает предыдущую траекторию.</td><td>Персонаж выглядит последовательнее.</td></tr><tr><td>Все агенты одинаково реагируют на один вход.</td><td>Характер и параметры меняют восприимчивость и восстановление.</td><td>Можно создавать действительно разные роли.</td></tr><tr><td>Эмоция существует как временная метка.</td><td>Сохраняются смешанные состояния и слабые компоненты.</td><td>Поведение становится богаче и менее шаблонным.</td></tr></tbody></table>
+
+<h3>2. Шесть продуктовых сценариев</h3>
+<div class="cards3"><div class="card"><span class="tag">Поддержка</span><h4>Устойчивость под давлением</h4><p>Агент распознаёт напряжение клиента, но параметры роли ограничивают эмоциональное заражение.</p></div><div class="card"><span class="tag">Обучение</span><h4>Реакция на прогресс</h4><p>Тьютор накапливает положительное состояние при успехах и не переключается механически после каждой ошибки.</p></div><div class="card"><span class="tag">Игровой NPC</span><h4>Последствия взаимодействий</h4><p>Последовательность угроз, помощи или примирения формирует эмоциональную траекторию внутри сцены.</p></div><div class="card"><span class="tag">Companion</span><h4>Эмоциональная непрерывность</h4><p>Персонаж сохраняет настроение и не выглядит новым собеседником на каждом шаге.</p></div><div class="card"><span class="tag">Тренажёр переговоров</span><h4>Разные темпераменты</h4><p>Одинаковый сценарий можно пройти со стоиком, тревожным или вспыльчивым партнёром.</p></div><div class="card"><span class="tag">Социальный робот</span><h4>Мультимодальная оценка</h4><p>Содержание фразы и невербальный эмоциональный сигнал учитываются раздельно.</p></div></div>
+
+<h3>3. Характер становится набором управляемых параметров</h3>
+<p>Вместо длинного литературного описания темперамента продукт может хранить базовое распределение эмоций и несколько коэффициентов динамики. Это позволяет создавать семейства персонажей и проверять их поведение на одинаковых сценариях.</p>
+<table class="benefit-table"><thead><tr><th>Архетип</th><th>Восприимчивость</th><th>Инерция</th><th>Вариативность</th><th>Ожидаемая динамика</th></tr></thead><tbody><tr><td>Стоик</td><td>Очень низкая</td><td>Высокая</td><td>Очень низкая</td><td>Слабо отклоняется от базового состояния.</td></tr><tr><td>Эмпатичный</td><td>Высокая</td><td>Средняя</td><td>Низкая</td><td>Замечает состояние другого, но сохраняет связность.</td></tr><tr><td>Импульсивный</td><td>Высокая</td><td>Низкая</td><td>Высокая</td><td>Быстро переключается и реагирует вариативно.</td></tr><tr><td>Тревожный</td><td>Высокая к fear</td><td>Высокая для fear</td><td>Средняя</td><td>Слабый тревожный сигнал может сохраняться долго.</td></tr><tr><td>Оптимист</td><td>Средняя</td><td>Высокая для joy</td><td>Низкая</td><td>После отклонения возвращается к положительному фону.</td></tr></tbody></table>
+
+<h3>4. Что можно настраивать безопасно</h3>
+<div class="cards2"><div class="card"><h4>Глобально для персонажа</h4><p>Общую восприимчивость, инерцию, вариативность и интенсивность эмоциональной системы.</p></div><div class="card"><h4>Отдельно для эмоций</h4><p>Например, долго помнить тревогу, но быстро терять раздражение; легко заражаться радостью, но слабо реагировать на агрессию.</p></div></div>
+<div class="callout warning"><b>Не путать с диагнозом личности.</b> Эти параметры — инженерные регуляторы поведения искусственного персонажа. Их психологические названия являются интерпретацией, а не клинической моделью человека.</div>
+
+<h3>5. Что измерять в продукте</h3>
+<div class="decision"><b>Непрерывность</b><span>Сохраняет ли агент последствия событий между соседними шагами?</span></div><div class="decision"><b>Восстановление</b><span>Возвращается ли состояние к характерному фону после прекращения воздействия?</span></div><div class="decision"><b>Различимость персонажей</b><span>Дают ли разные профили устойчиво разные траектории на одном сценарии?</span></div><div class="decision"><b>Управляемость</b><span>Меняются ли наблюдаемые реакции предсказуемо при изменении параметров?</span></div><div class="decision"><b>Безопасные границы</b><span>Не накапливается ли состояние неограниченно и не закрепляется ли нежелательная реакция?</span></div><div class="decision"><b>Стабильность повторов</b><span>Создаёт ли случайность естественную вариативность, не разрушая характер?</span></div>
+</div></section>
+
+<section id="technical" class="section technical"><div class="wrap">
+<div class="section-head"><div class="part">Часть III<br>Инженерия</div><div><h2>Рекуррентная двухступенчатая модель</h2><p class="lead">Семантический слой сначала формирует промежуточное состояние. Затем акустический сигнал и базовый характер преобразуют его в итоговый эмоциональный вектор.</p></div></div>
+
+<h3>1. Пространство состояния и обозначения</h3>
+<p>Пусть агент использует общее пространство из <em>N</em> эмоций:</p>
+<div class="formula">E<sub>t</sub> ∈ ℝ<sup>N</sup></div>
+<table class="params"><thead><tr><th>Обозначение</th><th>Переменная прототипа</th><th>Смысл</th></tr></thead><tbody><tr><td>O<sub>t</sub><sup>text</sup></td><td><code>other_emotions_t</code></td><td>Эмоциональный вектор, распознанный в тексте собеседника.</td></tr><tr><td>O<sub>t</sub><sup>audio</sup></td><td><code>other_emotions_s</code></td><td>Эмоциональный вектор, полученный из акустического канала и приведённый к общему пространству.</td></tr><tr><td>R<sub>t</sub></td><td><code>user_emotions_t</code></td><td>Эмоциональный смысл уже сформированного ответа агента.</td></tr><tr><td>P</td><td><code>user_emotions_s</code></td><td>Базовое распределение эмоциональных склонностей персонажа.</td></tr><tr><td>E<sub>t−1</sub></td><td><code>old_user_emotions_t</code></td><td>Итоговое состояние предыдущего шага.</td></tr><tr><td>Y<sub>t</sub></td><td><code>emotions</code> после первого вызова</td><td>Промежуточное семантическое состояние.</td></tr><tr><td>E<sub>t</sub></td><td><code>emotions</code> после второго вызова</td><td>Итоговое состояние текущего шага.</td></tr></tbody></table>
+<div class="callout"><b>Терминологическая точность.</b> В первом слое <code>user_emotions_t</code> — не характер персонажа. Это эмоциональная характеристика его ответа. Базовый характер входит во второй слой как <code>user_emotions_s</code>.</div>
+
+<h3>2. Базовая операция смешения</h3>
+<p>Для каждой координаты <em>i</em> текущая реализация выполняет:</p>
+<div class="formula">F<sub>i</sub>(O,P,E) = d[aO<sub>i</sub> + (1 + ε<sub>i</sub>)P<sub>i</sub> + cE<sub>i</sub>], &nbsp; ε<sub>i</sub> ∼ U(−b,b)</div>
+<p>Случайный коэффициент создаётся отдельно для каждой эмоции. Поэтому это вектор стохастических возмущений, а не один общий шумовой множитель.</p>
+<table class="params"><thead><tr><th>Параметр</th><th>Математическая роль</th><th>Инженерная интерпретация</th></tr></thead><tbody><tr><td>a</td><td>Вес внешнего сигнала O</td><td>Восприимчивость к эмоциональному состоянию собеседника.</td></tr><tr><td>b</td><td>Диапазон случайного изменения P</td><td>Вариативность проявления базового эмоционального профиля.</td></tr><tr><td>c</td><td>Вес предыдущего состояния E</td><td>Эмоциональная инерция и длительность последействия.</td></tr><tr><td>d</td><td>Масштаб всей суммы</td><td>Общее усиление слоя. Сам по себе параметр не является памятью.</td></tr></tbody></table>
+
+<h3>3. Два последовательных слоя</h3>
+<h4>Слой 1: семантическая динамика</h4>
+<div class="formula">Y<sub>t</sub> = d<sub>i</sub>[a<sub>i</sub>O<sub>t</sub><sup>text</sup> + (1+ε<sub>t</sub><sup>i</sup>)R<sub>t</sub> + c<sub>i</sub>E<sub>t−1</sub>]</div>
+<p>Он объединяет эмоциональный смысл реплики собеседника, эмоциональный смысл собственного ответа и предыдущее состояние.</p>
+<h4>Слой 2: акустика и характер</h4>
+<div class="formula">E<sub>t</sub> = d<sub>o</sub>[a<sub>o</sub>O<sub>t</sub><sup>audio</sup> + (1+ε<sub>t</sub><sup>o</sup>)P + c<sub>o</sub>Y<sub>t</sub>]</div>
+<p>Второй слой добавляет акустический сигнал, базовый профиль персонажа и определяет, насколько сильно семантическое состояние сохраняется в результате.</p>
+<div class="flow"><div class="flowbox">Текст собеседника<small>O<sup>text</sup></small></div><div class="flowbox">Ответ агента<small>R<sub>t</sub></small></div><div class="flowbox">Semantic layer<small>Y<sub>t</sub></small></div><div class="flowbox">Акустика + характер<small>O<sup>audio</sup>, P</small></div><div class="flowbox">Итоговое состояние<small>E<sub>t</sub></small></div></div>
+
+<h3>4. Порядок вычислений в прототипе</h3>
+<div class="steps"><div class="step"><b>Получить входы</b><p>Распознать эмоции текста и, если доступно, акустики собеседника.</p></div><div class="step"><b>Сформировать ответ</b><p>Получить текст ответа агента и определить его эмоциональный вектор R<sub>t</sub>.</p></div><div class="step"><b>Выполнить inner</b><p>Объединить O<sup>text</sup>, R<sub>t</sub> и E<sub>t−1</sub>.</p></div><div class="step"><b>Выполнить outer</b><p>Объединить O<sup>audio</sup>, характер P и промежуточное Y<sub>t</sub>.</p></div><div class="step"><b>Сохранить вектор</b><p>Записать E<sub>t</sub> как состояние, которое войдёт в следующий шаг.</p></div><div class="step"><b>Передать потребителям</b><p>Другие подсистемы могут читать состояние через отдельный интерфейс; их реализация здесь не рассматривается.</p></div></div>
+<div class="callout"><b>Граница статьи.</b> Материал заканчивается на вычислении и хранении E<sub>t</sub>. Конкретные способы преобразования состояния в текст, голос, мимику или действие являются самостоятельными слоями.</div>
+
+<h3>5. Псевдокод обновления</h3>
+<pre class="code">def mix(params, external, baseline, previous):
+    result = {}
+    for emotion in EMOTION_SPACE:
+        eps = uniform(-params.b, params.b)
+        value = params.d * (
+            params.a * external[emotion]
+            + (1.0 + eps) * baseline[emotion]
+            + params.c * previous[emotion]
+        )
+        result[emotion] = value
+    return result
+
+def update_state(inputs, character, previous, inner, outer):
+    semantic = mix(
+        inner,
+        inputs.other_text,
+        inputs.agent_response,
+        previous,
+    )
+    current = mix(
+        outer,
+        inputs.other_audio,
+        character.baseline,
+        semantic,
+    )
+    return current</pre>
+<p>Для production-реализации необходима отдельная политика отсутствующих модальностей. Нельзя неявно отключать всю рекуррентную модель только потому, что акустический канал недоступен.</p>
+
+<h3>6. Устойчивость и эмоциональное затухание</h3>
+<p>Если временно убрать внешние входы и базовые добавки, рекуррентная часть двух слоёв имеет коэффициент:</p>
+<div class="formula">λ<sub>eff</sub> = d<sub>i</sub>c<sub>i</sub>d<sub>o</sub>c<sub>o</sub></div>
+<p>В скалярном случае условие затухания:</p>
+<div class="formula">|λ<sub>eff</sub>| &lt; 1</div>
+<p>При λ = 0,8 след уменьшается медленно: 1 → 0,8 → 0,64 → 0,51. При λ = 0,3 состояние почти исчезает за несколько шагов. При |λ| ≥ 1 рекуррентная часть не затухает и может усиливаться.</p>
+<div class="callout warning"><b>Это не полное условие поведения системы.</b> Характер и внешние сигналы вводятся повторно на каждом шаге. Поэтому при устойчивой рекурсии система стремится к стационарной точке, зависящей от постоянных входов, а не обязательно к нулю.</div>
+
+<h3>7. Нормализация, границы и общее пространство</h3>
+<p>Исходная формула не гарантирует, что координаты останутся вероятностями. Они могут превысить 1, а при некоторых параметрах — выйти за допустимый диапазон. Нужно заранее определить семантику состояния.</p>
+<div class="cards3"><div class="card"><span class="tag">Активации</span><p>Хранить произвольные неотрицательные значения и нормализовать только при чтении.</p></div><div class="card"><span class="tag">Вероятности</span><p>После каждого слоя применять softmax или нормировку суммы, понимая, что координаты начнут конкурировать.</p></div><div class="card"><span class="tag">Ограниченный вектор</span><p>Применять sigmoid, tanh или clipping, сохраняя независимость координат.</p></div></div>
+<p>Все входы должны быть приведены к одному словарю эмоций. Если акустический классификатор выдаёт только несколько базовых классов, требуется явное отображение в пространство из N координат.</p>
+
+<h3>8. Параметры для каждой эмоции</h3>
+<p>В текущей реализации a, b, c и d являются параметрами слоя. Более выразительное расширение задаёт их отдельно для каждой координаты:</p>
+<div class="formula">E<sub>t,i</sub> = d<sub>i</sub>[a<sub>i</sub>O<sub>t,i</sub> + (1+ε<sub>t,i</sub>)P<sub>i</sub> + c<sub>i</sub>E<sub>t−1,i</sub>]</div>
+<table class="params"><thead><tr><th>Эмоция</th><th>a</th><th>b</th><th>c</th><th>Интерпретация</th></tr></thead><tbody><tr><td>Joy</td><td>0,4</td><td>0,1</td><td>0,7</td><td>Умеренно воспринимает радость и довольно долго её сохраняет.</td></tr><tr><td>Anger</td><td>0,8</td><td>0,2</td><td>0,4</td><td>Реагирует на агрессию, но сравнительно быстро восстанавливается.</td></tr><tr><td>Fear</td><td>0,7</td><td>0,2</td><td>0,9</td><td>Тревожные сигналы имеют длительное последействие.</td></tr><tr><td>Sadness</td><td>0,3</td><td>0,1</td><td>0,8</td><td>Слабо заражается грустью, но возникшее состояние сохраняется.</td></tr></tbody></table>
+
+<h3>9. Хранение состояния</h3>
+<p>Эмоциональный вектор должен принадлежать конкретной паре «персонаж — диалог» или «персонаж — отношение», а не быть глобальной переменной модели. Минимальная запись состояния:</p>
+<pre class="code">EmotionalState {
+    agent_id
+    conversation_id
+    vector[N]
+    updated_at
+    model_version
+    step_index
+}</pre>
+<p>Прототип хранит предыдущее состояние в объекте текущего диалога и обновляет его также между сегментами ответа. Для воспроизводимости следует отдельно определить гранулярность шага: сообщение, предложение, событие или фиксированный интервал времени.</p>
+
+<h3>10. Отсутствующие модальности и время</h3>
+<div class="decision"><b>Нет аудио</b><span>Использовать нейтральный акустический вектор или пропустить только соответствующий член, сохранив характер и память.</span></div><div class="decision"><b>Нет текста</b><span>Обновлять состояние по доступному сигналу, не подставляя выдуманную семантическую эмоцию.</span></div><div class="decision"><b>Долгая пауза</b><span>Применять временное затухание, зависящее от Δt, а не считать час и одну секунду одинаковым шагом.</span></div><div class="decision"><b>Новый диалог</b><span>Явно выбирать: сброс к характеру, восстановление состояния сессии или загрузка более долгой памяти отношений.</span></div>
+
+<h3>11. Ограничения текущего прототипа</h3>
+<ul><li>Смешение предполагает одинаковый набор ключей во всех эмоциональных словарях.</li><li>Значения после обновления не нормализуются и не ограничиваются.</li><li>Рекуррентный путь включается только при наличии полного набора ожидаемых входов; fallback упрощает модель до анализа собственного ответа.</li><li>Состояние хранится в оперативной структуре диалога и не имеет показанного здесь долговременного хранилища.</li><li>Один набор a, b, c, d применяется ко всем эмоциям внутри слоя.</li><li>Случайность не имеет seed и затрудняет точное воспроизведение эксперимента.</li></ul>
+<p>Эти ограничения не отменяют архитектурную идею, но должны быть устранены до обучения параметров или строгой продуктовой оценки.</p>
+
+<h3>12. Минимальный набор тестов</h3>
+<div class="decision"><b>Идентичность ключей</b><span>Все источники возвращают один и тот же полный набор N координат.</span></div><div class="decision"><b>Нулевая память</b><span>При c = 0 результат не зависит от E<sub>t−1</sub>.</span></div><div class="decision"><b>Нет вариативности</b><span>При b = 0 повторные вычисления полностью детерминированы.</span></div><div class="decision"><b>Затухание</b><span>Без внешнего воздействия устойчивый профиль приближается к ожидаемой стационарной области.</span></div><div class="decision"><b>Перестановка модальностей</b><span>Проверить, что последовательный каскад осознанно отличается от простого усреднения.</span></div><div class="decision"><b>Границы</b><span>Ни один разрешённый набор параметров не создаёт NaN, бесконечность или неконтролируемый рост.</span></div><div class="decision"><b>Воспроизводимость</b><span>Фиксированный seed даёт идентичную траекторию на одинаковом сценарии.</span></div>
+
+<h3>13. Итоговая архитектура</h3>
+<div class="formula small">Наблюдение X<sub>t</sub> → обновление E<sub>t</sub> = F(X<sub>t</sub>, P, E<sub>t−1</sub>) → сохранение состояния → следующий шаг</div>
+<div class="callout"><b>Главная идея.</b> Агент получает внутреннюю переменную, которая существует во времени. Характер задаёт базовые склонности, текущая ситуация отклоняет состояние, память сохраняет последствия, а устойчивая динамика определяет восстановление.</div>
+<p class="source-note">Первая версия статьи основана на концептуальном описании рекуррентной модели, расширенной технической версии документа и фактическом порядке вычислений в прототипе. Материал намеренно ограничен формированием эмоционального состояния и не описывает независимые подсистемы его внешнего выражения.</p>
+</div></section>
+<footer class="footer"><div class="wrap">Эмоциональное состояние агента · концепция, продуктовые сценарии и рекуррентная модель · 2026</div></footer>
+</main></body></html>
