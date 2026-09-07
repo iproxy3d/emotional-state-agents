@@ -23,7 +23,7 @@
 </style>
 </head>
 <body><main class="document">
-<header class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Рекуррентная модель внутреннего состояния</div><h1>Эмоциональное состояние агента</h1><p>Как дать AI-персонажу характер, восприимчивость и эмоциональную память — вместо реакции только на последнюю реплику.</p><div class="chips"><span class="chip">понятная концепция</span><span class="chip">бизнес-сценарии</span><span class="chip">двухступенчатая модель</span><span class="chip">формулы и алгоритм</span></div></div><div class="state-orbit" aria-label="Источники эмоционального состояния"><div class="bubble b1">Смысл слов</div><div class="bubble b2">Звучание речи</div><div class="bubble b3">Характер</div><div class="bubble b4">Предыдущее состояние</div><div class="state-core">E<sub>t</sub><small>состояние сейчас</small></div></div></div></header>
+<header class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">Рекуррентная модель внутреннего состояния</div><h1>Эмоциональное состояние агента</h1><p>Как дать AI-персонажу характер, восприимчивость и эмоциональную память — вместо реакции только на последнюю реплику.</p><div class="chips"><span class="chip">понятная концепция</span><span class="chip">бизнес-сценарии</span><span class="chip">двухступенчатая модель</span><span class="chip">формулы и алгоритм</span></div></div><div class="state-orbit" aria-label="Источники эмоционального состояния"><div class="bubble b1">Смысл слов</div><div class="bubble b2">Звучание речи</div><div class="bubble b3">Характер</div><div class="bubble b4">Предыдущее состояние</div><div class="state-core">current<small>state сейчас</small></div></div></div></header>
 <nav class="nav"><div class="wrap"><a class="g" href="#general">I. Для понимания<span>что это и зачем</span></a><a class="b" href="#business">II. Для бизнеса<span>что можно получить</span></a><a class="t" href="#technical">III. Для инженера<span>как реализовать</span></a></div></nav>
 
 <section class="reader-map"><div class="wrap"><div class="map-grid"><div class="map"><b>Обычному читателю</b>Первая часть объясняет разницу между распознанной эмоцией и состоянием, которое живёт во времени.</div><div class="map"><b>Менеджеру продукта</b>Вторая часть показывает, какие новые свойства получает продукт и где они полезны.</div><div class="map"><b>Инженеру</b>Третья часть содержит переменные, формулы, порядок вычислений, устойчивость и проверки.</div></div></div></section>
@@ -34,7 +34,7 @@
 <h3>1. Чего не хватает обычному распознаванию эмоций</h3>
 <p>Классификатор может определить, что пользователь злится, радуется или тревожится. Но он не отвечает на более важный для персонажа вопрос: <strong>что этот сигнал делает с самим агентом?</strong></p>
 <div class="cards2"><div class="card"><span class="tag">Классификация</span><h4>Что чувствует собеседник?</h4><p>Каждое сообщение анализируется отдельно: «в этой реплике anger = 0,87».</p></div><div class="card"><span class="tag">Динамическое состояние</span><h4>Как меняется агент?</h4><p>Новая реплика воздействует на уже существующее состояние, которое может сопротивляться, усиливаться или постепенно затухать.</p></div></div>
-<div class="principle"><b>Главный переход</b><span>Вместо <strong>emotion<sub>t</sub> = f(input<sub>t</sub>)</strong> используется <strong>E<sub>t</sub> = F(input<sub>t</sub>, personality, E<sub>t−1</sub>)</strong>.</span></div>
+<div class="principle"><b>Главный переход</b><span>Вместо реакции только на <code>current_input</code> новое состояние вычисляется из <code>current_inputs</code>, <code>character_baseline</code> и <code>previous_state</code>.</span></div>
 
 <h3>2. Почему одинаковая реплика вызывает разные реакции</h3>
 <p>Пользователь говорит двум агентам: «Ты опять всё испортил!» Спокойный профессионал воспринимает раздражение, но почти не меняет своё состояние. Импульсивный персонаж реагирует заметно сильнее. Вход один и тот же, однако внутренние параметры и история различаются.</p>
@@ -42,11 +42,11 @@
 
 <h3>3. Состояние — это смесь, а не одна категория</h3>
 <p>Внутри системы хранится вектор из множества координат. Агент может одновременно испытывать раздражение, тревогу и грусть с разной интенсивностью. Название доминирующей эмоции удобно для отображения, но оно не заменяет полного состояния.</p>
-<div class="formula">E<sub>t</sub> = [joy: 0,12; anger: 0,67; sadness: 0,24; fear: 0,18; …]</div>
+<div class="formula"><code>current_state = {joy: 0,12; anger: 0,67; sadness: 0,24; fear: 0,18; …}</code></div>
 <p>Такое представление сохраняет слабые компоненты. Они могут стать важными позже, если новое событие усилит одну из них.</p>
 
 <h3>4. Четыре силы, формирующие состояние</h3>
-<div class="flow"><div class="flowbox">Собеседник<small>слова и голос</small></div><div class="flowbox">Собственный ответ<small>эмоциональный смысл</small></div><div class="flowbox">Характер<small>базовые склонности</small></div><div class="flowbox">Память<small>состояние E<sub>t−1</sub></small></div><div class="flowbox">Новое E<sub>t</sub><small>с вариативностью</small></div></div>
+<div class="flow"><div class="flowbox">Собеседник<small>слова и голос</small></div><div class="flowbox">Собственный ответ<small>эмоциональный смысл</small></div><div class="flowbox">Характер<small>базовые склонности</small></div><div class="flowbox">Память<small>previous_state</small></div><div class="flowbox">Новое состояние<small>current_state</small></div></div>
 <p><strong>Собеседник</strong> даёт внешний эмоциональный сигнал. <strong>Собственный ответ</strong> показывает эмоциональный смысл того, что агент собирается сказать. <strong>Характер</strong> задаёт естественные для персонажа области эмоционального пространства. <strong>Память</strong> не позволяет начинать каждый шаг с нуля. Небольшая стохастичность делает повторные реакции не механически одинаковыми.</p>
 
 <h3>5. Слова и звучание могут противоречить друг другу</h3>
@@ -89,95 +89,147 @@
 <section id="technical" class="section technical"><div class="wrap">
 <div class="section-head"><div class="part">Часть III<br>Инженерия</div><div><h2>От входных сигналов к сохраняемому состоянию</h2><p class="lead">Инженерная задача состоит не в выборе одной метки эмоции, а в согласованном обновлении N-мерного состояния. Семантический слой сначала формирует промежуточную реакцию, затем акустический сигнал и характер преобразуют её в итоговый вектор.</p></div></div>
 
-<h3>1. Пространство состояния и обозначения</h3>
-<p>Пусть все компоненты системы используют одно пространство из <em>N</em> эмоций:</p>
-<div class="formula">E<sub>t</sub> ∈ ℝ<sup>N</sup></div>
-<p>В прототипе это 28 координат GoEmotions. В общем случае размерность может быть другой, но порядок и семантика координат должны совпадать у всех входов. Само состояние является полным вектором активаций. Операция <span style="white-space:nowrap">arg max</span> может позднее назвать доминирующую эмоцию, но не должна уничтожать остальные координаты.</p>
-<div class="equation-map"><div class="formula">i<sub>t</sub><sup>*</sup> = arg max<sub>i</sub> E<sub>t,i</sub></div><div class="equation-note">Это способ прочитать состояние, а не формула его формирования.</div></div>
-<table class="params"><thead><tr><th>Обозначение</th><th>Переменная прототипа</th><th>Смысл</th></tr></thead><tbody><tr><td>O<sub>t</sub><sup>text</sup></td><td><code>other_emotions_t</code></td><td>Эмоциональный вектор, распознанный в тексте собеседника.</td></tr><tr><td>O<sub>t</sub><sup>audio</sup></td><td><code>other_emotions_s</code></td><td>Эмоциональный вектор, полученный из акустического канала и приведённый к общему пространству.</td></tr><tr><td>R<sub>t</sub></td><td><code>user_emotions_t</code></td><td>Эмоциональный смысл уже сформированного ответа агента.</td></tr><tr><td>P</td><td><code>user_emotions_s</code></td><td>Базовое распределение эмоциональных склонностей персонажа.</td></tr><tr><td>E<sub>t−1</sub></td><td><code>old_user_emotions_t</code></td><td>Итоговое состояние предыдущего шага.</td></tr><tr><td>Y<sub>t</sub></td><td><code>emotions</code> после первого вызова</td><td>Промежуточное семантическое состояние.</td></tr><tr><td>E<sub>t</sub></td><td><code>emotions</code> после второго вызова</td><td>Итоговое состояние текущего шага.</td></tr></tbody></table>
+<h3>1. Пространство состояния и именованные сущности</h3>
+<p>Все компоненты системы используют единый упорядоченный набор эмоций <code>EMOTION_SPACE</code>. Каждый эмоциональный вектор содержит по одному значению для каждой его координаты:</p>
+<pre class="code">len(current_state) == len(EMOTION_SPACE)</pre>
+<p>В прототипе это 28 координат GoEmotions. Размерность может быть другой, но названия и семантика координат должны совпадать у всех входов. <code>current_state</code> — полный вектор активаций, а не одна выбранная метка.</p>
+<div class="equation-map"><pre class="code">dominant_emotion = max(current_state, key=current_state.get)</pre><div class="equation-note">Так можно прочитать доминирующую эмоцию, не уничтожая остальные координаты состояния.</div></div>
+<table class="params"><thead><tr><th>Имя в статье</th><th>Переменная прототипа</th><th>Смысл</th></tr></thead><tbody><tr><td><code>text_emotions</code></td><td><code>other_emotions_t</code></td><td>Эмоциональный вектор, распознанный в тексте собеседника.</td></tr><tr><td><code>audio_emotions</code></td><td><code>other_emotions_s</code></td><td>Эмоциональный вектор акустического канала, приведённый к общему пространству.</td></tr><tr><td><code>response_emotions</code></td><td><code>user_emotions_t</code></td><td>Эмоциональный смысл уже сформированного ответа агента.</td></tr><tr><td><code>character_baseline</code></td><td><code>user_emotions_s</code></td><td>Базовый профиль эмоциональных склонностей персонажа.</td></tr><tr><td><code>previous_state</code></td><td><code>old_user_emotions_t</code></td><td>Итоговое состояние предыдущего шага.</td></tr><tr><td><code>semantic_state</code></td><td><code>emotions</code> после первого вызова</td><td>Промежуточное состояние после семантического слоя.</td></tr><tr><td><code>current_state</code></td><td><code>emotions</code> после второго вызова</td><td>Итоговое состояние текущего шага.</td></tr></tbody></table>
 <div class="callout"><b>Терминологическая точность.</b> В первом слое <code>user_emotions_t</code> — не характер персонажа. Это эмоциональная характеристика его ответа. Базовый характер входит во второй слой как <code>user_emotions_s</code>.</div>
 <h4>Что означает шаг t</h4>
 <p>Индекс <em>t</em> обозначает событие обновления состояния. В простом варианте это один завершённый обмен «сообщение собеседника → ответ агента». Прототип умеет обновлять состояние и между предложениями, поэтому production-реализация должна явно выбрать гранулярность: сообщение, предложение, событие среды или фиксированный временной интервал.</p>
 
 <h3>2. Базовая операция смешения</h3>
-<p>Для каждой координаты <em>i</em> текущая реализация выполняет:</p>
-<div class="formula">F<sub>i</sub>(O,B,E; θ) = d[aO<sub>i</sub> + ξ<sub>i</sub>B<sub>i</sub> + cE<sub>i</sub>], &nbsp; ξ<sub>i</sub> = 1 + ε<sub>i</sub>, &nbsp; ε<sub>i</sub> ∼ U(−b,b)</div>
-<p>Здесь <em>O</em> — внешний сигнал слоя, <em>B</em> — его второй вход, <em>E</em> — переносимое состояние, а <span style="white-space:nowrap">θ=(a,b,c,d)</span> — параметры. Обозначение <em>B</em> намеренно нейтрально: в первом слое им является эмоциональный смысл ответа <em>R<sub>t</sub></em>, а во втором — характер <em>P</em>.</p>
-<p>Случайный коэффициент создаётся отдельно для каждой эмоции. Следовательно, используется вектор <span style="white-space:nowrap">Ξ<sub>t</sub>=[ξ<sub>t,1</sub>,…,ξ<sub>t,N</sub>]</span>, а не один общий шумовой множитель.</p>
-<table class="params"><thead><tr><th>Параметр</th><th>Математическая роль</th><th>Точная инженерная интерпретация</th></tr></thead><tbody><tr><td>a</td><td>Вес внешнего сигнала O</td><td>Восприимчивость к соответствующему каналу собеседника: смыслу слов или акустике.</td></tr><tr><td>b</td><td>Диапазон ξ ∈ [1−b,1+b]</td><td>В первом слое варьирует вклад эмоционального смысла ответа; во втором — проявление характера.</td></tr><tr><td>c</td><td>Вес переносимого состояния E</td><td>Перенос E<sub>t−1</sub> внутри semantic layer и перенос Y<sub>t</sub> внутри outer layer.</td></tr><tr><td>d</td><td>Масштаб всей суммы</td><td>Общее усиление слоя. Не является памятью, но входит в коэффициент рекуррентной динамики.</td></tr></tbody></table>
+<p>Вместо однобуквенной формулы запишем операцию так, как она читается в реализации. Для каждой эмоции вычисляется:</p>
+<pre class="code">random_factor = 1 + rng.uniform(
+    -variability_range,
+    +variability_range,
+)
+
+emotion_value = layer_gain * (
+    external_weight * external_emotion
+    + random_factor * baseline_emotion
+    + previous_weight * previous_emotion
+)</pre>
+<p><code>random_factor</code> создаётся отдельно для каждой эмоции. Поэтому вариативность слегка меняет форму всего профиля, а не умножает весь вектор на одно случайное число.</p>
+<table class="params"><thead><tr><th>Имя параметра</th><th>Имя в прототипе</th><th>Инженерный смысл</th></tr></thead><tbody><tr><td><code>external_weight</code></td><td><code>a</code></td><td>Восприимчивость слоя к внешнему сигналу: смыслу слов или акустике.</td></tr><tr><td><code>variability_range</code></td><td><code>b</code></td><td>Диапазон случайного отклонения вклада второго входа слоя.</td></tr><tr><td><code>previous_weight</code></td><td><code>c</code></td><td>Сила переноса предыдущего состояния в текущий расчёт.</td></tr><tr><td><code>layer_gain</code></td><td><code>d</code></td><td>Общий масштаб результата слоя; также влияет на рекуррентную динамику.</td></tr></tbody></table>
 
 <h3>3. Два последовательных слоя</h3>
 <h4>Слой 1: семантическая динамика</h4>
-<div class="formula">Y<sub>t</sub> = d<sub>i</sub>[a<sub>i</sub>O<sub>t</sub><sup>text</sup> + (1+ε<sub>t</sub><sup>i</sup>)R<sub>t</sub> + c<sub>i</sub>E<sub>t−1</sub>]</div>
+<pre class="code">semantic_state = semantic_gain * (
+    text_weight * text_emotions
+    + response_random_factor * response_emotions
+    + previous_state_weight * previous_state
+)</pre>
 <p>Он объединяет эмоциональный смысл реплики собеседника, эмоциональный смысл собственного ответа и предыдущее состояние.</p>
 <h4>Слой 2: акустика и характер</h4>
-<div class="formula">E<sub>t</sub> = d<sub>o</sub>[a<sub>o</sub>O<sub>t</sub><sup>audio</sup> + (1+ε<sub>t</sub><sup>o</sup>)P + c<sub>o</sub>Y<sub>t</sub>]</div>
+<pre class="code">current_state = state_gain * (
+    audio_weight * audio_emotions
+    + character_random_factor * character_baseline
+    + semantic_state_weight * semantic_state
+)</pre>
 <p>Второй слой добавляет акустический сигнал, базовый профиль персонажа и определяет, насколько сильно семантическое состояние сохраняется в результате.</p>
-<div class="visual"><img src="images/01-state-update-pipeline.svg" alt="Двухступенчатая схема обновления эмоционального состояния"><div class="visual-body"><div class="visual-title">Пять входных сущностей и два последовательных преобразования</div><p class="visual-guide"><b>Как читать:</b> три левых входа формируют промежуточное Y<sub>t</sub>. Затем Y<sub>t</sub>, акустический сигнал и характер формируют E<sub>t</sub>, которое сохраняется для следующего события.</p></div></div>
+<div class="visual"><img src="images/01-state-update-pipeline.svg" alt="Двухступенчатая схема обновления эмоционального состояния"><div class="visual-body"><div class="visual-title">Пять входных сущностей и два последовательных преобразования</div><p class="visual-guide"><b>Как читать:</b> три левых входа формируют <code>semantic_state</code>. Затем <code>semantic_state</code>, акустический сигнал и характер формируют <code>current_state</code>, которое сохраняется для следующего события.</p></div></div>
 
-<h3>4. Развёрнутая формула: вклад каждого источника</h3>
-<p>Подстановка первого слоя во второй показывает не только структуру каскада, но и эффективный коэффициент каждого входа:</p>
-<div class="formula small">E<sub>t</sub> = d<sub>s</sub>a<sub>s</sub>O<sub>t</sub><sup>audio</sup> + d<sub>s</sub>Ξ<sub>t</sub><sup>S</sup>⊙P + d<sub>s</sub>c<sub>s</sub>d<sub>t</sub>a<sub>t</sub>O<sub>t</sub><sup>text</sup> + d<sub>s</sub>c<sub>s</sub>d<sub>t</sub>Ξ<sub>t</sub><sup>T</sup>⊙R<sub>t</sub> + d<sub>s</sub>c<sub>s</sub>d<sub>t</sub>c<sub>t</sub>E<sub>t−1</sub></div>
-<table class="params"><thead><tr><th>Источник</th><th>Эффективный множитель</th><th>Почему это важно</th></tr></thead><tbody><tr><td>O<sup>audio</sup></td><td>d<sub>s</sub>a<sub>s</sub></td><td>Акустика добавляется непосредственно во втором слое.</td></tr><tr><td>P</td><td>d<sub>s</sub>Ξ<sup>S</sup></td><td>Характер также входит непосредственно в итоговый слой.</td></tr><tr><td>O<sup>text</sup></td><td>d<sub>s</sub>c<sub>s</sub>d<sub>t</sub>a<sub>t</sub></td><td>Семантический сигнал дополнительно масштабируется outer layer.</td></tr><tr><td>R<sub>t</sub></td><td>d<sub>s</sub>c<sub>s</sub>d<sub>t</sub>Ξ<sup>T</sup></td><td>Эмоциональный смысл ответа проходит через оба слоя.</td></tr><tr><td>E<sub>t−1</sub></td><td>d<sub>s</sub>c<sub>s</sub>d<sub>t</sub>c<sub>t</sub></td><td>Память определяется произведением четырёх коэффициентов, а не одним c.</td></tr></tbody></table>
-<div class="visual"><img src="images/02-effective-contributions.svg" alt="Развёрнутая схема вкладов в итоговое эмоциональное состояние"><div class="visual-body"><div class="visual-title">Путь каждого сигнала до E<sub>t</sub></div><p class="visual-guide">Схема объясняет, почему одинаковые значения a или c в разных слоях не означают одинаковое влияние на итог: часть сигналов проходит через оба преобразования.</p></div></div>
+<h3>4. Вклад каждого источника</h3>
+<p>После раскрытия двух слоёв итог читается как сумма пяти понятных компонентов:</p>
+<pre class="code">current_state = (
+    audio_contribution
+    + character_contribution
+    + text_contribution
+    + response_contribution
+    + memory_contribution
+)</pre>
+<table class="params"><thead><tr><th>Вклад</th><th>Как вычисляется его вес</th><th>Почему это важно</th></tr></thead><tbody><tr><td><code>audio_contribution</code></td><td><code>state_gain * audio_weight</code></td><td>Акустика добавляется непосредственно во втором слое.</td></tr><tr><td><code>character_contribution</code></td><td><code>state_gain * character_random_factor</code></td><td>Характер также входит непосредственно в итоговый слой.</td></tr><tr><td><code>text_contribution</code></td><td><code>state_gain * semantic_state_weight * semantic_gain * text_weight</code></td><td>Семантика собеседника проходит через оба слоя.</td></tr><tr><td><code>response_contribution</code></td><td><code>state_gain * semantic_state_weight * semantic_gain * response_random_factor</code></td><td>Эмоциональный смысл ответа проходит через оба слоя.</td></tr><tr><td><code>memory_contribution</code></td><td><code>state_gain * semantic_state_weight * semantic_gain * previous_state_weight</code></td><td>Память определяется полным путём через оба слоя, а не одним параметром.</td></tr></tbody></table>
+<div class="visual"><img src="images/02-effective-contributions.svg" alt="Развёрнутая схема вкладов в итоговое эмоциональное состояние"><div class="visual-body"><div class="visual-title">Путь каждого сигнала до <code>current_state</code></div><p class="visual-guide">Схема показывает, какие источники входят непосредственно во второй слой, а какие проходят через оба преобразования.</p></div></div>
 
 <h3>5. Порядок вычислений в прототипе</h3>
-<div class="steps"><div class="step"><b>Получить входы</b><p>Распознать эмоции текста и, если доступно, акустики собеседника.</p></div><div class="step"><b>Сформировать ответ</b><p>Получить текст ответа агента и определить его эмоциональный вектор R<sub>t</sub>.</p></div><div class="step"><b>Выполнить inner</b><p>Объединить O<sup>text</sup>, R<sub>t</sub> и E<sub>t−1</sub>.</p></div><div class="step"><b>Выполнить outer</b><p>Объединить O<sup>audio</sup>, характер P и промежуточное Y<sub>t</sub>.</p></div><div class="step"><b>Сохранить вектор</b><p>Записать E<sub>t</sub> как состояние, которое войдёт в следующий шаг.</p></div><div class="step"><b>Передать потребителям</b><p>Другие подсистемы могут читать состояние через отдельный интерфейс; их реализация здесь не рассматривается.</p></div></div>
-<div class="callout"><b>Граница статьи.</b> Материал заканчивается на вычислении и хранении E<sub>t</sub>. Конкретные способы преобразования состояния в текст, голос, мимику или действие являются самостоятельными слоями.</div>
+<div class="steps"><div class="step"><b>Получить входы</b><p>Распознать <code>text_emotions</code> и, если доступно, <code>audio_emotions</code>.</p></div><div class="step"><b>Сформировать ответ</b><p>Получить ответ агента и определить <code>response_emotions</code>.</p></div><div class="step"><b>Выполнить semantic layer</b><p>Объединить <code>text_emotions</code>, <code>response_emotions</code> и <code>previous_state</code>.</p></div><div class="step"><b>Выполнить state layer</b><p>Объединить <code>audio_emotions</code>, <code>character_baseline</code> и <code>semantic_state</code>.</p></div><div class="step"><b>Сохранить вектор</b><p>Записать <code>current_state</code> как вход следующего шага.</p></div><div class="step"><b>Передать потребителям</b><p>Другие подсистемы могут читать состояние через отдельный интерфейс; их реализация здесь не рассматривается.</p></div></div>
+<div class="callout"><b>Граница статьи.</b> Материал заканчивается на вычислении и хранении <code>current_state</code>. Конкретные способы преобразования состояния в текст, голос, мимику или действие являются самостоятельными слоями.</div>
 
 <h3>6. Контракт базовой функции</h3>
-<div class="contract"><code>EMOTION_SPACE</code><span>Единый упорядоченный набор из N координат. В прототипе — 28 классов GoEmotions.</span></div><div class="contract"><code>external</code><span>Полный N-мерный внешний вектор слоя; отсутствие модальности задаётся маской или нулевым вектором.</span></div><div class="contract"><code>baseline</code><span>R<sub>t</sub> для первого слоя или P для второго. Название не означает, что оба входа являются характером.</span></div><div class="contract"><code>previous</code><span>E<sub>t−1</sub> для первого слоя или Y<sub>t</sub> для второго.</span></div><div class="contract"><code>rng</code><span>Явный генератор случайных чисел: production может работать стохастически, тесты — воспроизводимо.</span></div><div class="contract"><code>constrain</code><span>Явная функция, определяющая допустимую область итоговых активаций.</span></div>
+<div class="contract"><code>EMOTION_SPACE</code><span>Единый упорядоченный набор из N координат. В прототипе — 28 классов GoEmotions.</span></div><div class="contract"><code>external_emotions</code><span>Полный N-мерный внешний вектор слоя; отсутствие модальности задаётся маской или нулевым вектором.</span></div><div class="contract"><code>baseline_emotions</code><span><code>response_emotions</code> для первого слоя или <code>character_baseline</code> для второго.</span></div><div class="contract"><code>previous_emotions</code><span><code>previous_state</code> для первого слоя или <code>semantic_state</code> для второго.</span></div><div class="contract"><code>rng</code><span>Явный генератор случайных чисел: production может работать стохастически, тесты — воспроизводимо.</span></div><div class="contract"><code>constrain</code><span>Явная функция, определяющая допустимую область итоговых активаций.</span></div>
 <p>Перед вычислением должен выполняться инвариант:</p>
-<div class="formula small">Keys(O<sup>text</sup>) = Keys(O<sup>audio</sup>) = Keys(R) = Keys(P) = Keys(E<sub>t−1</sub>)</div>
+<pre class="code">for vector in (
+    text_emotions,
+    audio_emotions,
+    response_emotions,
+    character_baseline,
+    previous_state,
+):
+    assert set(vector) == set(EMOTION_SPACE)</pre>
 <p>Если акустический классификатор возвращает только несколько базовых классов, отдельный адаптер должен заранее преобразовать их в общее пространство. `mix()` не должен угадывать отсутствующие соответствия.</p>
 
 <h3>7. Рекомендуемый псевдокод</h3>
-<pre class="code">def mix(params, external, baseline, previous, rng):
+<pre class="code">def mix_emotions(params, external_emotions, baseline_emotions,
+                 previous_emotions, rng):
     result = {}
     for emotion in EMOTION_SPACE:
-        eps = rng.uniform(-params.b, params.b)
-        value = params.d * (
-            params.a * external[emotion]
-            + (1.0 + eps) * baseline[emotion]
-            + params.c * previous[emotion]
+        random_offset = rng.uniform(
+            -params.variability_range,
+            +params.variability_range,
+        )
+        random_factor = 1.0 + random_offset
+        value = params.layer_gain * (
+            params.external_weight * external_emotions[emotion]
+            + random_factor * baseline_emotions[emotion]
+            + params.previous_weight * previous_emotions[emotion]
         )
         result[emotion] = value
     return result
 
-def update_state(inputs, character, previous, inner, outer, rng):
-    validate_same_space(inputs, character, previous)
-    other_text = inputs.other_text if inputs.has_text else zeros()
-    other_audio = inputs.other_audio if inputs.has_audio else zeros()
+def update_state(inputs, character, previous_state,
+                 semantic_params, state_params, rng):
+    validate_same_space(inputs, character, previous_state)
+    text_emotions = inputs.text_emotions if inputs.has_text else zeros()
+    audio_emotions = inputs.audio_emotions if inputs.has_audio else zeros()
 
-    semantic = mix(
-        inner, other_text, inputs.agent_response, previous, rng
+    semantic_state = mix_emotions(
+        semantic_params,
+        text_emotions,
+        inputs.response_emotions,
+        previous_state,
+        rng,
     )
-    current = mix(
-        outer, other_audio, character.baseline, semantic, rng
+    current_state = mix_emotions(
+        state_params,
+        audio_emotions,
+        character.emotional_baseline,
+        semantic_state,
+        rng,
     )
-    return constrain(current)</pre>
+    return constrain(current_state)</pre>
 <p>Ключевое отличие от fallback прототипа: отсутствие аудио обнуляет только акустический член. Оно не отключает характер, семантический слой и эмоциональную память.</p>
 
 <h3>8. Устойчивость, затухание и стационарная область</h3>
-<p>Если временно убрать внешние входы и базовые добавки, рекуррентная часть двух слоёв имеет коэффициент:</p>
-<div class="formula">λ<sub>eff</sub> = d<sub>i</sub>c<sub>i</sub>d<sub>o</sub>c<sub>o</sub></div>
-<p>В скалярном случае условие затухания:</p>
-<div class="formula">|λ<sub>eff</sub>| &lt; 1</div>
-<p>При λ = 0,8 след уменьшается медленно: 1 → 0,8 → 0,64 → 0,51. При λ = 0,3 состояние почти исчезает за несколько шагов. При |λ| ≥ 1 рекуррентная часть не затухает и может усиливаться.</p>
-<div class="callout warning"><b>Это условие относится только к переносу прошлого состояния.</b> Характер и внешние сигналы вводятся повторно. Если объединить их постоянный вклад в q, получим E<sub>t</sub> = q + λ<sub>eff</sub>E<sub>t−1</sub>. При |λ<sub>eff</sub>| &lt; 1 система стремится не обязательно к нулю, а к стационарной точке.</div>
-<div class="formula">E<sup>*</sup> = q / (1 − λ<sub>eff</sub>)</div>
-<p>Эту стационарную область можно интерпретировать как эмоциональный аттрактор персонажа. Это математическое следствие постоянного базового воздействия P и устойчивой рекурсии, а не отдельная сущность, добавленная в код.</p>
+<p>Если временно убрать внешние входы и базовые добавки, доля прошлого состояния, переживающая полный проход через оба слоя, равна:</p>
+<pre class="code">memory_retention = (
+    semantic_gain
+    * previous_state_weight
+    * state_gain
+    * semantic_state_weight
+)</pre>
+<p>В скалярном случае память затухает, если:</p>
+<pre class="code">abs(memory_retention) &lt; 1</pre>
+<p>При <code>memory_retention = 0.8</code> след уменьшается медленно: 1 → 0,8 → 0,64 → 0,51. При значении 0,3 он почти исчезает за несколько шагов. При абсолютном значении не меньше 1 рекуррентная часть не затухает и может усиливаться.</p>
+<div class="callout warning"><b>Условие относится только к переносу прошлого состояния.</b> Характер и внешние сигналы вводятся повторно. Обозначим их суммарный постоянный вклад как <code>constant_input</code>. Тогда обновление читается как <code>current_state = constant_input + memory_retention * previous_state</code>.</div>
+<pre class="code">stable_state = constant_input / (1 - memory_retention)</pre>
+<p>Эту стационарную область можно интерпретировать как эмоциональный аттрактор персонажа. Это следствие постоянного воздействия <code>character_baseline</code> и устойчивой рекурсии, а не отдельная сущность, добавленная в код.</p>
 
-<h3>9. Что означают числа в E<sub>t</sub></h3>
+<h3>9. Что означают числа в <code>current_state</code></h3>
 <p>Исходная формула не гарантирует, что координаты останутся вероятностями. Они могут превысить 1, а при некоторых параметрах — выйти за допустимый диапазон. Нужно заранее определить семантику состояния.</p>
 <div class="cards3"><div class="card"><span class="tag">Активации</span><p>Хранить неотрицательные независимые значения и нормализовать только для конкретного потребителя.</p></div><div class="card"><span class="tag">Вероятности</span><p>Применить softmax или нормировку суммы. Координаты начнут конкурировать: усиление одной уменьшит остальные.</p></div><div class="card"><span class="tag">Ограниченный вектор</span><p>Применить sigmoid или clipping в [0,1], сохранив возможность одновременно активировать несколько эмоций.</p></div></div>
 <div class="callout"><b>Рекомендуемая семантика для этой модели.</b> Независимые неотрицательные активации с явно выбранной верхней границей. Это лучше согласуется со смешанными состояниями, чем обязательная сумма координат, равная единице.</div>
-<p>Параметр b также должен иметь допустимый диапазон. При 0 ≤ b ≤ 1 множитель ξ остаётся неотрицательным. Если b &gt; 1, вклад отдельной эмоции может случайно изменить знак.</p>
+<p><code>variability_range</code> также должен иметь допустимый диапазон. При значении от 0 до 1 <code>random_factor</code> остаётся неотрицательным. Если диапазон больше 1, вклад отдельной эмоции может случайно изменить знак.</p>
 
 <h3>10. Параметры слоя и параметры отдельных эмоций</h3>
-<p>В текущей реализации a, b, c и d являются параметрами слоя. Более выразительное расширение задаёт их отдельно для каждой координаты:</p>
-<div class="formula">E<sub>t,i</sub> = d<sub>i</sub>[a<sub>i</sub>O<sub>t,i</sub> + (1+ε<sub>t,i</sub>)P<sub>i</sub> + c<sub>i</sub>E<sub>t−1,i</sub>]</div>
-<table class="params"><thead><tr><th>Эмоция</th><th>a</th><th>b</th><th>c</th><th>Интерпретация</th></tr></thead><tbody><tr><td>Joy</td><td>0,4</td><td>0,1</td><td>0,7</td><td>Умеренно воспринимает радость и довольно долго её сохраняет.</td></tr><tr><td>Anger</td><td>0,8</td><td>0,2</td><td>0,4</td><td>Реагирует на агрессию, но сравнительно быстро восстанавливается.</td></tr><tr><td>Fear</td><td>0,7</td><td>0,2</td><td>0,9</td><td>Тревожные сигналы имеют длительное последействие.</td></tr><tr><td>Sadness</td><td>0,3</td><td>0,1</td><td>0,8</td><td>Слабо заражается грустью, но возникшее состояние сохраняется.</td></tr></tbody></table>
+<p>В прототипе один набор параметров применяется ко всему слою. Более выразительное расширение хранит отдельную настройку для каждой эмоции:</p>
+<pre class="code">emotion_value = emotion_params.layer_gain * (
+    emotion_params.external_weight * external_emotion
+    + random_factor * baseline_emotion
+    + emotion_params.previous_weight * previous_emotion
+)</pre>
+<table class="params"><thead><tr><th>Эмоция</th><th><code>external_weight</code></th><th><code>variability_range</code></th><th><code>previous_weight</code></th><th>Интерпретация</th></tr></thead><tbody><tr><td>Joy</td><td>0,4</td><td>0,1</td><td>0,7</td><td>Умеренно воспринимает радость и довольно долго её сохраняет.</td></tr><tr><td>Anger</td><td>0,8</td><td>0,2</td><td>0,4</td><td>Реагирует на агрессию, но сравнительно быстро восстанавливается.</td></tr><tr><td>Fear</td><td>0,7</td><td>0,2</td><td>0,9</td><td>Тревожные сигналы имеют длительное последействие.</td></tr><tr><td>Sadness</td><td>0,3</td><td>0,1</td><td>0,8</td><td>Слабо заражается грустью, но возникшее состояние сохраняется.</td></tr></tbody></table>
 
 <h3>11. Хранение и жизненный цикл</h3>
 <p>Эмоциональный вектор должен принадлежать конкретной паре «персонаж — диалог» или «персонаж — отношение», а не быть глобальной переменной модели. Минимальная запись состояния:</p>
@@ -191,28 +243,32 @@ def update_state(inputs, character, previous, inner, outer, rng):
     random_seed
 }</pre>
 <p>Прототип хранит предыдущее состояние в объекте текущего диалога и обновляет его также между сегментами ответа. Состояние должно принадлежать паре «agent_id — conversation_id»: глобальный вектор привёл бы к переносу эмоций между пользователями.</p>
-<div class="visual"><img src="images/03-state-lifecycle.svg" alt="Жизненный цикл эмоционального состояния агента"><div class="visual-body"><div class="visual-title">От E<sub>0</sub> до следующего события</div><p class="visual-guide"><b>Инженерное решение:</b> отдельно зафиксируйте инициализацию, гранулярность t, функцию ограничения, формат хранения и политику восстановления после паузы.</p></div></div>
+<div class="visual"><img src="images/03-state-lifecycle.svg" alt="Жизненный цикл эмоционального состояния агента"><div class="visual-body"><div class="visual-title">От <code>initial_state</code> до следующего события</div><p class="visual-guide"><b>Инженерное решение:</b> отдельно зафиксируйте инициализацию, гранулярность шага, функцию ограничения, формат хранения и политику восстановления после паузы.</p></div></div>
 
 <h3>12. Отсутствующие модальности и физическое время</h3>
-<p>Для каждого необязательного канала нужна маска доступности. Например, акустическая часть записывается как <span style="white-space:nowrap">m<sub>t</sub><sup>audio</sup>a<sub>s</sub>O<sub>t</sub><sup>audio</sup></span>, где m ∈ {0,1}. При отсутствии аудио маска равна нулю, но остальные члены формулы сохраняются.</p>
-<div class="decision"><b>Нет аудио</b><span>Обнулить только вклад O<sup>audio</sup>; продолжить использовать характер P, semantic state Y<sub>t</sub> и память.</span></div><div class="decision"><b>Нет текста</b><span>Обнулить семантический внешний сигнал, не подставляя выдуманную эмоцию; использовать доступные входы.</span></div><div class="decision"><b>Долгая пауза</b><span>Применить затухание по прошедшему времени, а не считать час и одну секунду одинаковым шагом.</span></div><div class="decision"><b>Новый диалог</b><span>Явно выбрать: E<sub>0</sub> = P, нейтральный E<sub>0</sub>, восстановление состояния сессии или отдельная долговременная память.</span></div>
-<p>Простой вариант непрерывного затухания:</p><div class="formula">c(Δt) = exp(−Δt / τ)</div><p>Параметр τ задаёт характерное время сохранения следа. Тогда одно и то же количество шагов не маскирует реальную длительность пауз.</p>
+<p>Для каждого необязательного канала нужна маска доступности. Например: <code>audio_contribution = audio_available * audio_weight * audio_emotions</code>, где <code>audio_available</code> равен 0 или 1. При отсутствии аудио обнуляется только этот вклад.</p>
+<div class="decision"><b>Нет аудио</b><span>Обнулить только <code>audio_contribution</code>; продолжить использовать <code>character_baseline</code>, <code>semantic_state</code> и память.</span></div><div class="decision"><b>Нет текста</b><span>Обнулить вклад <code>text_emotions</code>, не подставляя выдуманную эмоцию; использовать доступные входы.</span></div><div class="decision"><b>Долгая пауза</b><span>Применить затухание по прошедшему времени, а не считать час и одну секунду одинаковым шагом.</span></div><div class="decision"><b>Новый диалог</b><span>Явно выбрать: <code>initial_state = character_baseline</code>, нейтральный вектор, восстановление сессии или отдельную долговременную память.</span></div>
+<p>Простой вариант непрерывного затухания:</p><pre class="code">time_decay = exp(-elapsed_time / memory_time_constant)</pre><p><code>memory_time_constant</code> задаёт характерное время сохранения следа. Тогда одинаковое количество шагов не маскирует реальную длительность пауз.</p>
 
 <h3>13. Где заканчивается реализация прототипа</h3>
-<ul><li>Смешение предполагает одинаковый набор ключей во всех эмоциональных словарях.</li><li>Значения после обновления не нормализуются и не ограничиваются.</li><li>Рекуррентный путь включается только при наличии полного набора ожидаемых входов; fallback упрощает модель до анализа собственного ответа.</li><li>Состояние хранится в оперативной структуре диалога и не имеет показанного здесь долговременного хранилища.</li><li>Один набор a, b, c, d применяется ко всем эмоциям внутри слоя.</li><li>Случайность не имеет seed и затрудняет точное воспроизведение эксперимента.</li></ul>
+<ul><li>Смешение предполагает одинаковый набор ключей во всех эмоциональных словарях.</li><li>Значения после обновления не нормализуются и не ограничиваются.</li><li>Рекуррентный путь включается только при наличии полного набора ожидаемых входов; fallback упрощает модель до анализа собственного ответа.</li><li>Состояние хранится в оперативной структуре диалога и не имеет показанного здесь долговременного хранилища.</li><li>Один набор <code>external_weight</code>, <code>variability_range</code>, <code>previous_weight</code> и <code>layer_gain</code> применяется ко всем эмоциям внутри слоя.</li><li>Случайность не имеет seed и затрудняет точное воспроизведение эксперимента.</li></ul>
 <p>Кроме того, исходные имена переменных исторические: <code>user_emotions_t</code> означает эмоциональную семантику ответа, а <code>user_emotions_s</code> — характер. В новом модуле лучше использовать предметные имена <code>response_emotions</code> и <code>personality_baseline</code>.</p>
 <p>Эти ограничения не отменяют архитектурную идею, но должны быть устранены до обучения параметров или строгой продуктовой оценки. Двухслойность также является проверяемой гипотезой архитектуры, а не универсальной гарантией превосходства над одновременным смешением.</p>
 
 <h3>14. Минимальный набор тестов</h3>
 <h4>Алгебраические свойства</h4>
-<div class="decision"><b>Нулевой внешний вес</b><span>При a = 0 соответствующий внешний сигнал не влияет на слой.</span></div><div class="decision"><b>Нулевая память</b><span>При c = 0 результат слоя не зависит от переданного previous.</span></div><div class="decision"><b>Нет вариативности</b><span>При b = 0 повторные вычисления полностью детерминированы.</span></div><div class="decision"><b>Нулевой gain</b><span>При d = 0 результат слоя равен нулевому вектору.</span></div>
+<div class="decision"><b>Нулевой внешний вес</b><span>При <code>external_weight = 0</code> соответствующий внешний сигнал не влияет на слой.</span></div><div class="decision"><b>Нулевая память</b><span>При <code>previous_weight = 0</code> результат слоя не зависит от <code>previous_emotions</code>.</span></div><div class="decision"><b>Нет вариативности</b><span>При <code>variability_range = 0</code> повторные вычисления полностью детерминированы.</span></div><div class="decision"><b>Нулевой масштаб</b><span>При <code>layer_gain = 0</code> результат слоя равен нулевому вектору.</span></div>
 <h4>Контракт данных и динамика</h4>
-<div class="decision"><b>Идентичность пространства</b><span>Все источники возвращают один полный набор N координат; порядок ключей словаря не меняет результат.</span></div><div class="decision"><b>Отсутствующая модальность</b><span>Пропуск аудио или текста отключает только соответствующий член формулы.</span></div><div class="decision"><b>Затухание</b><span>Влияние начального состояния уменьшается при |λ<sub>eff</sub>| &lt; 1, а при постоянных входах достигается расчётная стационарная область.</span></div><div class="decision"><b>Изоляция диалогов</b><span>Состояния разных пользователей и разных экземпляров персонажа никогда не смешиваются.</span></div><div class="decision"><b>Границы</b><span>Разрешённые параметры не создают NaN, бесконечность, отрицательные запрещённые значения или неконтролируемый рост.</span></div><div class="decision"><b>Воспроизводимость</b><span>Фиксированный seed и журнал входов дают идентичную траекторию.</span></div>
+<div class="decision"><b>Идентичность пространства</b><span>Все источники возвращают один полный набор N координат; порядок ключей словаря не меняет результат.</span></div><div class="decision"><b>Отсутствующая модальность</b><span>Пропуск аудио или текста отключает только соответствующий вклад.</span></div><div class="decision"><b>Затухание</b><span>Влияние начального состояния уменьшается при <code>abs(memory_retention) &lt; 1</code>, а при постоянных входах достигается расчётная стационарная область.</span></div><div class="decision"><b>Изоляция диалогов</b><span>Состояния разных пользователей и разных экземпляров персонажа никогда не смешиваются.</span></div><div class="decision"><b>Границы</b><span>Разрешённые параметры не создают NaN, бесконечность, отрицательные запрещённые значения или неконтролируемый рост.</span></div><div class="decision"><b>Воспроизводимость</b><span>Фиксированный seed и журнал входов дают идентичную траекторию.</span></div>
 
 <h3>15. Итоговая архитектура и границы ответственности</h3>
-<div class="formula small">Наблюдение X<sub>t</sub> → обновление E<sub>t</sub> = F(X<sub>t</sub>, P, E<sub>t−1</sub>) → сохранение состояния → следующий шаг</div>
+<pre class="code">inputs + character_baseline + previous_state
+    → update_state(...)
+    → constrain(current_state)
+    → save(current_state)
+    → next update</pre>
 <div class="callout"><b>Главная идея.</b> Агент получает внутреннюю переменную, которая существует во времени. Характер задаёт базовые склонности, текущая ситуация отклоняет состояние, память сохраняет последствия, а устойчивая динамика определяет восстановление.</div>
-<p>Техническая глава заканчивается на вычислении, ограничении и сохранении E<sub>t</sub>. Другие подсистемы могут читать этот вектор через отдельный интерфейс, но способы его внешнего выражения не являются частью модели формирования состояния.</p>
+<p>Техническая глава заканчивается на вычислении, ограничении и сохранении <code>current_state</code>. Другие подсистемы могут читать этот вектор через отдельный интерфейс, но способы его внешнего выражения не являются частью модели формирования состояния.</p>
 <p class="source-note">Описание объединяет концептуальную модель, расширенные разделы прежнего документа и фактический порядок вычислений прототипа. Там, где исходный код не задаёт нормализацию, долговременное хранение, обработку пропущенных модальностей или физическое затухание, эти элементы явно обозначены как требования к надёжной реализации, а не как уже реализованные функции.</p>
 </div></section>
 <footer class="footer"><div class="wrap">Эмоциональное состояние агента · концепция, продуктовые сценарии и рекуррентная модель · 2026</div></footer>

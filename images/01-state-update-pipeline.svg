@@ -8,29 +8,31 @@
 
 <g font-family="Segoe UI,Arial">
  <rect x="55" y="145" width="280" height="110" rx="18" fill="#fff" stroke="#9d8add" stroke-width="3"/>
- <text x="195" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#513b9a">Текст собеседника</text><text x="195" y="210" text-anchor="middle" font-size="24" fill="#172033">Oᵗᵉˣᵗₜ</text><text x="195" y="237" text-anchor="middle" font-size="14" fill="#606b7c">other_emotions_t</text>
+ <text x="195" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#513b9a">Текст собеседника</text><text x="195" y="218" text-anchor="middle" font-size="21" fill="#172033">text_emotions</text>
  <rect x="55" y="295" width="280" height="110" rx="18" fill="#fff" stroke="#9d8add" stroke-width="3"/>
- <text x="195" y="330" text-anchor="middle" font-size="18" font-weight="700" fill="#513b9a">Ответ агента</text><text x="195" y="360" text-anchor="middle" font-size="24" fill="#172033">Rₜ</text><text x="195" y="387" text-anchor="middle" font-size="14" fill="#606b7c">user_emotions_t</text>
+ <text x="195" y="330" text-anchor="middle" font-size="18" font-weight="700" fill="#513b9a">Ответ агента</text><text x="195" y="368" text-anchor="middle" font-size="20" fill="#172033">response_emotions</text>
  <rect x="55" y="445" width="280" height="110" rx="18" fill="#fff" stroke="#9d8add" stroke-width="3"/>
- <text x="195" y="480" text-anchor="middle" font-size="18" font-weight="700" fill="#513b9a">Предыдущее состояние</text><text x="195" y="510" text-anchor="middle" font-size="24" fill="#172033">Eₜ₋₁</text><text x="195" y="537" text-anchor="middle" font-size="14" fill="#606b7c">old_user_emotions_t</text>
+ <text x="195" y="480" text-anchor="middle" font-size="18" font-weight="700" fill="#513b9a">Предыдущее состояние</text><text x="195" y="518" text-anchor="middle" font-size="20" fill="#172033">previous_state</text>
 
  <rect x="470" y="250" width="360" height="210" rx="24" fill="#edf4ff" stroke="#315e9d" stroke-width="4"/>
- <text x="650" y="297" text-anchor="middle" font-size="23" font-weight="700" fill="#234c84">Семантический слой</text><text x="650" y="330" text-anchor="middle" font-size="16" fill="#52627a">em_inner = (aₜ, bₜ, cₜ, dₜ)</text>
- <text x="650" y="383" text-anchor="middle" font-family="Cambria Math,serif" font-size="24" fill="#172033">Yₜ = dₜ[aₜOᵗᵉˣᵗₜ + Ξᵀₜ ⊙ Rₜ + cₜEₜ₋₁]</text>
- <text x="650" y="427" text-anchor="middle" font-size="15" fill="#606b7c">Промежуточное состояние Yₜ</text>
+ <text x="650" y="293" text-anchor="middle" font-size="23" font-weight="700" fill="#234c84">Семантический слой</text>
+ <text x="650" y="337" text-anchor="middle" font-size="16" fill="#172033">text_weight · response_random_factor</text>
+ <text x="650" y="367" text-anchor="middle" font-size="16" fill="#172033">previous_state_weight · semantic_gain</text>
+ <text x="650" y="419" text-anchor="middle" font-size="20" font-weight="700" fill="#234c84">semantic_state</text>
 
  <rect x="945" y="145" width="280" height="110" rx="18" fill="#fff" stroke="#39a19d" stroke-width="3"/>
- <text x="1085" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#087b79">Голос собеседника</text><text x="1085" y="210" text-anchor="middle" font-size="24" fill="#172033">Oᵃᵘᵈⁱᵒₜ</text><text x="1085" y="237" text-anchor="middle" font-size="14" fill="#606b7c">other_emotions_s</text>
+ <text x="1085" y="180" text-anchor="middle" font-size="18" font-weight="700" fill="#087b79">Голос собеседника</text><text x="1085" y="218" text-anchor="middle" font-size="21" fill="#172033">audio_emotions</text>
  <rect x="945" y="295" width="280" height="110" rx="18" fill="#fff" stroke="#39a19d" stroke-width="3"/>
- <text x="1085" y="330" text-anchor="middle" font-size="18" font-weight="700" fill="#087b79">Характер</text><text x="1085" y="360" text-anchor="middle" font-size="24" fill="#172033">P</text><text x="1085" y="387" text-anchor="middle" font-size="14" fill="#606b7c">user_emotions_s</text>
+ <text x="1085" y="330" text-anchor="middle" font-size="18" font-weight="700" fill="#087b79">Характер</text><text x="1085" y="368" text-anchor="middle" font-size="20" fill="#172033">character_baseline</text>
  <rect x="890" y="500" width="390" height="195" rx="24" fill="#eaf8f6" stroke="#087b79" stroke-width="4"/>
- <text x="1085" y="543" text-anchor="middle" font-size="23" font-weight="700" fill="#075f5e">Акустика и характер</text><text x="1085" y="575" text-anchor="middle" font-size="16" fill="#52627a">em_outer = (aₛ, bₛ, cₛ, dₛ)</text>
- <text x="1085" y="625" text-anchor="middle" font-family="Cambria Math,serif" font-size="23" fill="#172033">Eₜ = dₛ[aₛOᵃᵘᵈⁱᵒₜ + Ξˢₜ ⊙ P + cₛYₜ]</text>
- <text x="1085" y="666" text-anchor="middle" font-size="15" fill="#606b7c">Итоговое состояние Eₜ</text>
- <rect x="475" y="625" width="300" height="110" rx="55" fill="#7357c8"/>
- <text x="625" y="670" text-anchor="middle" font-size="27" font-weight="700" fill="#fff">Сохранить Eₜ</text><text x="625" y="703" text-anchor="middle" font-size="15" fill="#eeeaff">вход следующего шага</text>
+ <text x="1085" y="541" text-anchor="middle" font-size="23" font-weight="700" fill="#075f5e">Акустика и характер</text>
+ <text x="1085" y="581" text-anchor="middle" font-size="16" fill="#172033">audio_weight · character_random_factor</text>
+ <text x="1085" y="611" text-anchor="middle" font-size="16" fill="#172033">semantic_state_weight · state_gain</text>
+ <text x="1085" y="660" text-anchor="middle" font-size="20" font-weight="700" fill="#075f5e">current_state</text>
+ <rect x="420" y="625" width="400" height="110" rx="55" fill="#7357c8"/>
+ <text x="620" y="670" text-anchor="middle" font-size="24" font-weight="700" fill="#fff">Сохранить current_state</text><text x="620" y="703" text-anchor="middle" font-size="15" fill="#eeeaff">вход следующего шага</text>
 </g>
-<g fill="none" stroke="#52627a" stroke-width="4" marker-end="url(#arrow)"><path d="M335 200H420Q445 200 470 286"/><path d="M335 350H470"/><path d="M335 500H420Q445 500 470 424"/><path d="M830 355H865Q890 355 915 500"/><path d="M1225 200H1305Q1340 200 1340 455Q1340 500 1280 540"/><path d="M1225 350H1300Q1320 350 1280 570"/><path d="M890 645H775"/></g>
-<g font-family="Segoe UI,Arial" font-size="15" fill="#52627a"><text x="852" y="337">Yₜ</text><text x="790" y="632">Eₜ</text></g>
+<g fill="none" stroke="#52627a" stroke-width="4" marker-end="url(#arrow)"><path d="M335 200H420Q445 200 470 286"/><path d="M335 350H470"/><path d="M335 500H420Q445 500 470 424"/><path d="M830 355H865Q890 355 915 500"/><path d="M1225 200H1305Q1340 200 1340 455Q1340 500 1280 540"/><path d="M1225 350H1300Q1320 350 1280 570"/><path d="M890 645H820"/></g>
+<g font-family="Segoe UI,Arial" font-size="14" fill="#52627a"><text x="838" y="337">semantic_state</text><text x="770" y="632">current_state</text></g>
 <rect x="55" y="760" width="1170" height="36" rx="18" fill="#fff5ec" stroke="#e4a170"/><text x="640" y="784" text-anchor="middle" font-family="Segoe UI,Arial" font-size="15" fill="#7b431e">Все пять векторов должны быть заранее приведены к одному пространству эмоций и одинаковому набору ключей.</text>
 </svg>
