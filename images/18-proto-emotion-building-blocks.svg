@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Прото-эмоции как общие строительные элементы</title>
+  <desc id="desc">Одна прото-эмоция участвует в нескольких эмоциях верхнего уровня, а каждая смысловая эмоция собирается из нескольких прото-эмоций и смыслового контекста.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071529"/>
+      <stop offset="1" stop-color="#0d2038"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="11" flood-color="#000814" flood-opacity="0.34"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#8aa4c2"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" rx="32" fill="url(#bg)"/>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="800" y="62" text-anchor="middle" fill="#f7fbff" font-size="38" font-weight="700">Прото-эмоции как общие строительные элементы</text>
+    <text x="800" y="102" text-anchor="middle" fill="#9fb4ce" font-size="21">Между акустической основой и смысловыми эмоциями нет соответствия «один к одному»</text>
+
+    <!-- Column headers -->
+    <rect x="55" y="140" width="400" height="75" rx="20" fill="#14362f" stroke="#49b68a" stroke-width="2"/>
+    <text x="255" y="174" text-anchor="middle" fill="#b9f2d7" font-size="24" font-weight="700">ПРОТО-ЭМОЦИИ</text>
+    <text x="255" y="200" text-anchor="middle" fill="#83cbae" font-size="17">низкоуровневая форма реакции</text>
+
+    <rect x="570" y="140" width="460" height="75" rx="20" fill="#14283f" stroke="#5f87ae" stroke-width="2"/>
+    <text x="800" y="174" text-anchor="middle" fill="#d4e8fa" font-size="24" font-weight="700">СВЯЗИ «МНОГИЕ КО МНОГИМ»</text>
+    <text x="800" y="200" text-anchor="middle" fill="#93b4d2" font-size="16">один компонент поддерживает несколько классов</text>
+
+    <rect x="1145" y="140" width="400" height="75" rx="20" fill="#30213c" stroke="#9a72b0" stroke-width="2"/>
+    <text x="1345" y="174" text-anchor="middle" fill="#f2e5f9" font-size="21" font-weight="700">ЭМОЦИИ ВЕРХНЕГО УРОВНЯ</text>
+    <text x="1345" y="200" text-anchor="middle" fill="#c6a8d5" font-size="17">смысловая интерпретация ситуации</text>
+
+    <!-- Left proto blocks -->
+    <g>
+      <rect x="85" y="260" width="340" height="76" rx="17" fill="#3b3020" stroke="#ffb85c" stroke-width="2"/>
+      <rect x="85" y="260" width="22" height="76" rx="10" fill="#ffb85c"/>
+      <text x="132" y="307" fill="#fff2d8" font-size="23" font-weight="700">возбуждение</text>
+
+      <rect x="85" y="360" width="340" height="76" rx="17" fill="#3e252e" stroke="#ff747e" stroke-width="2"/>
+      <rect x="85" y="360" width="22" height="76" rx="10" fill="#ff747e"/>
+      <text x="132" y="407" fill="#ffe0e2" font-size="23" font-weight="700">напряжение</text>
+
+      <rect x="85" y="460" width="340" height="76" rx="17" fill="#183650" stroke="#62b1ff" stroke-width="2"/>
+      <rect x="85" y="460" width="22" height="76" rx="10" fill="#62b1ff"/>
+      <text x="132" y="507" fill="#d8edff" font-size="23" font-weight="700">ускорение</text>
+
+      <rect x="85" y="560" width="340" height="76" rx="17" fill="#342843" stroke="#bb83f5" stroke-width="2"/>
+      <rect x="85" y="560" width="22" height="76" rx="10" fill="#bb83f5"/>
+      <text x="132" y="607" fill="#f0e0ff" font-size="23" font-weight="700">резкость</text>
+
+      <rect x="85" y="660" width="340" height="76" rx="17" fill="#173b3b" stroke="#67d7cc" stroke-width="2"/>
+      <rect x="85" y="660" width="22" height="76" rx="10" fill="#67d7cc"/>
+      <text x="132" y="707" fill="#d7fbf7" font-size="23" font-weight="700">спокойствие</text>
+    </g>
+
+    <!-- Many-to-many network -->
+    <g fill="none" stroke-linecap="round" opacity="0.72">
+      <!-- excitement -->
+      <path d="M425 298 C630 298 730 275 1145 285" stroke="#ffb85c" stroke-width="4"/>
+      <path d="M425 298 C650 310 820 390 1145 405" stroke="#ffb85c" stroke-width="4"/>
+      <path d="M425 298 C660 320 845 505 1145 525" stroke="#ffb85c" stroke-width="4"/>
+      <path d="M425 298 C680 330 865 620 1145 645" stroke="#ffb85c" stroke-width="4"/>
+
+      <!-- tension -->
+      <path d="M425 398 C650 390 820 315 1145 285" stroke="#ff747e" stroke-width="4"/>
+      <path d="M425 398 C670 398 845 402 1145 405" stroke="#ff747e" stroke-width="4"/>
+      <path d="M425 398 C690 410 880 700 1145 765" stroke="#ff747e" stroke-width="4"/>
+
+      <!-- acceleration -->
+      <path d="M425 498 C650 480 840 320 1145 285" stroke="#62b1ff" stroke-width="4"/>
+      <path d="M425 498 C675 495 850 505 1145 525" stroke="#62b1ff" stroke-width="4"/>
+      <path d="M425 498 C700 505 870 625 1145 645" stroke="#62b1ff" stroke-width="4"/>
+
+      <!-- sharpness -->
+      <path d="M425 598 C675 570 845 430 1145 405" stroke="#bb83f5" stroke-width="4"/>
+      <path d="M425 598 C700 600 880 740 1145 765" stroke="#bb83f5" stroke-width="4"/>
+
+      <!-- calmness -->
+      <path d="M425 698 C690 680 865 550 1145 525" stroke="#67d7cc" stroke-width="4"/>
+      <path d="M425 698 C710 690 900 660 1145 645" stroke="#67d7cc" stroke-width="4"/>
+    </g>
+
+    <!-- Center explanatory lenses -->
+    <rect x="610" y="285" width="380" height="108" rx="22" fill="#101f34" stroke="#4e7195" stroke-width="2"/>
+    <text x="800" y="323" text-anchor="middle" fill="#d8e9f8" font-size="21" font-weight="700">Один базовый компонент</text>
+    <text x="800" y="354" text-anchor="middle" fill="#a9bdd2" font-size="18">может усиливать несколько</text>
+    <text x="800" y="379" text-anchor="middle" fill="#a9bdd2" font-size="18">смысловых эмоций</text>
+
+    <rect x="610" y="596" width="380" height="108" rx="22" fill="#101f34" stroke="#4e7195" stroke-width="2"/>
+    <text x="800" y="634" text-anchor="middle" fill="#d8e9f8" font-size="21" font-weight="700">Одна смысловая эмоция</text>
+    <text x="800" y="665" text-anchor="middle" fill="#a9bdd2" font-size="18">может включать несколько</text>
+    <text x="800" y="690" text-anchor="middle" fill="#a9bdd2" font-size="18">базовых компонентов</text>
+
+    <circle cx="800" cy="499" r="66" fill="#10243b" stroke="#6f91b2" stroke-width="3"/>
+    <text x="800" y="489" text-anchor="middle" fill="#e6f2fc" font-size="20" font-weight="700">СМЫСЛ</text>
+    <text x="800" y="517" text-anchor="middle" fill="#9fb8cf" font-size="17">определяет</text>
+    <text x="800" y="541" text-anchor="middle" fill="#9fb8cf" font-size="17">интерпретацию</text>
+
+    <!-- Right emotion compositions -->
+    <g>
+      <rect x="1175" y="250" width="340" height="70" rx="17" fill="#2b2037" stroke="#9a72b0" stroke-width="2"/>
+      <text x="1201" y="294" fill="#f7fbff" font-size="23" font-weight="700">СТРАХ</text>
+      <rect x="1328" y="269" width="38" height="32" rx="7" fill="#ffb85c"/><rect x="1373" y="269" width="38" height="32" rx="7" fill="#ff747e"/><rect x="1418" y="269" width="38" height="32" rx="7" fill="#62b1ff"/><rect x="1463" y="269" width="30" height="32" rx="7" fill="#203752" stroke="#7194b7"/>
+
+      <rect x="1175" y="370" width="340" height="70" rx="17" fill="#2b2037" stroke="#9a72b0" stroke-width="2"/>
+      <text x="1201" y="414" fill="#f7fbff" font-size="23" font-weight="700">ГНЕВ</text>
+      <rect x="1328" y="389" width="38" height="32" rx="7" fill="#ffb85c"/><rect x="1373" y="389" width="38" height="32" rx="7" fill="#ff747e"/><rect x="1418" y="389" width="38" height="32" rx="7" fill="#bb83f5"/><rect x="1463" y="389" width="30" height="32" rx="7" fill="#203752" stroke="#7194b7"/>
+
+      <rect x="1175" y="490" width="340" height="70" rx="17" fill="#2b2037" stroke="#9a72b0" stroke-width="2"/>
+      <text x="1201" y="534" fill="#f7fbff" font-size="23" font-weight="700">РАДОСТЬ</text>
+      <rect x="1328" y="509" width="38" height="32" rx="7" fill="#ffb85c"/><rect x="1373" y="509" width="38" height="32" rx="7" fill="#62b1ff"/><rect x="1418" y="509" width="38" height="32" rx="7" fill="#67d7cc"/><rect x="1463" y="509" width="30" height="32" rx="7" fill="#203752" stroke="#7194b7"/>
+
+      <rect x="1175" y="610" width="340" height="70" rx="17" fill="#2b2037" stroke="#9a72b0" stroke-width="2"/>
+      <text x="1201" y="654" fill="#f7fbff" font-size="22" font-weight="700">ЛЮБОПЫТСТВО</text>
+      <rect x="1373" y="629" width="38" height="32" rx="7" fill="#ffb85c"/><rect x="1418" y="629" width="38" height="32" rx="7" fill="#62b1ff"/><rect x="1463" y="629" width="30" height="32" rx="7" fill="#67d7cc"/>
+
+      <rect x="1175" y="730" width="340" height="70" rx="17" fill="#2b2037" stroke="#9a72b0" stroke-width="2"/>
+      <text x="1201" y="774" fill="#f7fbff" font-size="23" font-weight="700">ТРЕВОГА</text>
+      <rect x="1328" y="749" width="38" height="32" rx="7" fill="#ff747e"/><rect x="1373" y="749" width="38" height="32" rx="7" fill="#bb83f5"/><rect x="1418" y="749" width="38" height="32" rx="7" fill="#ffb85c"/><rect x="1463" y="749" width="30" height="32" rx="7" fill="#203752" stroke="#7194b7"/>
+    </g>
+
+    <!-- Legend for semantic context block -->
+    <rect x="129" y="790" width="296" height="42" rx="14" fill="#14283f" stroke="#7194b7"/>
+    <rect x="149" y="801" width="26" height="20" rx="5" fill="#203752" stroke="#7194b7"/>
+    <text x="188" y="818" fill="#c5d8e9" font-size="16">смысловой контекст</text>
+
+    <!-- Bottom conclusion -->
+    <rect x="505" y="830" width="990" height="50" rx="17" fill="#102b28" stroke="#48b48a" stroke-width="2"/>
+    <text x="1000" y="862" text-anchor="middle" fill="#b9f2d7" font-size="20" font-weight="700">Прото-эмоция — общий компонент, а не сокращённое название готовой эмоции</text>
+  </g>
+</svg>
