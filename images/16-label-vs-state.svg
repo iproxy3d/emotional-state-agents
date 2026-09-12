@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Метка реплики и эмоциональное состояние</title>
+  <desc id="desc">Слева три реплики анализируются независимо и получают отдельные метки. Справа те же события последовательно изменяют эмоциональное состояние агента.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071529"/>
+      <stop offset="1" stop-color="#0d2038"/>
+    </linearGradient>
+    <linearGradient id="stateFill" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff7b7b" stop-opacity="0.36"/>
+      <stop offset="1" stop-color="#ff7b7b" stop-opacity="0.02"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000814" flood-opacity="0.35"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6bb6ff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#65d6a4"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" rx="32" fill="url(#bg)"/>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="800" y="68" text-anchor="middle" fill="#f7fbff" font-size="38" font-weight="700">Метка реплики и эмоциональное состояние</text>
+    <text x="800" y="106" text-anchor="middle" fill="#9fb4ce" font-size="21">Одни и те же события: независимые оценки или единая история реакции</text>
+
+    <!-- Column panels -->
+    <rect x="55" y="145" width="700" height="690" rx="24" fill="#0c1b31" stroke="#29415f" stroke-width="2" filter="url(#shadow)"/>
+    <rect x="785" y="145" width="760" height="690" rx="24" fill="#0c1b31" stroke="#29415f" stroke-width="2" filter="url(#shadow)"/>
+
+    <!-- Left: independent classification -->
+    <circle cx="100" cy="199" r="20" fill="#56718f"/>
+    <text x="100" y="207" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700">A</text>
+    <text x="135" y="207" fill="#f7fbff" font-size="28" font-weight="700">Классификация отдельных реплик</text>
+    <text x="95" y="245" fill="#93a9c3" font-size="19">Каждый фрагмент рассматривается отдельно</text>
+
+    <g transform="translate(90 282)">
+      <rect width="630" height="132" rx="18" fill="#132944" stroke="#35506f"/>
+      <rect x="22" y="20" width="42" height="42" rx="12" fill="#203c5f"/>
+      <text x="43" y="48" text-anchor="middle" fill="#9ecaff" font-size="20" font-weight="700">1</text>
+      <text x="82" y="50" fill="#f7fbff" font-size="23" font-weight="600">«Это уже второй сбой!»</text>
+      <rect x="82" y="76" width="190" height="36" rx="18" fill="#492632" stroke="#ff777f"/>
+      <text x="177" y="100" text-anchor="middle" fill="#ffadb2" font-size="18" font-weight="700">РАЗДРАЖЕНИЕ</text>
+      <text x="590" y="98" text-anchor="end" fill="#7187a2" font-size="17">отдельная метка</text>
+    </g>
+
+    <g transform="translate(90 438)">
+      <rect width="630" height="132" rx="18" fill="#132944" stroke="#35506f"/>
+      <rect x="22" y="20" width="42" height="42" rx="12" fill="#203c5f"/>
+      <text x="43" y="48" text-anchor="middle" fill="#9ecaff" font-size="20" font-weight="700">2</text>
+      <text x="82" y="50" fill="#f7fbff" font-size="23" font-weight="600">«Хорошо, попробуем ещё раз»</text>
+      <rect x="82" y="76" width="180" height="36" rx="18" fill="#253348" stroke="#8498b2"/>
+      <text x="172" y="100" text-anchor="middle" fill="#c1cfde" font-size="18" font-weight="700">НЕЙТРАЛЬНО</text>
+      <text x="590" y="98" text-anchor="end" fill="#7187a2" font-size="17">новый анализ</text>
+    </g>
+
+    <g transform="translate(90 594)">
+      <rect width="630" height="132" rx="18" fill="#132944" stroke="#35506f"/>
+      <rect x="22" y="20" width="42" height="42" rx="12" fill="#203c5f"/>
+      <text x="43" y="48" text-anchor="middle" fill="#9ecaff" font-size="20" font-weight="700">3</text>
+      <text x="82" y="50" fill="#f7fbff" font-size="23" font-weight="600">«Спасибо, теперь работает»</text>
+      <rect x="82" y="76" width="198" height="36" rx="18" fill="#173d36" stroke="#65d6a4"/>
+      <text x="181" y="100" text-anchor="middle" fill="#8de8bd" font-size="18" font-weight="700">БЛАГОДАРНОСТЬ</text>
+      <text x="590" y="98" text-anchor="end" fill="#7187a2" font-size="17">новая метка</text>
+    </g>
+
+    <line x1="120" y1="760" x2="690" y2="760" stroke="#50657e" stroke-width="2" stroke-dasharray="7 9"/>
+    <text x="405" y="797" text-anchor="middle" fill="#aebed1" font-size="20">Связи между результатами нет</text>
+
+    <!-- Right: recurrent state -->
+    <circle cx="830" cy="199" r="20" fill="#2b9971"/>
+    <text x="830" y="207" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700">B</text>
+    <text x="865" y="207" fill="#f7fbff" font-size="28" font-weight="700">Динамическое состояние агента</text>
+    <text x="825" y="245" fill="#93a9c3" font-size="19">Каждое событие изменяет результат предыдущего шага</text>
+
+    <!-- Events -->
+    <g>
+      <rect x="825" y="282" width="195" height="82" rx="16" fill="#382431" stroke="#ff777f"/>
+      <text x="922" y="314" text-anchor="middle" fill="#ffadb2" font-size="17" font-weight="700">СОБЫТИЕ 1</text>
+      <text x="922" y="342" text-anchor="middle" fill="#f7fbff" font-size="19">повторный сбой</text>
+
+      <rect x="1065" y="282" width="195" height="82" rx="16" fill="#192d45" stroke="#6bb6ff"/>
+      <text x="1162" y="314" text-anchor="middle" fill="#9ecaff" font-size="17" font-weight="700">СОБЫТИЕ 2</text>
+      <text x="1162" y="342" text-anchor="middle" fill="#f7fbff" font-size="19">новая попытка</text>
+
+      <rect x="1305" y="282" width="195" height="82" rx="16" fill="#18382f" stroke="#65d6a4"/>
+      <text x="1402" y="314" text-anchor="middle" fill="#8de8bd" font-size="17" font-weight="700">СОБЫТИЕ 3</text>
+      <text x="1402" y="342" text-anchor="middle" fill="#f7fbff" font-size="19">проблема решена</text>
+
+      <line x1="1020" y1="323" x2="1055" y2="323" stroke="#6bb6ff" stroke-width="3" marker-end="url(#arrowBlue)"/>
+      <line x1="1260" y1="323" x2="1295" y2="323" stroke="#6bb6ff" stroke-width="3" marker-end="url(#arrowBlue)"/>
+    </g>
+
+    <!-- State chart -->
+    <rect x="825" y="409" width="675" height="306" rx="18" fill="#0a182c" stroke="#29415f"/>
+    <text x="855" y="447" fill="#f7fbff" font-size="20" font-weight="700">Уровень раздражения</text>
+    <line x1="865" y1="665" x2="1465" y2="665" stroke="#536983" stroke-width="2"/>
+    <line x1="865" y1="485" x2="865" y2="665" stroke="#536983" stroke-width="2"/>
+    <line x1="865" y1="575" x2="1465" y2="575" stroke="#263b56" stroke-width="1" stroke-dasharray="5 7"/>
+    <text x="850" y="671" text-anchor="end" fill="#8297b0" font-size="15">фон</text>
+    <text x="850" y="492" text-anchor="end" fill="#8297b0" font-size="15">высоко</text>
+
+    <path d="M865 650 C895 648 910 646 930 642 C950 635 965 535 990 505 C1012 488 1030 512 1050 530 C1085 558 1110 575 1145 590 C1180 605 1210 610 1245 616 C1280 620 1315 622 1340 623 C1365 625 1380 640 1405 648 C1425 654 1445 657 1465 659 L1465 665 L865 665 Z" fill="url(#stateFill)"/>
+    <path d="M865 650 C895 648 910 646 930 642 C950 635 965 535 990 505 C1012 488 1030 512 1050 530 C1085 558 1110 575 1145 590 C1180 605 1210 610 1245 616 C1280 620 1315 622 1340 623 C1365 625 1380 640 1405 648 C1425 654 1445 657 1465 659" fill="none" stroke="#ff7b7b" stroke-width="6" stroke-linecap="round"/>
+
+    <line x1="975" y1="365" x2="975" y2="482" stroke="#ff777f" stroke-width="2" stroke-dasharray="6 7"/>
+    <line x1="1162" y1="365" x2="1162" y2="585" stroke="#6bb6ff" stroke-width="2" stroke-dasharray="6 7"/>
+    <line x1="1402" y1="365" x2="1402" y2="640" stroke="#65d6a4" stroke-width="2" stroke-dasharray="6 7"/>
+    <circle cx="990" cy="505" r="8" fill="#ff777f" stroke="#ffd0d3" stroke-width="3"/>
+    <circle cx="1162" cy="598" r="7" fill="#6bb6ff" stroke="#d3eaff" stroke-width="3"/>
+    <circle cx="1402" cy="647" r="7" fill="#65d6a4" stroke="#d5f7e7" stroke-width="3"/>
+
+    <text x="990" y="482" text-anchor="middle" fill="#ffadb2" font-size="17" font-weight="700">всплеск</text>
+    <text x="1162" y="625" text-anchor="middle" fill="#9ecaff" font-size="16">след сохраняется</text>
+    <text x="1402" y="690" text-anchor="middle" fill="#8de8bd" font-size="16">возврат к фону</text>
+
+    <rect x="845" y="744" width="635" height="58" rx="16" fill="#143127" stroke="#3aa77d"/>
+    <text x="1162" y="780" text-anchor="middle" fill="#b9f2d7" font-size="20" font-weight="600">Предыдущее состояние + новое событие → новое состояние</text>
+
+    <!-- Bottom contrast -->
+    <text x="405" y="870" text-anchor="middle" fill="#879cb5" font-size="18">Ответ: «Какая эмоция выражена сейчас?»</text>
+    <text x="1165" y="870" text-anchor="middle" fill="#8de8bd" font-size="18" font-weight="600">Ответ: «Что происходит с агентом во времени?»</text>
+  </g>
+</svg>

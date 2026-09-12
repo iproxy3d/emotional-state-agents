@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Что можно и чего нельзя определить по звуку</title>
+  <desc id="desc">Звук позволяет измерить акустические признаки и выделить прото-эмоции, но без понимания смысла речи не позволяет уверенно определить конкретную эмоцию верхнего уровня.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071529"/>
+      <stop offset="1" stop-color="#0d2038"/>
+    </linearGradient>
+    <linearGradient id="audioPanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#132f4c"/>
+      <stop offset="1" stop-color="#10243d"/>
+    </linearGradient>
+    <linearGradient id="protoPanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#183d37"/>
+      <stop offset="1" stop-color="#112f2d"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="9" stdDeviation="12" flood-color="#000814" flood-opacity="0.35"/>
+    </filter>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6bb6ff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#65d6a4"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="900" rx="32" fill="url(#bg)"/>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="800" y="64" text-anchor="middle" fill="#f7fbff" font-size="38" font-weight="700">Что можно и чего нельзя определить по звуку</text>
+    <text x="800" y="104" text-anchor="middle" fill="#9fb4ce" font-size="21">Незнакомый язык: форма реакции слышна, смысловая эмоция — нет</text>
+
+    <!-- Stage 1: sound -->
+    <rect x="55" y="148" width="430" height="650" rx="24" fill="url(#audioPanel)" stroke="#37668e" stroke-width="2" filter="url(#shadow)"/>
+    <circle cx="101" cy="199" r="21" fill="#4778a5"/>
+    <text x="101" y="207" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700">1</text>
+    <text x="139" y="207" fill="#f7fbff" font-size="27" font-weight="700">Звуковой сигнал</text>
+
+    <!-- Unknown language speech bubble -->
+    <rect x="91" y="254" width="358" height="116" rx="22" fill="#1a3b60" stroke="#6bb6ff" stroke-width="2"/>
+    <path d="M132 370 L112 405 L172 370" fill="#1a3b60" stroke="#6bb6ff" stroke-width="2" stroke-linejoin="round"/>
+    <text x="270" y="303" text-anchor="middle" fill="#cfe7ff" font-size="25" font-weight="700">«Taré no vika!»</text>
+    <text x="270" y="338" text-anchor="middle" fill="#91bde8" font-size="18">смысл слов неизвестен</text>
+
+    <!-- waveform -->
+    <rect x="91" y="425" width="358" height="108" rx="18" fill="#0b1b30" stroke="#294b6c"/>
+    <line x1="113" y1="479" x2="427" y2="479" stroke="#314d6c" stroke-width="1"/>
+    <path d="M113 479 L126 479 L136 457 L148 504 L161 437 L174 515 L187 451 L201 491 L214 467 L227 482 L240 451 L254 508 L268 420 L283 527 L298 444 L312 496 L326 461 L340 486 L354 447 L368 510 L382 433 L397 500 L411 466 L427 479" fill="none" stroke="#6bb6ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <text x="91" y="577" fill="#a9c7e4" font-size="19" font-weight="700">Можно измерить:</text>
+    <g fill="#d9e9f7" font-size="18">
+      <rect x="91" y="598" width="164" height="40" rx="20" fill="#183655" stroke="#4778a5"/>
+      <text x="173" y="624" text-anchor="middle">громкость</text>
+      <rect x="270" y="598" width="179" height="40" rx="20" fill="#183655" stroke="#4778a5"/>
+      <text x="359" y="624" text-anchor="middle">скорость речи</text>
+      <rect x="91" y="651" width="164" height="40" rx="20" fill="#183655" stroke="#4778a5"/>
+      <text x="173" y="677" text-anchor="middle">изменение тона</text>
+      <rect x="270" y="651" width="179" height="40" rx="20" fill="#183655" stroke="#4778a5"/>
+      <text x="359" y="677" text-anchor="middle">паузы и ритм</text>
+    </g>
+    <rect x="91" y="724" width="358" height="46" rx="15" fill="#122a45" stroke="#5a87b2"/>
+    <text x="270" y="753" text-anchor="middle" fill="#b9dcfa" font-size="18" font-weight="600">Наблюдаемые свойства звука</text>
+
+    <!-- Arrow 1 -->
+    <line x1="485" y1="474" x2="535" y2="474" stroke="#6bb6ff" stroke-width="5" marker-end="url(#arrowBlue)"/>
+
+    <!-- Stage 2: proto-emotions -->
+    <rect x="555" y="148" width="425" height="650" rx="24" fill="url(#protoPanel)" stroke="#3fa17d" stroke-width="2" filter="url(#shadow)"/>
+    <circle cx="601" cy="199" r="21" fill="#2b9971"/>
+    <text x="601" y="207" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700">2</text>
+    <text x="639" y="207" fill="#f7fbff" font-size="27" font-weight="700">Прото-эмоции</text>
+    <text x="767" y="242" text-anchor="middle" fill="#9fd7c1" font-size="18">форма и сила реакции</text>
+
+    <!-- proto nodes -->
+    <g>
+      <rect x="598" y="282" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
+      <circle cx="631" cy="315" r="10" fill="#ffbd69"/>
+      <text x="657" y="322" fill="#f7fbff" font-size="21" font-weight="600">возбуждение</text>
+      <rect x="598" y="368" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
+      <circle cx="631" cy="401" r="10" fill="#ff7b7b"/>
+      <text x="657" y="408" fill="#f7fbff" font-size="21" font-weight="600">напряжение</text>
+      <rect x="598" y="454" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
+      <circle cx="631" cy="487" r="10" fill="#6bb6ff"/>
+      <text x="657" y="494" fill="#f7fbff" font-size="21" font-weight="600">ускорение реакции</text>
+      <rect x="598" y="540" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
+      <circle cx="631" cy="573" r="10" fill="#c28cff"/>
+      <text x="657" y="580" fill="#f7fbff" font-size="21" font-weight="600">резкость</text>
+      <rect x="598" y="626" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
+      <circle cx="631" cy="659" r="10" fill="#70ddcf"/>
+      <text x="657" y="666" fill="#f7fbff" font-size="21" font-weight="600">уровень спокойствия</text>
+    </g>
+
+    <rect x="598" y="722" width="339" height="48" rx="15" fill="#12382f" stroke="#65d6a4"/>
+    <text x="767" y="752" text-anchor="middle" fill="#b9f2d7" font-size="18" font-weight="600">Это ещё не смысловые эмоции</text>
+
+    <!-- Hard boundary -->
+    <line x1="1028" y1="175" x2="1028" y2="782" stroke="#ff727c" stroke-width="3" stroke-dasharray="11 10"/>
+    <circle cx="1028" cy="472" r="32" fill="#421f2d" stroke="#ff727c" stroke-width="3"/>
+    <text x="1028" y="484" text-anchor="middle" fill="#ffb0b5" font-size="36" font-weight="800">?</text>
+    <rect x="1002" y="230" width="52" height="155" rx="24" fill="#15253a" stroke="#ff727c"/>
+    <text x="1028" y="253" text-anchor="middle" fill="#ffadb2" font-size="14" font-weight="700" transform="rotate(-90 1028 307)">БЕЗ ПОНИМАНИЯ СМЫСЛА</text>
+
+    <!-- Stage 3: semantic hypotheses -->
+    <rect x="1080" y="148" width="465" height="650" rx="24" fill="#21192b" stroke="#765887" stroke-width="2" filter="url(#shadow)"/>
+    <circle cx="1126" cy="199" r="21" fill="#77528f"/>
+    <text x="1126" y="207" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700">3</text>
+    <text x="1164" y="193" fill="#f7fbff" font-size="25" font-weight="700">Возможные смыслы</text>
+    <text x="1164" y="221" fill="#c4a8d2" font-size="18">только предположения</text>
+
+    <g>
+      <rect x="1122" y="278" width="180" height="108" rx="18" fill="#30213b" stroke="#9a72b0"/>
+      <text x="1212" y="318" text-anchor="middle" fill="#f3e8fa" font-size="36">⚡</text>
+      <text x="1212" y="348" text-anchor="middle" fill="#f7fbff" font-size="17" font-weight="600">угроза или</text>
+      <text x="1212" y="372" text-anchor="middle" fill="#f7fbff" font-size="17" font-weight="600">предупреждение</text>
+
+      <rect x="1323" y="278" width="180" height="108" rx="18" fill="#30213b" stroke="#9a72b0"/>
+      <text x="1413" y="318" text-anchor="middle" fill="#f3e8fa" font-size="34">☀</text>
+      <text x="1413" y="348" text-anchor="middle" fill="#f7fbff" font-size="17" font-weight="600">радостная</text>
+      <text x="1413" y="372" text-anchor="middle" fill="#f7fbff" font-size="17" font-weight="600">новость</text>
+
+      <rect x="1122" y="411" width="180" height="108" rx="18" fill="#30213b" stroke="#9a72b0"/>
+      <text x="1212" y="452" text-anchor="middle" fill="#f3e8fa" font-size="34">!</text>
+      <text x="1212" y="490" text-anchor="middle" fill="#f7fbff" font-size="19" font-weight="600">ссора</text>
+
+      <rect x="1323" y="411" width="180" height="108" rx="18" fill="#30213b" stroke="#9a72b0"/>
+      <text x="1413" y="452" text-anchor="middle" fill="#f3e8fa" font-size="33">●</text>
+      <text x="1413" y="482" text-anchor="middle" fill="#f7fbff" font-size="17" font-weight="600">обсуждение</text>
+      <text x="1413" y="506" text-anchor="middle" fill="#f7fbff" font-size="17" font-weight="600">матча</text>
+
+      <rect x="1122" y="544" width="381" height="82" rx="18" fill="#30213b" stroke="#9a72b0"/>
+      <text x="1312" y="578" text-anchor="middle" fill="#f7fbff" font-size="17" font-weight="600">энергичное обсуждение новостей</text>
+      <text x="1312" y="606" text-anchor="middle" fill="#c4a8d2" font-size="17">акустический паттерн может быть тем же</text>
+    </g>
+
+    <rect x="1110" y="674" width="405" height="96" rx="17" fill="#43202d" stroke="#ff727c" stroke-width="2"/>
+    <text x="1312" y="708" text-anchor="middle" fill="#ffb0b5" font-size="18" font-weight="700">Конкретный класс не определяется</text>
+    <text x="1312" y="738" text-anchor="middle" fill="#f1c7ca" font-size="17">верное совпадение возможно лишь случайно</text>
+
+    <!-- Direction labels -->
+    <text x="513" y="447" text-anchor="middle" fill="#9ecaff" font-size="15" font-weight="700" transform="rotate(-90 513 447)">ИЗМЕРЕНИЕ</text>
+    <text x="1057" y="650" text-anchor="middle" fill="#ffadb2" font-size="15" font-weight="700" transform="rotate(-90 1057 650)">НЕТ УВЕРЕННОГО ПЕРЕХОДА</text>
+
+    <!-- Bottom conclusion -->
+    <rect x="128" y="826" width="1344" height="52" rx="18" fill="#102b28" stroke="#48b48a" stroke-width="2"/>
+    <text x="800" y="859" text-anchor="middle" fill="#b9f2d7" font-size="21" font-weight="700">Звук → акустические признаки → прото-эмоции  ✓    Смысловая эмоция без понимания слов  ✕</text>
+  </g>
+</svg>

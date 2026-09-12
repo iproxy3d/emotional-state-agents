@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040" role="img" aria-labelledby="title desc">
+  <title id="title">Вся модель эмоционального состояния агента</title>
+  <desc id="desc">Звук формирует прото-эмоциональную основу, текст даёт смысловые гипотезы, совместная интерпретация описывает эмоции собеседника, а характер и память преобразуют их в собственное состояние агента, которое влияет на следующую реакцию и сохраняется для следующего события.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071529"/>
+      <stop offset="1" stop-color="#0d2038"/>
+    </linearGradient>
+    <linearGradient id="audioPanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#173b50"/>
+      <stop offset="1" stop-color="#15312f"/>
+    </linearGradient>
+    <linearGradient id="textPanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#302843"/>
+      <stop offset="1" stop-color="#1c2941"/>
+    </linearGradient>
+    <linearGradient id="statePanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#173d35"/>
+      <stop offset="1" stop-color="#102d2d"/>
+    </linearGradient>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6bb6ff"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#62d5a3"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#bb83f5"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1040" rx="32" fill="url(#bg)"/>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="800" y="59" text-anchor="middle" fill="#f7fbff" font-size="38" font-weight="700">Вся модель эмоционального состояния агента</text>
+    <text x="800" y="99" text-anchor="middle" fill="#9fb4ce" font-size="21">От восприятия собеседника до собственной реакции, памяти и следующего события</text>
+
+    <!-- Phase labels -->
+    <rect x="55" y="128" width="1490" height="42" rx="14" fill="#101e32" stroke="#304963"/>
+    <text x="250" y="155" text-anchor="middle" fill="#9ecaff" font-size="17" font-weight="700">1. ВОСПРИЯТИЕ</text>
+    <text x="765" y="155" text-anchor="middle" fill="#d3bded" font-size="17" font-weight="700">2. СОВМЕСТНАЯ ИНТЕРПРЕТАЦИЯ</text>
+    <text x="1190" y="155" text-anchor="middle" fill="#a9efd0" font-size="17" font-weight="700">3. СОБСТВЕННОЕ СОСТОЯНИЕ</text>
+
+    <!-- Audio branch -->
+    <rect x="55" y="200" width="430" height="245" rx="23" fill="url(#audioPanel)" stroke="#55b7a2" stroke-width="2"/>
+    <circle cx="101" cy="246" r="21" fill="#329b83"/>
+    <path d="M91 246 H111 M101 236 V256" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>
+    <text x="137" y="254" fill="#d7faf1" font-size="25" font-weight="700">ЗВУК</text>
+    <rect x="90" y="284" width="360" height="61" rx="15" fill="#0c2033" stroke="#4c8293"/>
+    <line x1="113" y1="315" x2="427" y2="315" stroke="#29485e"/>
+    <path d="M113 315 L127 315 L138 296 L151 335 L165 283 L180 343 L195 298 L211 328 L227 291 L243 338 L259 278 L276 348 L292 298 L308 331 L324 302 L341 327 L357 289 L374 341 L391 299 L409 326 L427 315" fill="none" stroke="#66c9d4" stroke-width="4" stroke-linecap="round"/>
+    <text x="270" y="381" text-anchor="middle" fill="#9fcfc7" font-size="18">громкость · темп · тон · напряжение</text>
+    <rect x="104" y="397" width="332" height="34" rx="17" fill="#173f36" stroke="#62d5a3"/>
+    <text x="270" y="420" text-anchor="middle" fill="#b9f2d7" font-size="18" font-weight="700">ПРОТО-ЭМОЦИОНАЛЬНАЯ ОСНОВА</text>
+
+    <!-- Text branch -->
+    <rect x="55" y="485" width="430" height="245" rx="23" fill="url(#textPanel)" stroke="#9a72b0" stroke-width="2"/>
+    <circle cx="101" cy="531" r="21" fill="#77528f"/>
+    <text x="101" y="539" text-anchor="middle" fill="#ffffff" font-size="25" font-weight="700">A</text>
+    <text x="137" y="539" fill="#f1e4fa" font-size="25" font-weight="700">ТЕКСТ</text>
+    <rect x="90" y="570" width="360" height="76" rx="17" fill="#24223b" stroke="#8865a0"/>
+    <text x="270" y="600" text-anchor="middle" fill="#f7fbff" font-size="20" font-weight="600">«Он уже рядом,</text>
+    <text x="270" y="628" text-anchor="middle" fill="#f7fbff" font-size="20" font-weight="600">нам нужно уходить»</text>
+    <text x="270" y="681" text-anchor="middle" fill="#c8b7d8" font-size="18">события · намерения · отношения · контекст</text>
+    <rect x="104" y="695" width="332" height="34" rx="17" fill="#302743" stroke="#bb83f5"/>
+    <text x="270" y="718" text-anchor="middle" fill="#ead7ff" font-size="18" font-weight="700">СМЫСЛОВЫЕ ГИПОТЕЗЫ</text>
+
+    <!-- Perception arrows -->
+    <path d="M485 323 H555 C575 323 575 390 610 390" fill="none" stroke="#62d5a3" stroke-width="4" marker-end="url(#arrowGreen)"/>
+    <path d="M485 607 H555 C575 607 575 470 610 470" fill="none" stroke="#bb83f5" stroke-width="4" marker-end="url(#arrowPurple)"/>
+
+    <!-- Joint interpretation -->
+    <rect x="630" y="250" width="410" height="390" rx="27" fill="#151f35" stroke="#728aae" stroke-width="2"/>
+    <circle cx="835" cy="322" r="48" fill="#1d3150" stroke="#7ba1c9" stroke-width="3"/>
+    <path d="M805 322 H865 M835 292 V352" stroke="#9ecaff" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="835" cy="322" r="15" fill="#9ecaff" opacity="0.28"/>
+    <text x="835" y="398" text-anchor="middle" fill="#e3eef8" font-size="23" font-weight="700">СОВМЕСТНАЯ</text>
+    <text x="835" y="428" text-anchor="middle" fill="#e3eef8" font-size="23" font-weight="700">ИНТЕРПРЕТАЦИЯ</text>
+    <text x="835" y="462" text-anchor="middle" fill="#a8bdd2" font-size="18">звук уточняет смысловые варианты</text>
+
+    <text x="685" y="507" fill="#dbe8f3" font-size="18">страх</text>
+    <rect x="785" y="490" width="200" height="24" rx="12" fill="#28394e"/>
+    <rect x="785" y="490" width="168" height="24" rx="12" fill="#ff747e"/>
+    <text x="685" y="549" fill="#dbe8f3" font-size="18">тревога</text>
+    <rect x="785" y="532" width="200" height="24" rx="12" fill="#28394e"/>
+    <rect x="785" y="532" width="139" height="24" rx="12" fill="#bb83f5"/>
+    <text x="685" y="591" fill="#dbe8f3" font-size="18">другие</text>
+    <rect x="785" y="574" width="200" height="24" rx="12" fill="#28394e"/>
+    <rect x="785" y="574" width="47" height="24" rx="12" fill="#62b1ff"/>
+    <text x="835" y="624" text-anchor="middle" fill="#bfd1e1" font-size="17" font-weight="700">РАСПРЕДЕЛЕНИЕ ЭМОЦИЙ СОБЕСЕДНИКА</text>
+
+    <!-- Difference marker -->
+    <rect x="694" y="665" width="292" height="54" rx="17" fill="#3a222e" stroke="#ff747e"/>
+    <text x="840" y="688" text-anchor="middle" fill="#ffc0c4" font-size="17" font-weight="700">ЭТО ЕЩЁ НЕ СОСТОЯНИЕ</text>
+    <text x="840" y="708" text-anchor="middle" fill="#ffc0c4" font-size="17" font-weight="700">АГЕНТА</text>
+
+    <!-- Arrow to agent transformation -->
+    <path d="M1040 445 H1102" fill="none" stroke="#6bb6ff" stroke-width="5" marker-end="url(#arrowBlue)"/>
+
+    <!-- Individual factors -->
+    <rect x="1118" y="200" width="427" height="190" rx="23" fill="#19283b" stroke="#5c7d9d" stroke-width="2"/>
+    <text x="1331" y="239" text-anchor="middle" fill="#d7e7f5" font-size="20" font-weight="700">ИНДИВИДУАЛЬНЫЕ УСЛОВИЯ</text>
+    <rect x="1150" y="266" width="170" height="46" rx="16" fill="#17374a" stroke="#62b1ff"/>
+    <text x="1235" y="296" text-anchor="middle" fill="#d9edff" font-size="16" font-weight="600">характер</text>
+    <rect x="1339" y="266" width="174" height="46" rx="16" fill="#17374a" stroke="#62b1ff"/>
+    <text x="1426" y="296" text-anchor="middle" fill="#d9edff" font-size="16" font-weight="600">восприимчивость</text>
+    <rect x="1150" y="326" width="170" height="46" rx="16" fill="#302743" stroke="#bb83f5"/>
+    <text x="1235" y="355" text-anchor="middle" fill="#ead7ff" font-size="15" font-weight="600">прошлое состояние</text>
+    <rect x="1339" y="326" width="174" height="46" rx="16" fill="#302743" stroke="#bb83f5"/>
+    <text x="1426" y="355" text-anchor="middle" fill="#ead7ff" font-size="15" font-weight="600">контекст ситуации</text>
+
+    <path d="M1235 390 C1235 420 1270 420 1295 442" fill="none" stroke="#6bb6ff" stroke-width="3"/>
+    <path d="M1426 390 C1426 420 1386 420 1365 442" fill="none" stroke="#bb83f5" stroke-width="3"/>
+
+    <!-- New state -->
+    <rect x="1118" y="430" width="427" height="245" rx="25" fill="url(#statePanel)" stroke="#62d5a3" stroke-width="3"/>
+    <circle cx="1331" cy="493" r="45" fill="#16473a" stroke="#62d5a3" stroke-width="3"/>
+    <path d="M1309 496 Q1331 512 1353 496" fill="none" stroke="#b9f2d7" stroke-width="4"/>
+    <circle cx="1317" cy="485" r="4" fill="#b9f2d7"/><circle cx="1345" cy="485" r="4" fill="#b9f2d7"/>
+    <text x="1331" y="568" text-anchor="middle" fill="#d5f8e8" font-size="24" font-weight="700">НОВОЕ СОСТОЯНИЕ АГЕНТА</text>
+    <text x="1180" y="612" fill="#b9d8ca" font-size="17">тревога</text>
+    <rect x="1280" y="596" width="210" height="23" rx="11" fill="#29443d"/>
+    <rect x="1280" y="596" width="142" height="23" rx="11" fill="#bb83f5"/>
+    <text x="1180" y="648" fill="#b9d8ca" font-size="17">устойчивость</text>
+    <rect x="1280" y="632" width="210" height="23" rx="11" fill="#29443d"/>
+    <rect x="1280" y="632" width="121" height="23" rx="11" fill="#62d5a3"/>
+
+    <!-- Next reaction -->
+    <path d="M1331 675 V730" fill="none" stroke="#62d5a3" stroke-width="5" marker-end="url(#arrowGreen)"/>
+    <rect x="1080" y="750" width="502" height="112" rx="23" fill="#17323a" stroke="#55b7a2" stroke-width="2"/>
+    <text x="1331" y="791" text-anchor="middle" fill="#b9f2e5" font-size="23" font-weight="700">СЛЕДУЮЩАЯ РЕАКЦИЯ</text>
+    <text x="1331" y="826" text-anchor="middle" fill="#a5c8c7" font-size="18">использует сформированное состояние</text>
+    <text x="1331" y="850" text-anchor="middle" fill="#a5c8c7" font-size="18">и становится новым событием истории</text>
+
+    <!-- Persistence / recurrence -->
+    <rect x="545" y="760" width="415" height="112" rx="23" fill="#25223b" stroke="#9a72b0" stroke-width="2"/>
+    <text x="752" y="802" text-anchor="middle" fill="#ead7ff" font-size="22" font-weight="700">ЭМОЦИОНАЛЬНАЯ ПАМЯТЬ</text>
+    <text x="752" y="837" text-anchor="middle" fill="#c8b7d8" font-size="18">новое состояние сохраняется</text>
+    <text x="752" y="860" text-anchor="middle" fill="#c8b7d8" font-size="18">для следующего события</text>
+    <path d="M1118 625 C1040 625 1030 816 970 816" fill="none" stroke="#bb83f5" stroke-width="4" marker-end="url(#arrowPurple)"/>
+
+    <!-- Recurrent loop -->
+    <path d="M545 816 H495 C375 816 375 919 500 919 H1385 C1510 919 1510 806 1580 806" fill="none" stroke="#8d76d7" stroke-width="3" stroke-dasharray="10 8"/>
+    <path d="M1580 806 V197 C1580 182 1560 182 1545 182" fill="none" stroke="#8d76d7" stroke-width="3" stroke-dasharray="10 8" marker-end="url(#arrowPurple)"/>
+    <text x="968" y="946" text-anchor="middle" fill="#b8a7d5" font-size="17" font-weight="600">СОХРАНЁННЫЙ СЛЕД ВЛИЯЕТ НА СЛЕДУЮЩИЙ ЦИКЛ</text>
+
+    <!-- Summary -->
+    <rect x="150" y="978" width="1300" height="44" rx="16" fill="#102b28" stroke="#48b48a" stroke-width="2"/>
+    <text x="800" y="1007" text-anchor="middle" fill="#b9f2d7" font-size="19" font-weight="700">Восприятие → смысловая интерпретация → собственное состояние → реакция → память → новый цикл</text>
+  </g>
+</svg>

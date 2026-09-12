@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
+  <title id="title">Эмоциональная память между событиями</title>
+  <desc id="desc">Раздражение, тревога и доверие меняются непрерывно через обычный разговор, обвинение, спокойную реплику, извинение и новую проблему. Новая проблема воздействует на сохранившийся след прошлых событий.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071529"/>
+      <stop offset="1" stop-color="#0d2038"/>
+    </linearGradient>
+    <linearGradient id="memoryZone" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff747e" stop-opacity="0.10"/>
+      <stop offset="0.55" stop-color="#bb83f5" stop-opacity="0.08"/>
+      <stop offset="1" stop-color="#62d5a3" stop-opacity="0.03"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#76a8d3"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="980" rx="32" fill="url(#bg)"/>
+
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="800" y="60" text-anchor="middle" fill="#f7fbff" font-size="38" font-weight="700">Эмоциональная память между событиями</text>
+    <text x="800" y="99" text-anchor="middle" fill="#9fb4ce" font-size="21">Каждая новая реплика изменяет состояние, оставленное предыдущей историей</text>
+
+    <!-- Event cards -->
+    <g>
+      <rect x="70" y="139" width="245" height="105" rx="19" fill="#172a40" stroke="#6785a5" stroke-width="2"/>
+      <circle cx="101" cy="170" r="17" fill="#54718e"/>
+      <text x="101" y="177" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">1</text>
+      <text x="131" y="176" fill="#cfe0ef" font-size="17" font-weight="700">ОБЫЧНЫЙ РАЗГОВОР</text>
+      <text x="192" y="213" text-anchor="middle" fill="#98aec5" font-size="17">состояние близко к фону</text>
+
+      <rect x="365" y="139" width="245" height="105" rx="19" fill="#3b222e" stroke="#ff747e" stroke-width="2"/>
+      <circle cx="396" cy="170" r="17" fill="#bd505c"/>
+      <text x="396" y="177" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">2</text>
+      <text x="426" y="176" fill="#ffbdc1" font-size="17" font-weight="700">РЕЗКОЕ ОБВИНЕНИЕ</text>
+      <text x="487" y="213" text-anchor="middle" fill="#e0a7ad" font-size="17">напряжение возрастает</text>
+
+      <rect x="660" y="139" width="245" height="105" rx="19" fill="#172c42" stroke="#62b1ff" stroke-width="2"/>
+      <circle cx="691" cy="170" r="17" fill="#3d83bd"/>
+      <text x="691" y="177" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">3</text>
+      <text x="721" y="176" fill="#c7e4ff" font-size="17" font-weight="700">СПОКОЙНАЯ РЕПЛИКА</text>
+      <text x="782" y="213" text-anchor="middle" fill="#9abbd8" font-size="17">след постепенно слабеет</text>
+
+      <rect x="955" y="139" width="245" height="105" rx="19" fill="#17392f" stroke="#62d5a3" stroke-width="2"/>
+      <circle cx="986" cy="170" r="17" fill="#339c73"/>
+      <text x="986" y="177" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">4</text>
+      <text x="1016" y="176" fill="#b9f2d7" font-size="17" font-weight="700">ИЗВИНЕНИЕ</text>
+      <text x="1077" y="213" text-anchor="middle" fill="#9bd4bc" font-size="17">доверие восстанавливается</text>
+
+      <rect x="1250" y="139" width="280" height="105" rx="19" fill="#382532" stroke="#ff9a66" stroke-width="2"/>
+      <circle cx="1281" cy="170" r="17" fill="#b56248"/>
+      <text x="1281" y="177" text-anchor="middle" fill="#fff" font-size="18" font-weight="700">5</text>
+      <text x="1311" y="176" fill="#ffd0b9" font-size="17" font-weight="700">НОВАЯ ПРОБЛЕМА</text>
+      <text x="1390" y="213" text-anchor="middle" fill="#dfad98" font-size="17">воздействует на остаточный след</text>
+    </g>
+
+    <!-- Time connectors -->
+    <line x1="315" y1="191" x2="355" y2="191" stroke="#76a8d3" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="610" y1="191" x2="650" y2="191" stroke="#76a8d3" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="905" y1="191" x2="945" y2="191" stroke="#76a8d3" stroke-width="3" marker-end="url(#arrow)"/>
+    <line x1="1200" y1="191" x2="1240" y2="191" stroke="#76a8d3" stroke-width="3" marker-end="url(#arrow)"/>
+
+    <!-- Chart area -->
+    <rect x="70" y="285" width="1460" height="500" rx="24" fill="#0a192d" stroke="#29415f" stroke-width="2"/>
+    <rect x="360" y="305" width="880" height="450" rx="18" fill="url(#memoryZone)"/>
+
+    <!-- Grid and axes -->
+    <line x1="130" y1="720" x2="1490" y2="720" stroke="#607590" stroke-width="2"/>
+    <line x1="130" y1="350" x2="130" y2="720" stroke="#607590" stroke-width="2"/>
+    <line x1="130" y1="535" x2="1490" y2="535" stroke="#263b55" stroke-width="1" stroke-dasharray="7 9"/>
+    <line x1="130" y1="405" x2="1490" y2="405" stroke="#263b55" stroke-width="1" stroke-dasharray="7 9"/>
+    <text x="114" y="726" text-anchor="end" fill="#8297b0" font-size="16">фон</text>
+    <text x="114" y="541" text-anchor="end" fill="#8297b0" font-size="16">средне</text>
+    <text x="114" y="411" text-anchor="end" fill="#8297b0" font-size="16">высоко</text>
+    <text x="92" y="358" fill="#aebed1" font-size="17" font-weight="700">СИЛА</text>
+    <text x="1440" y="755" fill="#aebed1" font-size="17" font-weight="700">ВРЕМЯ →</text>
+
+    <!-- Event guide lines -->
+    <g stroke-width="2" stroke-dasharray="6 8">
+      <line x1="192" y1="244" x2="192" y2="720" stroke="#607590"/>
+      <line x1="487" y1="244" x2="487" y2="720" stroke="#ff747e"/>
+      <line x1="782" y1="244" x2="782" y2="720" stroke="#62b1ff"/>
+      <line x1="1077" y1="244" x2="1077" y2="720" stroke="#62d5a3"/>
+      <line x1="1390" y1="244" x2="1390" y2="720" stroke="#ff9a66"/>
+    </g>
+
+    <!-- No-memory counterfactual at event 5 -->
+    <path d="M1215 687 C1290 684 1330 660 1390 615 C1435 583 1460 600 1490 620" fill="none" stroke="#8495a8" stroke-width="3" stroke-dasharray="9 8" opacity="0.8"/>
+    <text x="1300" y="649" fill="#a2b0bf" font-size="15">если бы прошлого следа не было</text>
+
+    <!-- Irritation trajectory -->
+    <path d="M130 690 C210 687 310 684 390 680 C430 678 452 430 487 380 C525 335 570 400 620 448 C680 503 735 545 782 570 C870 615 970 640 1077 650 C1160 657 1240 661 1305 657 C1340 654 1356 486 1390 450 C1422 418 1452 452 1490 485" fill="none" stroke="#ff747e" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Anxiety trajectory -->
+    <path d="M130 704 C235 700 320 698 402 696 C443 692 461 505 487 465 C520 418 570 445 625 485 C690 531 735 560 782 582 C870 620 970 641 1077 648 C1165 654 1245 655 1308 652 C1343 650 1360 530 1390 500 C1424 468 1457 492 1490 520" fill="none" stroke="#bb83f5" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Trust trajectory -->
+    <path d="M130 450 C250 447 330 448 405 450 C443 453 463 620 487 650 C520 686 575 673 625 650 C688 621 742 612 782 606 C870 593 980 570 1077 505 C1160 450 1240 425 1310 430 C1347 432 1362 565 1390 590 C1420 615 1455 595 1490 575" fill="none" stroke="#62d5a3" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- Event points -->
+    <g stroke="#eef7ff" stroke-width="3">
+      <circle cx="487" cy="380" r="8" fill="#ff747e"/>
+      <circle cx="487" cy="465" r="8" fill="#bb83f5"/>
+      <circle cx="487" cy="650" r="8" fill="#62d5a3"/>
+      <circle cx="1077" cy="650" r="8" fill="#ff747e"/>
+      <circle cx="1077" cy="648" r="8" fill="#bb83f5"/>
+      <circle cx="1077" cy="505" r="8" fill="#62d5a3"/>
+      <circle cx="1390" cy="450" r="8" fill="#ff747e"/>
+      <circle cx="1390" cy="500" r="8" fill="#bb83f5"/>
+      <circle cx="1390" cy="590" r="8" fill="#62d5a3"/>
+    </g>
+
+    <!-- Legend -->
+    <rect x="155" y="315" width="445" height="48" rx="16" fill="#111f33" stroke="#314b67"/>
+    <line x1="181" y1="339" x2="226" y2="339" stroke="#ff747e" stroke-width="6"/>
+    <text x="239" y="346" fill="#ffd0d3" font-size="17" font-weight="600">раздражение</text>
+    <line x1="358" y1="339" x2="403" y2="339" stroke="#bb83f5" stroke-width="6"/>
+    <text x="416" y="346" fill="#ead7ff" font-size="17" font-weight="600">тревога</text>
+    <line x1="502" y1="339" x2="547" y2="339" stroke="#62d5a3" stroke-width="6"/>
+    <text x="560" y="346" fill="#b9f2d7" font-size="17" font-weight="600">доверие</text>
+
+    <!-- Memory labels -->
+    <rect x="585" y="735" width="560" height="38" rx="14" fill="#14253a" stroke="#536f8e"/>
+    <text x="865" y="760" text-anchor="middle" fill="#b8cadc" font-size="17" font-weight="600">след конфликта ослабевает постепенно, а не обнуляется</text>
+
+    <!-- State before the last event -->
+    <rect x="110" y="817" width="1380" height="100" rx="21" fill="#13283a" stroke="#4d7693" stroke-width="2"/>
+    <text x="145" y="850" fill="#d8e9f8" font-size="19" font-weight="700">ПЕРЕД НОВОЙ ПРОБЛЕМОЙ:</text>
+    <rect x="455" y="829" width="220" height="36" rx="18" fill="#3b222e" stroke="#ff747e"/>
+    <text x="565" y="853" text-anchor="middle" fill="#ffc0c4" font-size="17">раздражение ещё есть</text>
+    <rect x="695" y="829" width="200" height="36" rx="18" fill="#302542" stroke="#bb83f5"/>
+    <text x="795" y="853" text-anchor="middle" fill="#ead7ff" font-size="17">тревога ещё есть</text>
+    <rect x="915" y="829" width="250" height="36" rx="18" fill="#17392f" stroke="#62d5a3"/>
+    <text x="1040" y="853" text-anchor="middle" fill="#b9f2d7" font-size="17">доверие восстановлено частично</text>
+    <text x="800" y="897" text-anchor="middle" fill="#a9c7dc" font-size="18">Поэтому одинаковое новое событие вызывает другую реакцию, чем в начале спокойного разговора</text>
+
+    <!-- Bottom conclusion -->
+    <rect x="225" y="932" width="1150" height="38" rx="15" fill="#102b28" stroke="#48b48a" stroke-width="2"/>
+    <text x="800" y="957" text-anchor="middle" fill="#b9f2d7" font-size="18" font-weight="700">Новое событие + сохранившееся состояние → следующая точка эмоциональной траектории</text>
+  </g>
+</svg>
