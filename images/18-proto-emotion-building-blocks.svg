@@ -37,23 +37,23 @@
     <g>
       <rect x="85" y="260" width="340" height="76" rx="17" fill="#3b3020" stroke="#ffb85c" stroke-width="2"/>
       <rect x="85" y="260" width="22" height="76" rx="10" fill="#ffb85c"/>
-      <text x="132" y="307" fill="#fff2d8" font-size="23" font-weight="700">возбуждение</text>
+      <text x="132" y="307" fill="#fff2d8" font-size="23" font-weight="700">внимание</text>
 
       <rect x="85" y="360" width="340" height="76" rx="17" fill="#3e252e" stroke="#ff747e" stroke-width="2"/>
       <rect x="85" y="360" width="22" height="76" rx="10" fill="#ff747e"/>
-      <text x="132" y="407" fill="#ffe0e2" font-size="23" font-weight="700">напряжение</text>
+      <text x="132" y="407" fill="#ffe0e2" font-size="23" font-weight="700">доминирование / волнение</text>
 
       <rect x="85" y="460" width="340" height="76" rx="17" fill="#183650" stroke="#62b1ff" stroke-width="2"/>
       <rect x="85" y="460" width="22" height="76" rx="10" fill="#62b1ff"/>
-      <text x="132" y="507" fill="#d8edff" font-size="23" font-weight="700">ускорение</text>
+      <text x="132" y="507" fill="#d8edff" font-size="23" font-weight="700">нервозность / усиление / ослабление</text>
 
       <rect x="85" y="560" width="340" height="76" rx="17" fill="#342843" stroke="#bb83f5" stroke-width="2"/>
       <rect x="85" y="560" width="22" height="76" rx="10" fill="#bb83f5"/>
-      <text x="132" y="607" fill="#f0e0ff" font-size="23" font-weight="700">резкость</text>
+      <text x="132" y="607" fill="#f0e0ff" font-size="23" font-weight="700">тревожность / важность</text>
 
       <rect x="85" y="660" width="340" height="76" rx="17" fill="#173b3b" stroke="#67d7cc" stroke-width="2"/>
       <rect x="85" y="660" width="22" height="76" rx="10" fill="#67d7cc"/>
-      <text x="132" y="707" fill="#d7fbf7" font-size="23" font-weight="700">спокойствие</text>
+      <text x="132" y="707" fill="#d7fbf7" font-size="23" font-weight="700">усиление / ослабление</text>
     </g>
 
     <!-- Many-to-many network -->
@@ -125,7 +125,7 @@
     <!-- Legend for semantic context block -->
     <rect x="129" y="790" width="296" height="42" rx="14" fill="#14283f" stroke="#7194b7"/>
     <rect x="149" y="801" width="26" height="20" rx="5" fill="#203752" stroke="#7194b7"/>
-    <text x="188" y="818" fill="#c5d8e9" font-size="16">смысловой контекст</text>
+    <text x="188" y="818" fill="#c5d8e9" font-size="16">контекст current_state</text>
 
     <!-- Bottom conclusion -->
     <rect x="505" y="830" width="990" height="50" rx="17" fill="#102b28" stroke="#48b48a" stroke-width="2"/>
