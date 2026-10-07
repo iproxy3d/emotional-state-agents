@@ -70,25 +70,25 @@
     <circle cx="601" cy="199" r="21" fill="#2b9971"/>
     <text x="601" y="207" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700">2</text>
     <text x="639" y="207" fill="#f7fbff" font-size="27" font-weight="700">Прото-эмоции</text>
-    <text x="767" y="242" text-anchor="middle" fill="#9fd7c1" font-size="18">форма и сила реакции</text>
+    <text x="767" y="242" text-anchor="middle" fill="#9fd7c1" font-size="18">акустическая основа реакции</text>
 
     <!-- proto nodes -->
     <g>
       <rect x="598" y="282" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
       <circle cx="631" cy="315" r="10" fill="#ffbd69"/>
-      <text x="657" y="322" fill="#f7fbff" font-size="21" font-weight="600">возбуждение</text>
+      <text x="657" y="322" fill="#f7fbff" font-size="21" font-weight="600">внимание</text>
       <rect x="598" y="368" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
       <circle cx="631" cy="401" r="10" fill="#ff7b7b"/>
-      <text x="657" y="408" fill="#f7fbff" font-size="21" font-weight="600">напряжение</text>
+      <text x="657" y="408" fill="#f7fbff" font-size="21" font-weight="600">доминирование / волнение</text>
       <rect x="598" y="454" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
       <circle cx="631" cy="487" r="10" fill="#6bb6ff"/>
-      <text x="657" y="494" fill="#f7fbff" font-size="21" font-weight="600">ускорение реакции</text>
+      <text x="657" y="494" fill="#f7fbff" font-size="21" font-weight="600">нервозность / спокойствие</text>
       <rect x="598" y="540" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
       <circle cx="631" cy="573" r="10" fill="#c28cff"/>
-      <text x="657" y="580" fill="#f7fbff" font-size="21" font-weight="600">резкость</text>
+      <text x="657" y="580" fill="#f7fbff" font-size="21" font-weight="600">тревожность / важность</text>
       <rect x="598" y="626" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
       <circle cx="631" cy="659" r="10" fill="#70ddcf"/>
-      <text x="657" y="666" fill="#f7fbff" font-size="21" font-weight="600">уровень спокойствия</text>
+      <text x="657" y="666" fill="#f7fbff" font-size="21" font-weight="600">усиление / ослабление</text>
     </g>
 
     <rect x="598" y="722" width="339" height="48" rx="15" fill="#12382f" stroke="#65d6a4"/>
