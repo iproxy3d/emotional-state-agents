@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
-  <title id="title">Одна акустическая основа — разные эмоции в зависимости от смысла</title>
+  <title id="title">Одна акустическая основа — разные изменения состояния в зависимости от смысла</title>
   <desc id="desc">Одинаковый профиль возбуждения усиливает страх и тревогу в тексте об угрозе, но радость и восторг в тексте о встрече.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
@@ -24,8 +24,8 @@
   <rect width="1600" height="980" rx="32" fill="url(#bg)"/>
 
   <g font-family="Inter, Arial, sans-serif">
-    <text x="800" y="59" text-anchor="middle" fill="#f7fbff" font-size="36" font-weight="700">Одна акустическая основа — разные эмоции</text>
-    <text x="800" y="98" text-anchor="middle" fill="#9fb4ce" font-size="21">Смысл текста определяет, как интерпретируется один и тот же паттерн звучания</text>
+    <text x="800" y="59" text-anchor="middle" fill="#f7fbff" font-size="36" font-weight="700">Одна акустическая основа — разные изменения состояния</text>
+    <text x="800" y="98" text-anchor="middle" fill="#9fb4ce" font-size="21">current_state определяет, какие активные эмоции изменит один и тот же звук</text>
 
     <!-- Shared acoustic foundation -->
     <rect x="370" y="135" width="860" height="165" rx="25" fill="url(#audio)" stroke="#55b7a2" stroke-width="2"/>
@@ -37,15 +37,15 @@
 
     <g font-size="17" font-weight="600">
       <rect x="731" y="190" width="145" height="34" rx="17" fill="#244336" stroke="#ffb85c"/>
-      <text x="803" y="213" text-anchor="middle" fill="#ffe0ae">быстрый темп</text>
+      <text x="803" y="213" text-anchor="middle" fill="#ffe0ae">скорость речи</text>
       <rect x="891" y="190" width="145" height="34" rx="17" fill="#3d2830" stroke="#ff747e"/>
-      <text x="963" y="213" text-anchor="middle" fill="#ffc1c5">напряжение</text>
+      <text x="963" y="213" text-anchor="middle" fill="#ffc1c5">нервозность</text>
       <rect x="1051" y="190" width="139" height="34" rx="17" fill="#26344b" stroke="#8fa7ff"/>
       <text x="1120" y="213" text-anchor="middle" fill="#d7ddff">усиление</text>
       <rect x="731" y="234" width="219" height="34" rx="17" fill="#213d3b" stroke="#66c9d4"/>
-      <text x="840" y="257" text-anchor="middle" fill="#c3eff1">высокая интенсивность</text>
+      <text x="840" y="257" text-anchor="middle" fill="#c3eff1">сигнал внимания</text>
       <rect x="965" y="234" width="225" height="34" rx="17" fill="#302743" stroke="#bb83f5"/>
-      <text x="1077" y="257" text-anchor="middle" fill="#ead7ff">возбуждение</text>
+      <text x="1077" y="257" text-anchor="middle" fill="#ead7ff">волнение</text>
     </g>
 
     <!-- Split arrows -->
@@ -55,10 +55,10 @@
     <!-- Left scenario -->
     <rect x="55" y="390" width="715" height="500" rx="24" fill="#151c30" stroke="#a14d61" stroke-width="2"/>
     <rect x="85" y="418" width="655" height="94" rx="19" fill="#3a222d" stroke="#ff747e"/>
-    <text x="412" y="453" text-anchor="middle" fill="#ffb8bd" font-size="17" font-weight="700">СМЫСЛ: УГРОЗА И НЕОБХОДИМОСТЬ УЙТИ</text>
+    <text x="412" y="453" text-anchor="middle" fill="#ffb8bd" font-size="17" font-weight="700">КОНТЕКСТ АГЕНТА: СТРАХ УЖЕ АКТИВЕН</text>
     <text x="412" y="486" text-anchor="middle" fill="#f7fbff" font-size="23" font-weight="600">«Он уже рядом, нам нужно уходить»</text>
 
-    <text x="100" y="553" fill="#aebed1" font-size="18" font-weight="700">Текст: возможные эмоции</text>
+    <text x="100" y="553" fill="#aebed1" font-size="18" font-weight="700">current_state до сигнала</text>
     <text x="100" y="597" fill="#dfe9f4" font-size="18">страх</text>
     <rect x="210" y="578" width="280" height="22" rx="11" fill="#233247"/>
     <rect x="210" y="578" width="155" height="22" rx="11" fill="#d76873"/>
@@ -73,7 +73,7 @@
     <text x="512" y="676" fill="#9fb4ce" font-size="16">низкая</text>
 
     <line x1="100" y1="711" x2="700" y2="711" stroke="#38475d" stroke-dasharray="7 8"/>
-    <text x="100" y="747" fill="#ffadb2" font-size="18" font-weight="700">После учёта напряжённой акустики</text>
+    <text x="100" y="747" fill="#ffadb2" font-size="18" font-weight="700">После контекстного применения аудио</text>
     <path d="M420 745 H470" stroke="#ff7a83" stroke-width="3" marker-end="url(#arrowFear)"/>
 
     <text x="100" y="794" fill="#dfe9f4" font-size="18">страх</text>
@@ -84,15 +84,15 @@
     <rect x="210" y="818" width="410" height="24" rx="12" fill="#233247"/>
     <rect x="210" y="818" width="305" height="24" rx="12" fill="#b778f1"/>
     <text x="640" y="837" fill="#d9b8fb" font-size="16" font-weight="700">усилилась</text>
-    <text x="412" y="873" text-anchor="middle" fill="#ffc0c4" font-size="18" font-weight="700">Возбуждение интерпретируется как реакция на угрозу</text>
+    <text x="412" y="873" text-anchor="middle" fill="#ffc0c4" font-size="18" font-weight="700">Прото-эмоции усиливают уже активный страх</text>
 
     <!-- Right scenario -->
     <rect x="830" y="390" width="715" height="500" rx="24" fill="#13252a" stroke="#3ca77c" stroke-width="2"/>
     <rect x="860" y="418" width="655" height="94" rx="19" fill="#173b32" stroke="#62d5a3"/>
-    <text x="1187" y="453" text-anchor="middle" fill="#a9efd0" font-size="17" font-weight="700">СМЫСЛ: РАДОСТНАЯ ВСТРЕЧА</text>
+    <text x="1187" y="453" text-anchor="middle" fill="#a9efd0" font-size="17" font-weight="700">КОНТЕКСТ АГЕНТА: РАДОСТЬ УЖЕ АКТИВНА</text>
     <text x="1187" y="486" text-anchor="middle" fill="#f7fbff" font-size="23" font-weight="600">«Я так рад, что ты приехал!»</text>
 
-    <text x="875" y="553" fill="#aebed1" font-size="18" font-weight="700">Текст: возможные эмоции</text>
+    <text x="875" y="553" fill="#aebed1" font-size="18" font-weight="700">current_state до сигнала</text>
     <text x="875" y="597" fill="#dfe9f4" font-size="18">радость</text>
     <rect x="985" y="578" width="280" height="22" rx="11" fill="#233b3e"/>
     <rect x="985" y="578" width="205" height="22" rx="11" fill="#5abf91"/>
@@ -107,7 +107,7 @@
     <text x="1287" y="676" fill="#9fb4ce" font-size="16">низкий</text>
 
     <line x1="875" y1="711" x2="1475" y2="711" stroke="#384e4e" stroke-dasharray="7 8"/>
-    <text x="875" y="747" fill="#9fe7c6" font-size="18" font-weight="700">После учёта той же акустики</text>
+    <text x="875" y="747" fill="#9fe7c6" font-size="18" font-weight="700">После контекстного применения того же аудио</text>
     <path d="M1185 745 H1235" stroke="#62d5a3" stroke-width="3" marker-end="url(#arrowJoy)"/>
 
     <text x="875" y="794" fill="#dfe9f4" font-size="18">радость</text>
@@ -118,10 +118,10 @@
     <rect x="985" y="818" width="410" height="24" rx="12" fill="#233b3e"/>
     <rect x="985" y="818" width="296" height="24" rx="12" fill="#ffb85c"/>
     <text x="1415" y="837" fill="#ffe0ae" font-size="16" font-weight="700">усилился</text>
-    <text x="1187" y="873" text-anchor="middle" fill="#a9efd0" font-size="18" font-weight="700">Возбуждение интерпретируется как радостная реакция</text>
+    <text x="1187" y="873" text-anchor="middle" fill="#a9efd0" font-size="18" font-weight="700">Те же прото-эмоции усиливают активную радость</text>
 
     <!-- Bottom conclusion -->
     <rect x="160" y="916" width="1280" height="48" rx="17" fill="#102b28" stroke="#48b48a" stroke-width="2"/>
-    <text x="800" y="947" text-anchor="middle" fill="#b9f2d7" font-size="20" font-weight="700">Аудио уточняет распределение смысловых эмоций, но не создаёт их названия самостоятельно</text>
+    <text x="800" y="947" text-anchor="middle" fill="#b9f2d7" font-size="20" font-weight="700">Аудио изменяет только активный контекст и не создаёт эмоцию самостоятельно</text>
   </g>
 </svg>
