@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
   <title id="title">Что можно и чего нельзя определить по звуку</title>
-  <desc id="desc">Звук позволяет измерить акустические признаки и выделить прото-эмоции, но без понимания смысла речи не позволяет уверенно определить конкретную эмоцию верхнего уровня.</desc>
+  <desc id="desc">Звук позволяет измерить относительную активность, тревожность, темп и силу воздействия, но без понимания смысла речи не позволяет определить конкретную эмоцию верхнего уровня.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#071529"/>
@@ -76,19 +76,19 @@
     <g>
       <rect x="598" y="282" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
       <circle cx="631" cy="315" r="10" fill="#ffbd69"/>
-      <text x="657" y="322" fill="#f7fbff" font-size="21" font-weight="600">внимание</text>
+      <text x="657" y="322" fill="#f7fbff" font-size="21" font-weight="600">активность</text>
       <rect x="598" y="368" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
       <circle cx="631" cy="401" r="10" fill="#ff7b7b"/>
-      <text x="657" y="408" fill="#f7fbff" font-size="21" font-weight="600">доминирование / волнение</text>
+      <text x="657" y="408" fill="#f7fbff" font-size="21" font-weight="600">тревожность</text>
       <rect x="598" y="454" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
       <circle cx="631" cy="487" r="10" fill="#6bb6ff"/>
-      <text x="657" y="494" fill="#f7fbff" font-size="21" font-weight="600">нервозность / спокойствие</text>
+      <text x="657" y="494" fill="#f7fbff" font-size="21" font-weight="600">темп с учётом пауз</text>
       <rect x="598" y="540" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
       <circle cx="631" cy="573" r="10" fill="#c28cff"/>
-      <text x="657" y="580" fill="#f7fbff" font-size="21" font-weight="600">тревожность / важность</text>
+      <text x="657" y="580" fill="#f7fbff" font-size="21" font-weight="600">сила воздействия</text>
       <rect x="598" y="626" width="339" height="66" rx="17" fill="#17443a" stroke="#65d6a4"/>
       <circle cx="631" cy="659" r="10" fill="#70ddcf"/>
-      <text x="657" y="666" fill="#f7fbff" font-size="21" font-weight="600">усиление / ослабление</text>
+      <text x="657" y="666" fill="#f7fbff" font-size="21" font-weight="600">совокупное влияние</text>
     </g>
 
     <rect x="598" y="722" width="339" height="48" rx="15" fill="#12382f" stroke="#65d6a4"/>
