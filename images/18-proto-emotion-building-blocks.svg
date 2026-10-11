@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
   <title id="title">Прото-эмоции как общие строительные элементы</title>
-  <desc id="desc">Одна прото-эмоция участвует в нескольких эмоциях верхнего уровня, а каждая смысловая эмоция собирается из нескольких прото-эмоций и смыслового контекста.</desc>
+  <desc id="desc">Один относительный акустический признак может влиять на несколько эмоций верхнего уровня, а итоговое изменение каждой эмоции складывается из нескольких частичных признаков и текущего контекста.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#071529"/>
@@ -23,7 +23,7 @@
     <!-- Column headers -->
     <rect x="55" y="140" width="400" height="75" rx="20" fill="#14362f" stroke="#49b68a" stroke-width="2"/>
     <text x="255" y="174" text-anchor="middle" fill="#b9f2d7" font-size="24" font-weight="700">ПРОТО-ЭМОЦИИ</text>
-    <text x="255" y="200" text-anchor="middle" fill="#83cbae" font-size="17">низкоуровневая форма реакции</text>
+    <text x="255" y="200" text-anchor="middle" fill="#83cbae" font-size="17">относительные акустические оценки</text>
 
     <rect x="570" y="140" width="460" height="75" rx="20" fill="#14283f" stroke="#5f87ae" stroke-width="2"/>
     <text x="800" y="174" text-anchor="middle" fill="#d4e8fa" font-size="24" font-weight="700">СВЯЗИ «МНОГИЕ КО МНОГИМ»</text>
@@ -37,23 +37,27 @@
     <g>
       <rect x="85" y="260" width="340" height="76" rx="17" fill="#3b3020" stroke="#ffb85c" stroke-width="2"/>
       <rect x="85" y="260" width="22" height="76" rx="10" fill="#ffb85c"/>
-      <text x="132" y="307" fill="#fff2d8" font-size="23" font-weight="700">внимание</text>
+      <text x="132" y="294" fill="#fff2d8" font-size="20" font-weight="700">активность</text>
+      <text x="132" y="319" fill="#ffe3b8" font-size="17">направление и сила</text>
 
       <rect x="85" y="360" width="340" height="76" rx="17" fill="#3e252e" stroke="#ff747e" stroke-width="2"/>
       <rect x="85" y="360" width="22" height="76" rx="10" fill="#ff747e"/>
-      <text x="132" y="407" fill="#ffe0e2" font-size="23" font-weight="700">доминирование / волнение</text>
+      <text x="132" y="394" fill="#ffe0e2" font-size="20" font-weight="700">тревожность</text>
+      <text x="132" y="419" fill="#ffc2c7" font-size="17">направление и сила</text>
 
       <rect x="85" y="460" width="340" height="76" rx="17" fill="#183650" stroke="#62b1ff" stroke-width="2"/>
       <rect x="85" y="460" width="22" height="76" rx="10" fill="#62b1ff"/>
-      <text x="132" y="507" fill="#d8edff" font-size="23" font-weight="700">нервозность / усиление / ослабление</text>
+      <text x="132" y="494" fill="#d8edff" font-size="20" font-weight="700">темп</text>
+      <text x="132" y="519" fill="#b9dfff" font-size="17">направление и сила</text>
 
       <rect x="85" y="560" width="340" height="76" rx="17" fill="#342843" stroke="#bb83f5" stroke-width="2"/>
       <rect x="85" y="560" width="22" height="76" rx="10" fill="#bb83f5"/>
-      <text x="132" y="607" fill="#f0e0ff" font-size="23" font-weight="700">тревожность / важность</text>
+      <text x="132" y="594" fill="#f0e0ff" font-size="20" font-weight="700">deviation</text>
+      <text x="132" y="619" fill="#d9bafd" font-size="17">масштаб воздействия</text>
 
       <rect x="85" y="660" width="340" height="76" rx="17" fill="#173b3b" stroke="#67d7cc" stroke-width="2"/>
       <rect x="85" y="660" width="22" height="76" rx="10" fill="#67d7cc"/>
-      <text x="132" y="707" fill="#d7fbf7" font-size="23" font-weight="700">усиление / ослабление</text>
+      <text x="132" y="707" fill="#d7fbf7" font-size="20" font-weight="700">сумма частичных влияний</text>
     </g>
 
     <!-- Many-to-many network -->
@@ -129,6 +133,6 @@
 
     <!-- Bottom conclusion -->
     <rect x="505" y="830" width="990" height="50" rx="17" fill="#102b28" stroke="#48b48a" stroke-width="2"/>
-    <text x="1000" y="862" text-anchor="middle" fill="#b9f2d7" font-size="20" font-weight="700">Прото-эмоция — общий компонент, а не сокращённое название готовой эмоции</text>
+    <text x="1000" y="862" text-anchor="middle" fill="#b9f2d7" font-size="20" font-weight="700">Прото-эмоция — направление изменения, а не название готовой эмоции</text>
   </g>
 </svg>
