@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-labelledby="title desc">
   <title id="title">Одна акустическая основа — разные изменения состояния в зависимости от смысла</title>
-  <desc id="desc">Одинаковый профиль возбуждения усиливает страх и тревогу в тексте об угрозе, но радость и восторг в тексте о встрече.</desc>
+  <desc id="desc">Одинаковые относительные оценки активности, тревожности, темпа и силы воздействия усиливают страх в контексте угрозы, но радость в контексте встречи.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#071529"/>
@@ -37,15 +37,15 @@
 
     <g font-size="17" font-weight="600">
       <rect x="731" y="190" width="145" height="34" rx="17" fill="#244336" stroke="#ffb85c"/>
-      <text x="803" y="213" text-anchor="middle" fill="#ffe0ae">скорость речи</text>
+      <text x="803" y="213" text-anchor="middle" fill="#ffe0ae">активность</text>
       <rect x="891" y="190" width="145" height="34" rx="17" fill="#3d2830" stroke="#ff747e"/>
-      <text x="963" y="213" text-anchor="middle" fill="#ffc1c5">нервозность</text>
+      <text x="963" y="213" text-anchor="middle" fill="#ffc1c5">тревожность</text>
       <rect x="1051" y="190" width="139" height="34" rx="17" fill="#26344b" stroke="#8fa7ff"/>
-      <text x="1120" y="213" text-anchor="middle" fill="#d7ddff">усиление</text>
+      <text x="1120" y="213" text-anchor="middle" fill="#d7ddff">темп</text>
       <rect x="731" y="234" width="219" height="34" rx="17" fill="#213d3b" stroke="#66c9d4"/>
-      <text x="840" y="257" text-anchor="middle" fill="#c3eff1">сигнал внимания</text>
+      <text x="840" y="257" text-anchor="middle" fill="#c3eff1">сила воздействия</text>
       <rect x="965" y="234" width="225" height="34" rx="17" fill="#302743" stroke="#bb83f5"/>
-      <text x="1077" y="257" text-anchor="middle" fill="#ead7ff">волнение</text>
+      <text x="1077" y="257" text-anchor="middle" fill="#ead7ff">частичные влияния</text>
     </g>
 
     <!-- Split arrows -->
