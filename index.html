@@ -14,6 +14,32 @@
 .media-details{margin:22px 0 30px;border:1px solid #d8e3f3;border-radius:14px;background:#f7f9fd;overflow:hidden}.media-details summary{position:relative;padding:17px 54px 17px 20px;cursor:pointer;color:#294f83;font-weight:800;list-style:none;user-select:none}.media-details summary::-webkit-details-marker{display:none}.media-details summary:after{content:'+';position:absolute;right:20px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#e8effa;color:#294f83;font-size:21px}.media-details[open] summary:after{content:'−'}.media-details[open] summary{border-bottom:1px solid #d8e3f3}.media-details-body{padding:20px;text-align:center}.context-video{display:block;width:min(100%,620px);max-height:620px;margin:0 auto;border-radius:12px;background:#111827;box-shadow:0 10px 30px rgba(23,34,56,.15)}.media-details .visual-guide{max-width:760px;margin:15px auto 0;color:var(--muted);font-size:14px}
 
 
+
+.process-demo{margin:24px 0 34px;padding:24px;border:1px solid #d8e3f0;border-radius:18px;background:linear-gradient(180deg,#fbfdff 0%,#f5f8fc 100%);box-shadow:0 12px 32px rgba(33,64,105,.07)}
+.process-demo-kicker{margin-bottom:6px;color:#315f9b;font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.process-demo h5{margin:0 0 10px;color:#142b4a;font-size:24px}
+.process-demo-intro{max-width:930px;margin:0 0 18px;color:var(--muted)}
+.praat-guide{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+.praat-guide-item{padding:13px 14px;border:1px solid #dce5f1;border-radius:11px;background:#fff;color:#43566e;font-size:14px}
+.praat-guide-item strong{display:block;margin-bottom:4px;color:#234d7f}
+.process-video-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-top:18px}
+.process-video-card{min-width:0;padding:17px;border:1px solid #dce5f1;border-radius:14px;background:#fff}
+.process-video-card h6{margin:0 0 8px;color:#18375f;font-size:18px}
+.process-video-card p{margin:0 0 13px;color:#586a80;font-size:14px}
+.process-video-card .audio-experiment-video{aspect-ratio:16/9}
+.process-flow-title{margin:25px 0 12px;color:#1d385b;font-size:18px;font-weight:900;text-align:center}
+.process-flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px;align-items:stretch}
+.process-flow-step{position:relative;display:flex;flex-direction:column;justify-content:center;min-height:128px;padding:15px 13px;border:1px solid #cfdbeb;border-radius:13px;background:#fff;text-align:center}
+.process-flow-step:not(:last-child):after{content:'→';position:absolute;right:-19px;top:50%;transform:translateY(-50%);color:#5b7da8;font-size:23px;font-weight:900}
+.process-flow-number{display:grid;place-items:center;width:28px;height:28px;margin:0 auto 8px;border-radius:50%;background:#e8f1fb;color:#285b97;font-size:13px;font-weight:900}
+.process-flow-step strong{color:#1d406b;font-size:15px}
+.process-flow-step span{margin-top:6px;color:#63748a;font-size:12px;line-height:1.4}
+.process-flow-step.contexts{border-color:#d8cdb7;background:#fffaf2}
+.process-flow-step.result{border-color:#c9ddc7;background:#f8fcf6}
+.process-accuracy-note{margin:16px 0 0;padding:14px 16px;border-radius:10px;background:#eef5fd;color:#344e6e;font-size:14px}
+@media(max-width:1000px){.process-flow{grid-template-columns:1fr}.process-flow-step{min-height:0}.process-flow-step:not(:last-child):after{content:'↓';right:auto;top:auto;left:50%;bottom:-22px;transform:translateX(-50%)}}
+@media(max-width:850px){.process-demo{padding:18px}.process-video-grid,.praat-guide{grid-template-columns:1fr}}
+
 .audio-experiment{margin:26px 0 34px;padding:24px;border:1px solid #d6e2f0;border-radius:18px;background:linear-gradient(180deg,#fbfdff 0%,#f3f7fc 100%);box-shadow:0 12px 34px rgba(33,64,105,.08)}
 .audio-experiment-kicker{margin-bottom:6px;color:#315f9b;font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
 .audio-experiment h5{margin:0 0 10px;color:#142b4a;font-size:24px}
@@ -402,6 +428,73 @@
 <p class="audio-method-note"><strong>Граница демонстрации:</strong> второй ролик сохраняет фоновые сигналы страха. Поэтому он показывает непрерывность контекста, но сам по себе не отделяет остаточное внутреннее состояние от продолжающегося внешнего воздействия. Для изоляции чистого эффекта памяти потребовался бы дополнительный вариант той же фразы без фоновых звуков, воспроизводимый сразу после пожара.</p>
 </div>
 </details>
+</section>
+
+
+<h4>Как создавались одинаковые акустические признаки</h4>
+<p>Предыдущий эксперимент показывал результат обработки. Следующие два видео демонстрируют сам процесс: исходную синтезированную фразу, её выравнивание и версию после наложения общего целевого шаблона.</p>
+
+<section class="process-demo" id="same-template-process" aria-labelledby="same-template-process-title">
+<div class="process-demo-kicker">Исследовательская демонстрация</div>
+<h5 id="same-template-process-title">Материал 7. Как создавались одинаковые акустические признаки</h5>
+<p class="process-demo-intro">Praat здесь используется как средство наблюдения, а не как декоративный фон. При просмотре достаточно следить за тремя элементами:</p>
+
+<div class="praat-guide">
+<div class="praat-guide-item"><strong>Форма сигнала</strong>Показывает, как звук и его интенсивность изменяются во времени.</div>
+<div class="praat-guide-item"><strong>Pitch/F0</strong>Показывает движение основного тона и его изменения внутри фразы.</div>
+<div class="praat-guide-item"><strong>Название этапа</strong>Сообщает, какая версия звучит сейчас: исходная, выровненная или обработанная общим шаблоном.</div>
+</div>
+
+<div class="process-video-grid">
+<article class="process-video-card">
+<h6>Фраза «Я боюсь»</h6>
+<p>Исходная сгенерированная фраза → выровненный механический голос → результат после наложения целевого шаблона.</p>
+<video class="audio-experiment-video" controls playsinline preload="metadata" aria-label="Процесс обработки фразы Я боюсь в Praat">
+<source src="images/41-same-acoustic-template-process-fear.mp4" type="video/mp4">
+<p>Ваш браузер не поддерживает видео. <a href="images/41-same-acoustic-template-process-fear.mp4">Открыть демонстрацию отдельно</a>.</p>
+</video>
+</article>
+
+<article class="process-video-card">
+<h6>Фраза «Я так рад»</h6>
+<p>Те же этапы обработки для фразы с другим смыслом и другой фонетической структурой.</p>
+<video class="audio-experiment-video" controls playsinline preload="metadata" aria-label="Процесс обработки фразы Я так рад в Praat">
+<source src="images/42-same-acoustic-template-process-joy.mp4.mp4" type="video/mp4">
+<p>Ваш браузер не поддерживает видео. <a href="images/42-same-acoustic-template-process-joy.mp4.mp4">Открыть демонстрацию отдельно</a>.</p>
+</video>
+</article>
+</div>
+
+<div class="process-flow-title">Эксперимент в пяти этапах</div>
+<div class="process-flow" role="img" aria-label="Две исходные фразы проходят выравнивание, получают общий шаблон, помещаются в разные контексты и воспринимаются по-разному">
+<div class="process-flow-step">
+<div class="process-flow-number">1</div>
+<strong>Две исходные фразы</strong>
+<span>«Я боюсь» и «Я так рад» имеют разный смысл и фонетическую структуру.</span>
+</div>
+<div class="process-flow-step">
+<div class="process-flow-number">2</div>
+<strong>Выравнивание</strong>
+<span>Различающие просодические особенности ослабляются, голос становится более механическим.</span>
+</div>
+<div class="process-flow-step">
+<div class="process-flow-number">3</div>
+<strong>Один целевой шаблон</strong>
+<span>К обеим фразам применяются одинаковые настройки выбранных акустических признаков.</span>
+</div>
+<div class="process-flow-step contexts">
+<div class="process-flow-number">4</div>
+<strong>Разные контексты</strong>
+<span>Пожар и опасность — либо дружеская сцена и радость.</span>
+</div>
+<div class="process-flow-step result">
+<div class="process-flow-number">5</div>
+<strong>Разное восприятие</strong>
+<span>Значение звучания формируется словами, сценой и состоянием слушателя.</span>
+</div>
+</div>
+
+<p class="process-accuracy-note"><strong>Важно:</strong> общим стал шаблон выбранных просодических признаков, а не весь физический аудиосигнал. Слова, фонемы, форманты и длительность фраз остались разными. Praat показывает процесс управления выбранными характеристиками, а не полную идентичность двух записей.</p>
 </section>
 
 <h4>Почему «я так рад» продолжало звучать как страх</h4>
