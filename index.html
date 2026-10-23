@@ -785,8 +785,6 @@
 <div class="visual"><img src="images/02-effective-contributions.svg" alt="Развёрнутая схема контекстных вкладов в эмоциональное состояние"><div class="visual-body"><div class="visual-title">Путь каждого сигнала до <code>current_state</code></div><p class="visual-guide">Текст, ответ и память проходят через первый слой. Аудио сначала ограничивается <code>previous_state</code>; только полученный контекстный вклад поступает во второй слой.</p></div></div>
 
 <h3>7. Порядок вычислений</h3>
-<div class="callout"><b>Причинность <code>response_emotions</code>.</b> В однопроходном режиме ответ сначала формируется, затем его смысл обновляет состояние для следующего шага. Он не может изменить уже созданный ответ. Влияние нового состояния на ту же реплику требует отдельной двухпроходной генерации.</div>
-<div class="visual"><img src="images/09-response-causality.svg" alt="Причинность ответа и состояния"><div class="visual-body"><div class="visual-title">Однопроходный и двухпроходный режимы</div><p class="visual-guide">Режим выбирается явно, чтобы избежать скрытого цикла «ответ зависит от состояния, состояние зависит от ответа».</p></div></div>
 <div class="steps">
 <div class="step"><b>Зафиксировать контекст</b><p>Прочитать сохранённый <code>current_state</code> и использовать его как <code>previous_state</code> всего текущего обновления.</p></div>
 <div class="step"><b>Получить входы</b><p>Распознать <code>text_emotions</code>. Одним экстрактором получить абсолютные признаки текущей речи собеседника и предыдущей речи агента.</p></div>
