@@ -782,7 +782,7 @@
 <tr><td><code>memory_contribution<sub>t</sub></code></td><td><code>state_gain × semantic_state_weight × semantic_gain × previous_state_weight × previous_state<sub>t−1</sub></code></td><td>Память переносит прошлое состояние через первый и второй слои.</td></tr>
 </tbody></table>
 <p><code>previous_state</code> участвует двумя различными путями: линейно сохраняет эмоциональную память и покоординатно задаёт контекст для акустической модификации. Эти роли нельзя объединять в один коэффициент.</p>
-<div class="visual"><img src="images/02-effective-contributions.svg" alt="Развёрнутая схема контекстных вкладов в эмоциональное состояние"><div class="visual-body"><div class="visual-title">Путь каждого сигнала до <code>current_state</code></div><p class="visual-guide">Текст, ответ и память проходят через первый слой. Аудио сначала ограничивается <code>previous_state</code>; только полученный контекстный вклад поступает во второй слой.</p></div></div>
+<div class="visual"><img src="images/02-effective-contributions.png" alt="Пять эффективных вкладов проходят разными путями через два слоя и покоординатно формируют current_state агента"><div class="visual-body"><div class="visual-title">Пять вкладов с разными путями</div><p class="visual-guide"><b>Как читать:</b> смысл текста, смысл ответа и эмоциональная память проходят через <code>semantic_state</code> и оба слоя модели. Характер входит непосредственно во второй слой. Аудио поступает туда как готовая коррекция <code>A<sup>proto</sup></code>, в которой <code>previous_state</code> уже использован как контекст. Пять эффективных вкладов покоординатно формируют <code>current_state</code>.</p></div></div>
 
 <h3>7. Порядок вычислений</h3>
 <div class="steps">
