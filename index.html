@@ -108,7 +108,7 @@
 .visual{margin:32px 0 48px;border:1px solid var(--line);border-top:5px solid var(--tech);border-radius:19px;background:#f8f9fb;overflow:hidden;box-shadow:0 10px 30px rgba(40,50,70,.06)}
 .visual img{display:block;width:100%;height:auto}.visual-body{padding:18px 22px 21px;border-top:1px solid var(--line);background:#fff}.visual-title{font-size:17px;font-weight:800;margin-bottom:5px}.visual-guide{font-size:14px;color:var(--muted);margin:0}
 .equation-map{display:grid;grid-template-columns:1fr 180px;gap:18px;align-items:center;margin:24px 0}.equation-map .formula{margin:0}.equation-note{padding:17px;border-radius:13px;background:var(--tech-soft);font-size:14px;color:#294f83}
-.contract{display:grid;grid-template-columns:170px 1fr;gap:15px;padding:15px 0;border-bottom:1px solid var(--line)}.contract:last-child{border-bottom:0}.contract code{font-weight:700;color:var(--tech)}
+.contract{display:grid;grid-template-columns:minmax(280px,32%) minmax(0,1fr);gap:22px;align-items:start;padding:15px 0;border-bottom:1px solid var(--line)}.contract:last-child{border-bottom:0}.contract>code{display:block;min-width:0;font-weight:700;color:var(--tech);white-space:normal;overflow-wrap:anywhere;word-break:break-word}.contract>span{min-width:0}
 @media(max-width:850px){.equation-map,.contract{grid-template-columns:1fr}.visual{margin-left:-10px;margin-right:-10px;border-radius:12px}.visual img{min-width:900px}.visual{overflow-x:auto}.visual-body{position:sticky;left:0;max-width:100vw}}
 </style>
 <style>
