@@ -706,7 +706,7 @@
 <tr><td><code>ΔX</code>, <code>s</code></td><td>Разность признаков «собеседник минус агент» и её знаковая нормированная оценка по фиксированному профилю агента.</td></tr>
 <tr><td><code>PROTO_EMOTION_SPACE</code></td><td>Минимальный набор относительных признаков: <code>activity</code>, <code>anxiety</code> и <code>tempo</code>. Коэффициент <code>deviation</code> отдельно задаёт силу воздействия.</td></tr>
 <tr><td><code>proto_emotions</code></td><td>Вектор нормированных относительных оценок <code>s</code>. Это не классификация эмоций верхнего уровня.</td></tr>
-<tr><td><code>M</code></td><td>Матрица влияния относительных признаков на координаты <code>EMOTION_SPACE</code>.</td></tr>
+<tr><td><code>M<sub>signed</sub></code>, <code>M<sub>magnitude</sub></code></td><td>Две матрицы влияния относительных признаков на координаты <code>EMOTION_SPACE</code>: первая учитывает направление, вторая — модуль признака независимо от знака.</td></tr>
 <tr><td><code>A<sup>proto</sup></code></td><td>Знаковая акустическая коррекция после суммирования признаков, масштабирования через <code>deviation</code> и применения к <code>previous_state</code>; в исходной реализации — <code>other_emotions_s</code>.</td></tr>
 <tr><td><code>response_emotions</code></td><td>Эмоциональный смысл уже сформированного ответа агента.</td></tr>
 <tr><td><a href="https://iproxy3d.github.io/communication-styles-llm/" target="_blank" rel="noopener"><code>character_baseline</code></a></td><td>Базовый профиль эмоциональных склонностей персонажа.</td></tr>
@@ -776,16 +776,17 @@
 <tr><td><code>gratitude</code> / благодарность</td><td>0</td><td>−</td><td>0</td></tr>
 <tr><td><code>pride</code> / гордость</td><td>+</td><td>0</td><td>0</td></tr>
 </tbody></table>
-<p><strong>Обозначения:</strong> «+» — положительное значение признака усиливает координату, отрицательное подавляет; «−» — отрицательное значение усиливает координату, положительное подавляет; «0» — признак не участвует; «±» — материалы допускают оба варианта, поэтому знак нельзя назначить только по этому признаку. В числовой матрице такие позиции требуют отдельной калибровки и не должны произвольно превращаться в +1 или −1. Для <code>neutral</code> все акустические коэффициенты равны нулю.</p>
+<p><strong>Обозначения:</strong> «+» — положительное значение признака усиливает координату, отрицательное подавляет; «−» — отрицательное значение усиливает координату, положительное подавляет; «0» — признак не участвует; «±» — направление игнорируется, поэтому одинаковые по модулю положительное и отрицательное отклонения действуют одинаково. В численном представлении «+» и «−» записываются в <code>M<sub>signed</sub></code>, а «±» — в <code>M<sub>magnitude</sub></code> и применяется к <code>|s<sub>j</sub>|</code>. Для <code>neutral</code> все коэффициенты в обеих матрицах равны нулю.</p>
 
 <h4>Суммарное прото-эмоциональное влияние</h4>
-<p>После замены символов «+», «−» и «0» настроенными числовыми коэффициентами получается матрица <code>M</code> размерности «акустические признаки × эмоции». Для каждой эмоциональной координаты <em>k</em> сначала суммируются частичные влияния:</p>
-<div class="formula"><code>p<sub>t,k</sub></code> = Σ<sub>j</sub> <code>M<sub>j,k</sub> s<sub>t,j</sub></code></div>
+<p>Символическая таблица разворачивается в две числовые матрицы размерности «акустические признаки × эмоции». <code>M<sub>signed</sub></code> содержит настроенные коэффициенты для «+» и «−», а <code>M<sub>magnitude</sub></code> — коэффициенты для «±». Для каждой эмоциональной координаты <em>k</em> сначала суммируются знаковые и модульные влияния:</p>
+<div class="formula"><code>p<sub>t,k</sub></code> = Σ<sub>j</sub> [<code>M<sub>signed,j,k</sub> s<sub>t,j</sub> + M<sub>magnitude,j,k</sub> |s<sub>t,j</sub>|</code>]</div>
+<div class="formula small"><code>p<sub>t</sub></code> = (<code>s<sub>t</sub></code>)<sup>T</sup><code>M<sub>signed</sub></code> + |<code>s<sub>t</sub></code>|<sup>T</sup><code>M<sub>magnitude</sub></code></div>
 <p>Разные признаки могут усиливать друг друга, взаимно компенсироваться или давать нулевой результат. Затем совокупное влияние масштабируется выраженностью акустического отклонения и скоростью адаптации <code>η</code>, после чего применяется только к состоянию, существовавшему до текущего события:</p>
 <div class="formula small"><code>A<sup>proto</sup><sub>t,k</sub></code> = <code>η × deviation<sub>t</sub> × previous_state<sub>t−1,k</sub> × p<sub>t,k</sub></code></div>
 <p><code>A<sup>proto</sup><sub>t</sub></code> — это готовая знаковая акустическая коррекция для второго рекуррентного слоя. В терминах исходной реализации она передаётся как <code>other_emotions_s</code>. Это не распознанная эмоция собеседника.</p>
 <div class="callout"><b>Контекст задаётся состоянием.</b> Одинаковый крик может усилить радость у агента, уже вовлечённого в футбольный матч, или страх у агента, находящегося в контексте фильма ужасов. Акустика сама не выбирает между радостью и страхом: выбор уже представлен распределением <code>previous_state</code>.</div>
-<div class="visual"><img src="images/08-proto-engineering-pipeline.png" alt="Инженерный путь от двух аудиосигналов через общий экстрактор, профильную нормализацию и контекстный фильтр к акустической коррекции второго рекуррентного слоя"><div class="visual-body"><div class="visual-title">От двух аудиосигналов к контекстной коррекции</div><p class="visual-guide"><b>Как читать:</b> один и тот же <code>F<sub>θ</sub></code> независимо извлекает абсолютные признаки текущей речи собеседника и предыдущего голоса агента. После вычитания и нормализации по фиксированному профилю направленный вектор <code>s<sub>t</sub></code> преобразуется матрицей <code>M</code>, а <code>deviation<sub>t</sub></code> задаёт общий масштаб. <code>previous_state<sub>t−1</sub></code> покоординатно фильтрует результат, формируя <code>A<sup>proto</sup><sub>t</sub></code> — акустический вход второго рекуррентного слоя.</p></div></div>
+<div class="visual"><img src="images/08-proto-engineering-pipeline.png" alt="Инженерный путь от двух аудиосигналов через общий экстрактор, профильную нормализацию и контекстный фильтр к акустической коррекции второго рекуррентного слоя"><div class="visual-body"><div class="visual-title">От двух аудиосигналов к контекстной коррекции</div><p class="visual-guide"><b>Как читать:</b> один и тот же <code>F<sub>θ</sub></code> независимо извлекает абсолютные признаки текущей речи собеседника и предыдущего голоса агента. После вычитания и нормализации по фиксированному профилю направленный вектор <code>s<sub>t</sub></code> преобразуется знаковой и модульной матрицами <code>M<sub>signed</sub></code> и <code>M<sub>magnitude</sub></code>, а <code>deviation<sub>t</sub></code> задаёт общий масштаб. <code>previous_state<sub>t−1</sub></code> покоординатно фильтрует результат, формируя <code>A<sup>proto</sup><sub>t</sub></code> — акустический вход второго рекуррентного слоя.</p></div></div>
 <div class="callout warning"><b>Запрещённая интерпретация.</b> Ни признак, ни максимальную координату <code>p<sub>t</sub></code>, ни максимальную акустическую коррекцию нельзя объявлять эмоцией собеседника. Эти величины описывают только направление изменения состояния агента.</div>
 
 <h4>Замкнутая акустическая обратная связь</h4>
@@ -819,7 +820,7 @@
 <p>Первый слой объединяет эмоциональный смысл текста собеседника, эмоциональный смысл собственного ответа и состояние агента, существовавшее до текущего события.</p>
 <h4>Слой 2: контекстная акустика и характер</h4>
 <div class="formula small"><code>current_state<sub>t</sub></code> = <code>state_gain</code> × [<code>audio_weight</code> × <code>A<sup>proto</sup><sub>t</sub></code> + <code>character_random_factor<sub>t</sub></code> ⊙ <a href="https://iproxy3d.github.io/communication-styles-llm/" target="_blank" rel="noopener"><code>character_baseline</code></a> + <code>semantic_state_weight</code> × <code>semantic_state<sub>t</sub></code>]</div>
-<p>Второй слой получает уже подготовленную коррекцию <code>A<sup>proto</sup><sub>t</sub> = η × deviation<sub>t</sub> × (previous_state<sub>t−1</sub> ⊙ M<sup>T</sup>s<sub>t</sub>)</code>. Поэтому акустика может изменить силу уже активных эмоций, но не создаёт новую смысловую координату при нулевом контексте.</p>
+<p>Второй слой получает уже подготовленную коррекцию <code>A<sup>proto</sup><sub>t</sub> = η × deviation<sub>t</sub> × (previous_state<sub>t−1</sub> ⊙ p<sub>t</sub>)</code>, где <code>p<sub>t</sub> = (s<sub>t</sub>)<sup>T</sup>M<sub>signed</sub> + |s<sub>t</sub>|<sup>T</sup>M<sub>magnitude</sub></code>. Поэтому акустика может изменить силу уже активных эмоций, но не создаёт новую смысловую координату при нулевом контексте.</p>
 <h4>Связь рекуррентного состояния с контекстно-зависимым восприятием</h4>
 <p>Рекуррентная модель использует принцип, концептуально близкий к перцептивному циклу Ульрика Найссера: новая информация обрабатывается не изолированно, а с учётом состояния, сформированного предыдущими взаимодействиями.</p>
 <p>В первом слое смысл текущего сообщения, смысл ответа агента и сохранённое эмоциональное состояние формируют промежуточное <code>semantic_state</code>. Во втором слое акустические признаки действуют не как самостоятельные эмоциональные классы, а как контекстно-зависимая коррекция.</p>
@@ -871,7 +872,7 @@
 <p>После раскрытия двух слоёв итог читается как сумма пяти компонентов. Главное отличие — аудиовклад зависит от состояния до события:</p>
 <div class="formula small"><code>current_state<sub>t</sub></code> = <code>audio_contribution<sub>t</sub></code> + <code>character_contribution<sub>t</sub></code> + <code>text_contribution<sub>t</sub></code> + <code>response_contribution<sub>t</sub></code> + <code>memory_contribution<sub>t</sub></code></div>
 <table class="params"><thead><tr><th>Вклад</th><th>Полная формула</th><th>Смысл</th></tr></thead><tbody>
-<tr><td><code>audio_contribution<sub>t</sub></code></td><td><code>state_gain × audio_weight × A<sup>proto</sup><sub>t</sub></code></td><td>Акустическая коррекция уже включает <code>η × deviation × previous_state ⊙ M<sup>T</sup>s</code>.</td></tr>
+<tr><td><code>audio_contribution<sub>t</sub></code></td><td><code>state_gain × audio_weight × A<sup>proto</sup><sub>t</sub></code></td><td>Акустическая коррекция уже включает <code>η × deviation × previous_state ⊙ p</code>, где <code>p = s<sup>T</sup>M<sub>signed</sub> + |s|<sup>T</sup>M<sub>magnitude</sub></code>.</td></tr>
 <tr><td><code>character_contribution<sub>t</sub></code></td><td><code>state_gain × character_random_factor<sub>t</sub> ⊙ character_baseline</code></td><td>Характер входит непосредственно в итоговый слой.</td></tr>
 <tr><td><code>text_contribution<sub>t</sub></code></td><td><code>state_gain × semantic_state_weight × semantic_gain × text_weight × text_emotions<sub>t</sub></code></td><td>Эмоциональный смысл текста проходит через оба слоя.</td></tr>
 <tr><td><code>response_contribution<sub>t</sub></code></td><td><code>state_gain × semantic_state_weight × semantic_gain × response_random_factor<sub>t</sub> ⊙ response_emotions<sub>t</sub></code></td><td>Эмоциональный смысл ответа проходит через оба слоя.</td></tr>
@@ -887,7 +888,7 @@
 <div class="step"><b>Вычислить относительные признаки</b><p>Найти <code>ΔX = X<sup>other</sup> − X<sup>agent</sup></code>, нормализовать его по фиксированным границам агента и получить <code>s</code> и <code>deviation</code>.</p></div>
 <div class="step"><b>Сформировать ответ</b><p>Получить ответ агента и определить <code>response_emotions</code>.</p></div>
 <div class="step"><b>Выполнить первый слой</b><p>Объединить <code>text_emotions</code>, <code>response_emotions</code> и <code>previous_state</code> в <code>semantic_state</code>.</p></div>
-<div class="step"><b>Применить аудио по контексту</b><p>Вычислить <code>A<sup>proto</sup> = η × deviation × (previous_state ⊙ M<sup>T</sup>s)</code> и передать коррекцию во второй слой вместе с характером и <code>semantic_state</code>.</p></div>
+<div class="step"><b>Применить аудио по контексту</b><p>Вычислить <code>p = s<sup>T</sup>M<sub>signed</sub> + |s|<sup>T</sup>M<sub>magnitude</sub></code>, затем <code>A<sup>proto</sup> = η × deviation × (previous_state ⊙ p)</code> и передать коррекцию во второй слой вместе с характером и <code>semantic_state</code>.</p></div>
 <div class="step"><b>Ограничить и сохранить</b><p>Применить <code>constrain</code>, сохранить новый <code>current_state</code> и передать его потребителям.</p></div>
 <div class="step"><b>Обновить акустическую обратную связь</b><p>Если ответ озвучен, извлечь признаки реально сгенерированного аудио и сохранить их как <code>X<sup>agent</sup><sub>t</sub></code> для следующего события.</p></div>
 </div>
@@ -903,11 +904,11 @@
 <p>Перед вычислением проверяются два разных пространства:</p>
 <div class="formula small">coordinates(<code>proto_emotions</code>) = [<code>activity</code>, <code>anxiety</code>, <code>tempo</code>]</div>
 <div class="formula small">coordinates(<code>text_emotions</code>) = coordinates(<code>A<sup>proto</sup></code>) = coordinates(<code>response_emotions</code>) = coordinates(<code>character_baseline</code>) = coordinates(<code>previous_state</code>) = <code>EMOTION_SPACE</code></div>
-<p>Акустический адаптер переводит относительные оценки через матрицу <code>M</code> и <code>previous_state</code> в готовую коррекцию <code>A<sup>proto</sup></code>. Именно этот N-мерный вектор получает базовая операция смешения во втором слое.</p>
+<p>Акустический адаптер переводит относительные оценки через <code>M<sub>signed</sub></code>, <code>M<sub>magnitude</sub></code> и <code>previous_state</code> в готовую коррекцию <code>A<sup>proto</sup></code>. Именно этот N-мерный вектор получает базовая операция смешения во втором слое.</p>
 <h4>Вход и выход одного обновления</h4>
 <table class="params"><thead><tr><th>Часть контракта</th><th>Содержимое</th></tr></thead><tbody>
 <tr><td>Входные данные</td><td><code>text_emotions</code>, аудио собеседника, сохранённые признаки предыдущего аудио агента, <code>response_emotions</code>, <code>character_baseline</code> и снимок <code>previous_state</code>.</td></tr>
-<tr><td>Параметры</td><td>Два независимых набора весов, фиксированные границы акустического профиля, матрица <code>M</code>, скорость адаптации <code>η</code> и политика ограничения.</td></tr>
+<tr><td>Параметры</td><td>Два независимых набора весов, фиксированные границы акустического профиля, матрицы <code>M<sub>signed</sub></code> и <code>M<sub>magnitude</sub></code>, скорость адаптации <code>η</code> и политика ограничения.</td></tr>
 <tr><td>Служебные данные</td><td>Номер или время шага, маски доступности каналов и источник случайности.</td></tr>
 <tr><td>Результат</td><td><code>current_state</code> в пространстве <code>EMOTION_SPACE</code> после применения <code>constrain</code>.</td></tr>
 <tr><td>Сохраняемые данные</td><td>Состояние, признаки последнего реально сгенерированного аудио агента, идентификаторы агента и диалога, шаг, время, версии экстрактора и параметров, состояние генератора случайности.</td></tr>
@@ -919,7 +920,7 @@
 <li>Привести <code>text_emotions</code>, <code>response_emotions</code>, <code>character_baseline</code> и <code>previous_state</code> к <code>EMOTION_SPACE</code>.</li>
 <li>Одним <code>F<sub>θ</sub></code> извлечь <code>X<sup>other</sup><sub>t</sub></code> из аудио собеседника и прочитать сохранённое <code>X<sup>agent</sup><sub>t−1</sub></code>. При первом событии использовать признаки нейтрального шаблона агента.</li>
 <li>Вычислить <code>ΔX</code>, нормированные <code>activity</code>, <code>anxiety</code>, <code>tempo</code> и коэффициент <code>deviation</code>. Не изменять границы профиля текущим входом.</li>
-<li>По матрице <code>M</code> получить <code>p = M<sup>T</sup>s</code>, затем вычислить <code>A<sup>proto</sup> = η × deviation × (previous_state ⊙ p)</code>. Не заменять <code>previous_state</code> уже обновлённым состоянием того же шага.</li>
+<li>По матрицам <code>M<sub>signed</sub></code> и <code>M<sub>magnitude</sub></code> получить <code>p = s<sup>T</sup>M<sub>signed</sub> + |s|<sup>T</sup>M<sub>magnitude</sub></code>, затем вычислить <code>A<sup>proto</sup> = η × deviation × (previous_state ⊙ p)</code>. Не заменять <code>previous_state</code> уже обновлённым состоянием того же шага.</li>
 <li>Сформировать <code>response_random_factor</code> и вычислить <code>semantic_state</code>.</li>
 <li>Сформировать <code>character_random_factor</code> и вычислить <code>current_state</code>, используя <code>A<sup>proto</sup></code>.</li>
 <li>Применить <code>constrain</code> и сохранить результат как состояние следующего шага.</li>
@@ -993,7 +994,7 @@
 <li>После каждого полного обновления нужна явная функция <code>constrain</code>.</li>
 <li>Отсутствующая модальность обнуляет только собственный вклад.</li>
 <li>Состояние принадлежит конкретным агенту и диалогу и не хранится глобально.</li>
-<li>Для воспроизводимых экспериментов фиксируются параметры, версия экстрактора, акустический профиль, матрица <code>M</code> и генератор случайных чисел.</li>
+<li>Для воспроизводимых экспериментов фиксируются параметры, версия экстрактора, акустический профиль, матрицы <code>M<sub>signed</sub></code> и <code>M<sub>magnitude</sub></code> и генератор случайных чисел.</li>
 </ul>
 <p>Двухслойность и конкретные веса являются архитектурой данной модели. Их качество проверяется на целевых сценариях, но проверка не должна возвращать аудиоканалу запрещённую роль классификатора эмоций.</p>
 <div class="visual"><img src="images/14-state-isolation.png" alt="Общий профиль характера агента и изолированные снимки состояния для каждой пары агент и диалог"><div class="visual-body"><div class="visual-title">Состояние хранится отдельно для каждой пары «агент — диалог»</div><p class="visual-guide"><b>Как читать:</b> профиль характера агента может использоваться во всех его диалогах, но изменяемая запись состояния принадлежит только ключу <code>(agent_id, conversation_id)</code>. Каждая сессия загружает собственный <code>previous_state</code>, акустическую точку отсчёта и служебные данные, а после обновления сохраняет их обратно под тем же ключом. Между диалогами и агентами состояние не переносится.</p></div></div>
@@ -1022,11 +1023,11 @@
 <div class="decision"><b>Границы и воспроизводимость</b><span>Разрешённые параметры не создают NaN или неконтролируемый рост; фиксированный seed и журнал входов дают идентичную траекторию.</span></div>
 
 <h3>16. Итоговая архитектура и границы ответственности</h3>
-<div class="formula small"><code>text_emotions</code> + <code>response_emotions</code> + <code>previous_state</code> → первый слой → <code>semantic_state</code><br><code>A<sup>other</sup></code>, <code>A<sup>agent</sup></code> → <code>F<sub>θ</sub></code> → <code>ΔX</code> → <code>s</code>, <code>deviation</code> → <code>M</code> → <code>A<sup>proto</sup></code><br><code>A<sup>proto</sup></code> + <code>character_baseline</code> + <code>semantic_state</code> → второй слой → <code>constrain</code> → <code>current_state</code><br><code>current_state</code> → TTS → новое <code>A<sup>agent</sup></code> → новое <code>X<sup>agent</sup></code> для следующего шага</div>
+<div class="formula small"><code>text_emotions</code> + <code>response_emotions</code> + <code>previous_state</code> → первый слой → <code>semantic_state</code><br><code>A<sup>other</sup></code>, <code>A<sup>agent</sup></code> → <code>F<sub>θ</sub></code> → <code>ΔX</code> → <code>s</code>, <code>deviation</code> → <code>M<sub>signed</sub></code>, <code>M<sub>magnitude</sub></code> → <code>A<sup>proto</sup></code><br><code>A<sup>proto</sup></code> + <code>character_baseline</code> + <code>semantic_state</code> → второй слой → <code>constrain</code> → <code>current_state</code><br><code>current_state</code> → TTS → новое <code>A<sup>agent</sup></code> → новое <code>X<sup>agent</sup></code> для следующего шага</div>
 <div class="visual"><img src="images/15-full-technical-architecture.png" alt="Полный шаг обновления эмоционального состояния с двумя параллельными ветвями и двумя отдельными рекурсиями"><div class="visual-body"><div class="visual-title">Полный шаг обновления: две ветви и две рекурсии</div><p class="visual-guide"><b>Как читать:</b> смысл входной реплики, смысл ответа и <code>previous_state</code> формируют <code>semantic_state</code>. Параллельно признаки голоса собеседника сравниваются с сохранённым <code>X<sup>agent</sup></code> и формируют <code>A<sup>proto</sup></code> — контекстную коррекцию, уже ограниченную <code>previous_state</code>. Второй слой объединяет <code>semantic_state</code>, <code>A<sup>proto</sup></code> и <code>character_baseline</code>, после чего <code>constrain</code> формирует <code>current_state</code>. Для следующего события отдельно сохраняются <code>current_state</code> и признаки реально сгенерированного голоса агента. Этот голос не изменяет состояние текущего шага повторно.</p></div></div>
 <div class="callout"><b>Главная идея.</b> В системе замкнуты две связанные рекурсии. <code>current_state</code> переносит эмоциональный контекст, а <code>X<sup>agent</sup></code> переносит фактическую акустическую точку отсчёта. Характер остаётся фиксированным глобальным bias и сдерживает динамику состояния.</div>
 <p>Другие подсистемы могут читать <code>current_state</code> через отдельный интерфейс. Если состояние используется для озвучивания ответа, акустический экстрактор обязан вернуть измерения сгенерированной реплики в петлю, но не должен повторно менять состояние того же шага.</p>
-<p class="source-note">Модель охватывает формирование эмоционального состояния, относительную акустическую коррекцию, обратную связь через TTS, ограничение и хранение. Конкретная архитектура <code>F<sub>θ</sub></code>, способ синтеза речи и калибровка числовых коэффициентов <code>M</code> остаются отдельными задачами реализации.</p>
+<p class="source-note">Модель охватывает формирование эмоционального состояния, относительную акустическую коррекцию, обратную связь через TTS, ограничение и хранение. Конкретная архитектура <code>F<sub>θ</sub></code>, способ синтеза речи и калибровка числовых коэффициентов <code>M<sub>signed</sub></code> и <code>M<sub>magnitude</sub></code> остаются отдельными задачами реализации.</p>
 
 <h3>17. От кадра к последовательности базовых видеоданных</h3>
 <p>Низкоуровневый видеоканал не распознаёт объекты, действия, жесты или эмоции. Он непрерывно измеряет, как изменяется пространственная структура изображения. Каждый новый кадр преобразуется в один знаковый числовой отсчёт:</p>
@@ -1114,7 +1115,7 @@
 
 <h3>19. Учёт видео в полном шаге обновления состояния</h3>
 <p>Видео входит в расчёт состояния двумя независимыми путями. Смысловая ветвь отвечает на вопрос «что эмоционально означает увиденное событие?» и участвует в первом рекуррентном слое. Низкоуровневая ветвь отвечает на вопрос «как изменяется зрительный стимул?» и поступает во второй слой как контекстная протоэмоциональная коррекция. Эти ветви нельзя заменять друг другом или объединять до получения их результатов.</p>
-<div class="formula small">кадр → эмоциональное описание → эмбеддинг → сила изменения смысла → классификатор текста → video_emotions → первый слой<br>поток кадров → X<sup>video</sup> → video proto-features → M → A<sup>video</sup> → второй слой</div>
+<div class="formula small">кадр → эмоциональное описание → эмбеддинг → сила изменения смысла → классификатор текста → video_emotions → первый слой<br>поток кадров → X<sup>video</sup> → video proto-features → M<sub>signed</sub>, M<sub>magnitude</sub> → A<sup>video</sup> → второй слой</div>
 
 <h4>Предполагаемые готовые компоненты</h4>
 <p>Алгоритм исходит из того, что необходимые нейронные сети уже доступны. Их обучение не входит в этот раздел. Для интеграции требуются следующие вызываемые компоненты:</p>
@@ -1168,9 +1169,9 @@
 <h4>Шаг 5. Низкоуровневый видеовклад</h4>
 <p>Параллельно каждый кадр проходит через базовый видеоэнкодер, описанный в разделе 17. Полученные отсчёты образуют <code>X<sup>video</sup></code>. Анализатор из раздела 18 преобразует текущее окно последовательности в:</p>
 <div class="formula small">s<sub>t</sub><sup>video</sup> = [activity<sub>t</sub><sup>video</sup>, anxiety<sub>t</sub><sup>video</sup>, tempo<sub>t</sub><sup>video</sup>]<br>и неотрицательный deviation<sub>t</sub><sup>video</sup></div>
-<p>Сырые признаки нормализуются по фиксированному профилю видеоканала. Затем применяется та же интерпретация матрицы <code>M</code>, что и для аудио:</p>
-<div class="formula small">p<sub>t</sub><sup>video</sup> = M<sup>T</sup>s<sub>t</sub><sup>video</sup></div>
-<p>Матрица получает итоговые обобщённые признаки. В неё не передаются исходные <code>μ<sub>1:15</sub></code>, отдельные отклонения <code>fast</code>/<code>slow</code>, номер области или индекс победившей компоненты.</p>
+<p>Сырые признаки нормализуются по фиксированному профилю видеоканала. Затем применяется та же символическая таблица влияний, что и для аудио, представленная двумя числовыми матрицами:</p>
+<div class="formula small">p<sub>t</sub><sup>video</sup> = (s<sub>t</sub><sup>video</sup>)<sup>T</sup>M<sub>signed</sub> + |s<sub>t</sub><sup>video</sup>|<sup>T</sup>M<sub>magnitude</sub></div>
+<p><code>M<sub>signed</sub></code> учитывает направление признака, а <code>M<sub>magnitude</sub></code> — его модуль независимо от знака. Обе матрицы получают только итоговые обобщённые признаки. В них не передаются исходные <code>μ<sub>1:15</sub></code>, отдельные отклонения <code>fast</code>/<code>slow</code>, номер области или индекс победившей компоненты.</p>
 <p>Контекстная видеокоррекция рассчитывается относительно снимка состояния до события:</p>
 <div class="formula small">A<sub>t</sub><sup>video</sup> = η<sub>video</sub> · deviation<sub>t</sub><sup>video</sup> · (previous_state<sub>t−1</sub> ⊙ p<sub>t</sub><sup>video</sup>)</div>
 <p><code>η<sub>video</sub></code> задаёт общий масштаб видеоканала. <code>deviation</code> изменяет силу воздействия, но не выбирает эмоциональную координату. Само видео не создаёт готовую эмоцию: оно модифицирует активный контекст.</p>
@@ -1240,7 +1241,10 @@
         anxiety=anxiety,
         tempo=tempo,
     )
-    p_video = transpose(M) @ s_video
+    p_video = (
+        s_video @ M_signed
+        + abs(s_video) @ M_magnitude
+    )
     A_video = (
         eta_video
         * deviation
@@ -1286,7 +1290,7 @@
 <tr><td>Один <code>previous_state</code> для всех ветвей шага</td><td>Исключает зависимость результата от порядка обработки аудио и видео.</td></tr>
 <tr><td>Состояние обновляется один раз</td><td>Не допускает повторного учёта одного события внутри шага.</td></tr>
 <tr><td>Caption и прото-признаки не смешиваются до слоёв модели</td><td>Caption несёт смысл, а прото-признаки — динамику стимула.</td></tr>
-<tr><td><code>deviation</code> не выбирает эмоциональную координату</td><td>Он масштабирует влияние, направление задают признаки и <code>M</code>.</td></tr>
+<tr><td><code>deviation</code> не выбирает эмоциональную координату</td><td>Он масштабирует влияние, а направление и модуль задают признаки, <code>M<sub>signed</sub></code> и <code>M<sub>magnitude</sub></code>.</td></tr>
 <tr><td>Профили аудио и видео калибруются отдельно</td><td>Физические диапазоны источников различаются, хотя интерпретация признаков одинакова.</td></tr>
 <tr><td>Отсутствующая модальность имеет нулевой вклад и маску</td><td>Предыдущее несвязанное значение не переносится в новое событие.</td></tr>
 </tbody></table>
